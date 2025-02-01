@@ -10,8 +10,93 @@
     <meta property="og:type" content="website" />
     <title>About Me - Pranav Santhosh</title>
     <link rel="icon" href="assets/images/logo.png" type="image/png">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/about.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
+    <style>
+        body {
+            background: linear-gradient(135deg, #000000, #061631);
+            font-family: 'Urbanist', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        a:hover {
+            color: #cccccc;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            margin-left: 1rem;
+            color: #ffffff;
+        }
+
+        .nav-links a:hover {
+            color: #cccccc;
+        }
+
+        .about-section {
+            padding: 2rem;
+            background-color: #ffffff;
+            color: #333333;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .about-section h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            color: #666666;
+        }
+
+        .skills, .experience, .education, .extracurriculars {
+            padding: 2rem;
+            background-color: #f5f5f5;
+            color: #333333;
+            margin: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .skills h2, .experience h2, .education h2, .extracurriculars h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .skills ul, .experience .job, .education p, .extracurriculars p {
+            font-size: 1.2rem;
+            color: #666666;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
     <header class="navbar">
@@ -36,36 +121,52 @@
     <section class="skills">
         <h2>Skills</h2>
         <ul>
-            <li>Programming Languages: Python, JavaScript, C++</li>
-            <li>Frameworks: React, Node.js, Django</li>
-            <li>Tools: Git, Docker, Jenkins</li>
-            <li>Robotics: ROS, Arduino, Raspberry Pi</li>
+            <li>Calculus AB from DNHS</li>
+            <li>CSS from DNHS</li>
+            <li>CAD from Team Optix 3749</li>
+            <li>Python from DNHS</li>
+            <li>Email Strategy from Scioly/TeamOptix3749</li>
+            <li>Material Science from SciOly</li>
+            <li>Earth Science from SciOly</li>
+            <li>Outreach from TeamOptix3749</li>
+            <li>Event Planning from TeamOptix 3749</li>
         </ul>
     </section>
 
     <section class="experience">
         <h2>Experience</h2>
         <div class="job">
-            <h3>Software Engineer at TechCorp</h3>
-            <p>Developed and maintained web applications using React and Node.js.</p>
+            <h3>SDC Programming Tutoring</h3>
+            <p>Hosted FTC (First Tech Challenge) competition at DNHS</p>
         </div>
         <div class="job">
-            <h3>Robotics Intern at RoboWorks</h3>
-            <p>Worked on autonomous navigation and control systems for robots.</p>
+            <h3>Science Olympiad</h3>
+            <p>Attended many regionals and invitationals for SciOly. Proctored invitationals for SciOly.</p>
+        </div>
+        <div class="job">
+            <h3>Team Optix 3749</h3>
+            <p>Hosted food drives, adopted a beach (Mission Beach), and donated books to kids around the world for Books4All Club Leadership.</p>
         </div>
     </section>
 
     <section class="education">
         <h2>Education</h2>
-        <p>Bachelor of Science in Computer Science, University of Technology</p>
+        <p>Del Norte High School / Expected to Graduate 2027</p>
+        <p>Has taken Honors Principles Engineering 1-2, Computer Science and Software Engineering (CSSE 1-2). Currently taking Computer Science Principles.</p>
     </section>
 
-    <footer>
+    <section class="extracurriculars">
+        <h2>Extracurricular Activities</h2>
+        <p>Was an avid music learner from ages 7-12, played the Violin and participated in many recitals from the Rancho Bernardo Youth Symphony orchestra. Currently focusing mostly on sports such as badminton, and study type extracurriculars such as Science Olympiad or Team Optix 3749.</p>
+        <p>*Team Optix 3749 is part of Del Norte Clubs along with Science Olympiad however it also designs large scale things such as First Robotics Competition Robots.</p>
+    </section>
+
+    <footer style="text-align: center; padding: 1rem 0; background-color: #000000; color: #ffffff; font-size: 0.9rem;">
         <p>&copy; 2025 Pranav Santhosh. All Rights Reserved.</p>
         <div class="social-links">
-            <a href="https://github.com/your-github">GitHub</a>
-            <a href="https://linkedin.com/in/your-linkedin">LinkedIn</a>
-            <a href="https://twitter.com/your-twitter">Twitter</a>
+            <a href="https://github.com/SanPranav" style="margin: 0 0.5rem; color: #ffffff;">GitHub</a>
+            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/" style="margin: 0 0.5rem; color: #ffffff;">LinkedIn</a>
+            <a href="https://twitter.com/your-twitter" style="margin: 0 0.5rem; color: #ffffff;">Twitter</a>
         </div>
     </footer>
 

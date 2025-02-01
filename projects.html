@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Contributions - Pranav Santhosh" />
-    <meta property="og:description" content="Explore my contributions to various projects and open-source collaborations." />
+    <meta property="og:title" content="Projects - Pranav Santhosh" />
+    <meta property="og:description" content="Explore my projects and contributions to various fields." />
     <meta property="og:image" content="assets/images/logo.png" />
-    <meta property="og:url" content="https://your-website-link/contributions.html" />
+    <meta property="og:url" content="https://your-website-link/projects.html" />
     <meta property="og:type" content="website" />
-    <title>Contributions - Pranav Santhosh</title>
+    <title>Projects - Pranav Santhosh</title>
     <link rel="icon" href="assets/images/logo.png" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
     <style>
         body {
-            background: linear-gradient(135deg, #000000, #01102b);
+            background: linear-gradient(135deg, #000000, #010c1f);
             font-family: 'Urbanist', sans-serif;
             color: white;
             margin: 0;
@@ -51,7 +51,7 @@
             color: #cccccc;
         }
 
-        .contributions-section {
+        .projects-section {
             padding: 2rem;
             background-color: #ffffff;
             color: #333333;
@@ -59,34 +59,44 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .contributions-section h1 {
+        .projects-section h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        .contributions-section p {
+        .projects-section p {
             font-size: 1.2rem;
             color: #666666;
         }
 
-        .contributions-section ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .contributions-section li {
-            font-size: 1.2rem;
-            color: #666666;
-            margin-bottom: 0.5rem;
+        .project-card {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #333;
             animation: slideIn 1s ease-in-out;
         }
 
-        .contributions-section li a {
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            color: #666666;
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 0.5rem;
             color: #000000;
             font-weight: bold;
         }
 
-        .contributions-section li a:hover {
+        .project-card a:hover {
             color: #333333;
         }
 
@@ -107,22 +117,29 @@
         <nav class="nav-links">
             <a href="index.html">Home</a>
             <a href="about.html">About Me</a>
-            <a href="projects.html">Projects</a>
+            <a href="contributions.html">Contributions</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
 
-    <main class="contributions-section">
-        <h1>My Contributions</h1>
-        <p>Here are some of my notable contributions to open-source projects and hackathons:</p>
-        <ul>
-            <li><strong><a href="https://github.com/vs26625/platformer3x" target="_blank">Platformer3x:</a></strong> Contributed to a platformer game project.</li>
-            <li><strong>AI Image Enhancer:</strong> Contributed to a tool that improves image quality.</li>
-            <li><strong>Secure Chat App:</strong> Worked on an end-to-end encrypted messaging platform.</li>
-            <li><strong>Hackathon Winning Project:</strong> Built a smart home assistant using IoT.</li>
-            <li><strong>Robotics Arm Controller:</strong> Developed software for real-time control of a robotic arm.</li>
-            <li><strong>Smart Home Automation:</strong> Created a smart home system using IoT devices and cloud services.</li>
-        </ul>
+    <main class="projects-section">
+        <h1>My Projects</h1>
+        <p>Here are some of my notable projects:</p>
+        <div class="project-card">
+            <h3>AI Art Generator</h3>
+            <p>Used TensorFlow and GANs to create unique digital art pieces.</p>
+            <a href="#">View Project</a>
+        </div>
+        <div class="project-card">
+            <h3>Robotics Arm Controller</h3>
+            <p>Designed software for real-time control of a robotic arm in competition.</p>
+            <a href="#">View Project</a>
+        </div>
+        <div class="project-card">
+            <h3>Smart Home Automation</h3>
+            <p>Developed a smart home system using IoT devices and cloud services.</p>
+            <a href="#">View Project</a>
+        </div>
     </main>
 
     <footer style="text-align: center; padding: 1rem 0; background-color: #000000; color: #ffffff; font-size: 0.9rem;">

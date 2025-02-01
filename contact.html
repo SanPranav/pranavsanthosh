@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Pranav Santhosh" />
-    <meta property="og:description" content="Welcome to my world of software, robotics, and creativity." />
+    <meta property="og:title" content="Contact - Pranav Santhosh" />
+    <meta property="og:description" content="Get in touch with Pranav Santhosh." />
     <meta property="og:image" content="assets/images/logo.png" />
-    <meta property="og:url" content="https://your-website-link" />
+    <meta property="og:url" content="https://your-website-link/contact.html" />
     <meta property="og:type" content="website" />
-    <title>Home - Pranav Santhosh</title>
+    <title>Contact - Pranav Santhosh</title>
     <link rel="icon" href="assets/images/logo.png" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
     <style>
         body {
-            background: linear-gradient(135deg, #000000, #010d22);
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
             font-family: 'Urbanist', sans-serif;
             color: white;
             margin: 0;
@@ -51,80 +51,31 @@
             color: #cccccc;
         }
 
-        .hero {
-            background-image: url('assets/images/hero-bg.jpg');
-            text-align: center;
-            padding: 6rem 2rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            color: #f0f0f0;
-        }
-
-        .cta-button {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
-            background-color: #000000;
-            color: #ffffff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #333333;
-        }
-
-        #navigation-buttons {
+        .contact-section {
             padding: 2rem;
-            text-align: center;
-        }
-
-        #navigation-buttons a {
-            display: inline-block;
-            margin: 0.5rem;
-            padding: 1rem 2rem;
-            background-color: #000000;
-            color: #ffffff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
+            background-color: #ffffff;
+            color: #333333;
+            animation: fadeIn 1s ease-in-out;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        #navigation-buttons a:hover {
-            background-color: #333333;
-        }
-
-        #contact {
-            padding: 2rem;
-            background-color: #f5f5f5;
-            text-align: center;
-            color: #333;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        #contact h2 {
+        .contact-section h1 {
             font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        #contact form {
+        .contact-section p {
+            font-size: 1.2rem;
+            color: #666666;
+        }
+
+        .contact-section form {
             max-width: 600px;
             margin: 0 auto;
         }
 
-        #contact input,
-        #contact textarea {
+        .contact-section input,
+        .contact-section textarea {
             width: 100%;
             padding: 0.75rem;
             margin-bottom: 1rem;
@@ -132,7 +83,7 @@
             border-radius: 5px;
         }
 
-        #contact button {
+        .contact-section button {
             padding: 0.75rem 1.5rem;
             background-color: #000000;
             color: #ffffff;
@@ -142,7 +93,7 @@
             transition: background-color 0.3s ease;
         }
 
-        #contact button:hover {
+        .contact-section button:hover {
             background-color: #333333;
         }
 
@@ -156,35 +107,23 @@
     <header class="navbar">
         <a href="index.html" class="logo">PRANAV SANTHOSH</a>
         <nav class="nav-links">
+            <a href="index.html">Home</a>
             <a href="about.html">About Me</a>
             <a href="contributions.html">Contributions</a>
             <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
         </nav>
     </header>
-    
-    <main class="hero">
-        <h1>Welcome to My World</h1>
-        <p>Exploring software, robotics, and creativity!</p>
-        <a href="about.html" class="cta-button">Learn More</a>
-    </main>
-  
-    <section id="navigation-buttons">
-        <a href="about.html">About Me</a>
-        <a href="contributions.html">Contributions</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-    </section>
-  
-    <section id="contact">
-        <h2>Get in Touch</h2>
+
+    <main class="contact-section">
+        <h1>Contact Me</h1>
+        <p>Feel free to reach out to me through the form below:</p>
         <form action="mailto:Pranavs22638@gmail.com" method="post" enctype="text/plain">
             <input type="email" placeholder="Enter your email" required>
             <textarea placeholder="Write your message" required></textarea>
             <button type="submit">Send Message</button>
         </form>
-    </section>
-  
+    </main>
+
     <footer style="text-align: center; padding: 1rem 0; background-color: #000000; color: #ffffff; font-size: 0.9rem;">
         <p>&copy; 2025 Pranav Santhosh. All Rights Reserved.</p>
         <div class="social-links">
