@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
     <style>
         body {
-            background: linear-gradient(135deg, #000000, #01102b);
+            background: linear-gradient(135deg, #000000, #000f29);
             font-family: 'Urbanist', sans-serif;
             color: white;
             margin: 0;
@@ -69,24 +69,34 @@
             color: #666666;
         }
 
-        .contributions-section ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .contributions-section li {
-            font-size: 1.2rem;
-            color: #666666;
-            margin-bottom: 0.5rem;
+        .contribution-card {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #333;
             animation: slideIn 1s ease-in-out;
         }
 
-        .contributions-section li a {
+        .contribution-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contribution-card p {
+            font-size: 1rem;
+            color: #666666;
+        }
+
+        .contribution-card a {
+            display: inline-block;
+            margin-top: 0.5rem;
             color: #000000;
             font-weight: bold;
         }
 
-        .contributions-section li a:hover {
+        .contribution-card a:hover {
             color: #333333;
         }
 
@@ -115,14 +125,40 @@
     <main class="contributions-section">
         <h1>My Contributions</h1>
         <p>Here are some of my notable contributions to open-source projects and hackathons:</p>
-        <ul>
-            <li><strong><a href="https://github.com/vs26625/platformer3x" target="_blank">Platformer3x:</a></strong> Contributed to a platformer game project.</li>
-            <li><strong>AI Image Enhancer:</strong> Contributed to a tool that improves image quality.</li>
-            <li><strong>Secure Chat App:</strong> Worked on an end-to-end encrypted messaging platform.</li>
-            <li><strong>Hackathon Winning Project:</strong> Built a smart home assistant using IoT.</li>
-            <li><strong>Robotics Arm Controller:</strong> Developed software for real-time control of a robotic arm.</li>
-            <li><strong>Smart Home Automation:</strong> Created a smart home system using IoT devices and cloud services.</li>
-        </ul>
+        <div class="contribution-card">
+            <h3>Platformer3x</h3>
+            <p>Contributed to a platformer game project.</p>
+            <a href="https://github.com/nighthawkcoders/platformer3x" target="_blank">GitHub</a> | <a href="https://nighthawkcoders.github.io/platformer3x/" target="_blank">Website</a>
+        </div>
+        <div class="contribution-card">
+            <h3>Optix Scouting App</h3>
+            <p>Worked on a Scouting application for FRC that allows people to record information based on match info etc. (App on app store/Google play Store)</p>
+        </div>
+        <div class="contribution-card">
+            <h3>Optix Scouting Website</h3>
+            <p>The main database where the scouting application transfers its data using QR codes.</p>
+            <a href="https://github.com/Team-Optix-3749/Optix-Scouting-WebApp" target="_blank">GitHub</a> | <a href="https://team-optix-3749.github.io/Optix-Scouting-WebApp/" target="_blank">Website</a>
+        </div>
+        <div class="contribution-card">
+            <h3>CSP Portfolio (Pranav_2025)</h3>
+            <p>Simple Portfolio for the year 2024-2025 that was used to track achievements made throughout this year.</p>
+            <a href="https://github.com/SanPranav/Pranav_2025" target="_blank">GitHub</a> | <a href="https://sanpranav.github.io/Pranav_2025/" target="_blank">Website</a>
+        </div>
+        <div class="contribution-card">
+            <h3>Outreach Hours Website</h3>
+            <p>New Small Project that is currently being built that tracks outreach hours, or a way that people in the club would impact our community.</p>
+            <a href="https://github.com/SanPranav/Optix-Outreach-Hours-Website" target="_blank">GitHub</a> | <a href="https://sanpranav.github.io/Optix-Outreach-Hours-Website/" target="_blank">Website</a>
+        </div>
+        <div class="contribution-card">
+            <h3>Prism Frontend</h3>
+            <p>Contributed to a CPT project for AP CSP.</p>
+            <a href="https://github.com/illuminati1618/prism_frontend" target="_blank">GitHub</a> | <a href="https://illuminati1618.github.io/prism_frontend/" target="_blank">Website</a>
+        </div>
+        <div class="contribution-card">
+            <h3>Prism Backend</h3>
+            <p>Contributed to a CPT project for AP CSP.</p>
+            <a href="https://github.com/illuminati1618/prism_backend" target="_blank">GitHub</a> | <a href="https://illuminati1618.github.io/prism_backend/" target="_blank">Website</a>
+        </div>
     </main>
 
     <footer style="text-align: center; padding: 1rem 0; background-color: #000000; color: #ffffff; font-size: 0.9rem;">
