@@ -1,0 +1,715 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Building Pyre: From AI Fire Prediction APIs to Team Leadership" />
+    <meta property="og:description" content="A journey through building AI-powered fire prediction APIs, managing teams, and scaling a real-world solution." />
+    <meta property="og:image" content="assets/images/logo.png" />
+    <meta property="og:url" content="https://your-website-link" />
+    <meta property="og:type" content="article" />
+    <title>Building Pyre: AI Fire Prediction - Pranav Santhosh</title>
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
+    <style>
+        body {
+            background: linear-gradient(135deg, #000000, #2d1810);
+            font-family: 'Urbanist', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        a:hover {
+            color: #cccccc;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .nav-links a {
+            margin-left: 1rem;
+            color: #ffffff;
+        }
+        .nav-links a:hover {
+            color: #cccccc;
+        }
+        .blog-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><linearGradient id="fire" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:%23ff4500;stop-opacity:1" /><stop offset="50%" style="stop-color:%23ff6b00;stop-opacity:1" /><stop offset="100%" style="stop-color:%23ff8c00;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="400" fill="url(%23fire)"/><circle cx="200" cy="350" r="30" fill="%23ff0000" opacity="0.3"/><circle cx="400" cy="320" r="25" fill="%23ff4500" opacity="0.4"/><circle cx="600" cy="360" r="35" fill="%23ff6600" opacity="0.3"/><circle cx="800" cy="340" r="28" fill="%23ff8800" opacity="0.4"/><circle cx="1000" cy="330" r="32" fill="%23ffaa00" opacity="0.3"/></svg>');
+            text-align: center;
+            padding: 4rem 2rem 2rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        .blog-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .blog-hero p {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        .blog-content {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: rgba(20, 10, 5, 0.95);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .blog-content h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.7rem;
+            color: #ff8c42;
+        }
+        .blog-content h4 {
+            font-size: 1.1rem;
+            margin-top: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #e0e0e0;
+        }
+        .blog-content p {
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+        .blog-content ul, .blog-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.2rem;
+        }
+        .blog-content code {
+            background: #2a1810;
+            color: #ffea00;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .blog-content pre {
+            background: #2a1810;
+            color: #e0e0e0;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-size: 1em;
+            border-left: 4px solid #ff6b35;
+        }
+        .blog-content blockquote {
+            border-left: 4px solid #ff6b35;
+            background: #2a1810;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            color: #ffb380;
+            font-style: italic;
+        }
+        .blog-content hr {
+            border: none;
+            border-top: 1px solid #444;
+            margin: 2rem 0;
+        }
+        .highlight-box {
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            color: white;
+            font-weight: bold;
+        }
+        .leadership-section {
+            background: rgba(30, 20, 15, 0.8);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #ff6b35;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+        .social-links a {
+            margin: 0 0.5rem;
+            color: #ffffff;
+        }
+        .social-links a:hover {
+            color: #ff6b35;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">PRANAV SANTHOSH</a>
+        <nav class="nav-links">
+            <a href="about.html">About Me</a>
+            <a href="contributions.html">Contributions</a>
+            <a href="blog.html">Blogs</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="blog-hero">
+        <h1>Building Pyre: From AI Fire Prediction APIs to Team Leadership</h1>
+        <p>The journey of creating an AI-powered fire prediction system taught me more than just coding - it taught me how to lead.</p>
+    </section>
+
+    <article class="blog-content">
+        <h2>The Spark of an Idea</h2>
+        <p>
+            Pyre began as more than just a technical challenge - it was born from the urgent need to predict and prevent wildfires using artificial intelligence. What started as an ambitious idea to combine weather data, satellite imagery, and machine learning models quickly evolved into a comprehensive system that would test every aspect of my development and leadership skills.
+        </p>
+
+        <div class="highlight-box">
+            🔥 Mission: Create an AI system that could predict fire risks with enough accuracy to save lives and property
+        </div>
+
+        <h2>Building the Foundation: The Help System API</h2>
+        <p>
+            Before diving into the complex AI prediction algorithms, I knew we needed a robust support infrastructure. Users would have questions, encounter issues, and need guidance - especially when dealing with life-safety information.
+        </p>
+
+        <h3>The Database Architecture Challenge</h3>
+        <p>
+            My first major hurdle was designing a help system that could handle everything from simple FAQs to complex technical support tickets. Looking at my initial database model, I was overly ambitious:
+        </p>
+        <pre><code># INITIAL ATTEMPT - Too complex, too soon
+class HelpRequest(db.Model):
+    # I tried to handle every possible scenario from day one
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    category = db.Column(db.String(50), nullable=False, default='general')
+    priority = db.Column(db.String(20), nullable=False, default='medium')
+    status = db.Column(db.String(20), nullable=False, default='open')
+    # ... and 15 more fields that made queries slow
+</code></pre>
+        <p>
+            The problem? I was designing for scale before understanding the actual use cases. My overly complex model made simple operations incredibly slow and debugging a nightmare.
+        </p>
+
+        <h3>The Great Simplification</h3>
+        <p>
+            After spending two days trying to debug why help requests were taking 3+ seconds to load, I realized I needed to step back and think differently:
+        </p>
+        <pre><code># SIMPLIFIED VERSION - Start with essentials
+class HelpRequest(db.Model):
+    __tablename__ = 'help_requests'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    category = db.Column(db.String(50), nullable=False, default='general')
+    priority = db.Column(db.String(20), nullable=False, default='medium')
+    status = db.Column(db.String(20), nullable=False, default='open')
+    
+    # Foreign keys - keeping it simple
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    
+    # Essential timestamps
+    created_date = db.Column(db.DateTime, default=datetime.now)
+    updated_date = db.Column(db.DateTime, default=datetime.now)
+</code></pre>
+        <blockquote>
+            The lesson: Build for today's problems, not tomorrow's hypothetical ones. You can always add complexity later.
+        </blockquote>
+
+        <h3>The Response System Nightmare</h3>
+        <p>
+            The help response system seemed straightforward until I realized that fire prediction data required different types of responses - some public, some private, some marked as solutions. My initial approach was chaotic:
+        </p>
+        <pre><code># MESSY VERSION - No clear response hierarchy
+@app.route('/help/respond', methods=['POST'])
+def add_response():
+    data = request.get_json()
+    
+    # No validation, no hierarchy, no structure
+    response = HelpResponse(
+        help_request_id=data['request_id'],
+        admin_id=current_user.id,
+        response_text=data['response']
+    )
+    
+    # The bug: No checking if this was actually solving the issue!
+    response.create()
+    return {'message': 'Response added'}
+</code></pre>
+        <p>
+            Users were getting confused because there was no clear indication of which responses actually solved their problems. I was treating all responses equally when they clearly weren't.
+        </p>
+        <p>The solution required implementing a proper response hierarchy:</p>
+        <pre><code># IMPROVED VERSION - Clear response types and validation
+class HelpResponse(db.Model):
+    __tablename__ = 'help_responses'
+
+    id = db.Column(db.Integer, primary_key=True)
+    response_text = db.Column(db.Text, nullable=False)
+    is_public = db.Column(db.Boolean, default=True)
+    is_solution = db.Column(db.Boolean, default=False)  # Key addition!
+    
+    def create(self):
+        """Create a new help response with proper validation."""
+        try:
+            # If this is marked as a solution, update the parent request
+            if self.is_solution:
+                help_request = HelpRequest.query.get(self.help_request_id)
+                if help_request:
+                    help_request.status = 'resolved'
+                    help_request.resolved_date = datetime.now()
+                    help_request.update()
+            
+            db.session.add(self)
+            db.session.commit()
+            return self
+        except IntegrityError:
+            db.session.rollback()
+            return None
+</code></pre>
+        <blockquote>
+            This taught me that user experience isn't just about pretty interfaces - it's about clear information hierarchy and meaningful feedback.
+        </blockquote>
+
+        <h2>Leading the Team: My First Taste of Project Management</h2>
+        
+        <div class="leadership-section">
+            <h3>🎯 Discovering Kanban: From Chaos to Organization</h3>
+            <p>
+                As Pyre grew beyond a solo project, I realized I needed to level up my project management skills. With a small team of developers working on different components - the AI model, the API, and the frontend - coordination became critical.
+            </p>
+        </div>
+
+        <h3>The Pre-Kanban Disaster</h3>
+        <p>
+            Before implementing proper project management, our team communication looked like this:
+        </p>
+        <pre><code># Our "project management" was basically chaos
+Team Chat:
+[9:23 AM] Dev1: "Working on the weather API"
+[11:45 AM] Dev2: "Is someone handling the database?"
+[2:30 PM] Me: "Wait, who's doing the authentication?"
+[4:15 PM] Dev1: "I thought Dev2 was..."
+[4:16 PM] Dev2: "I thought YOU were..."
+
+# Result: Three people working on weather API, nobody on auth
+</code></pre>
+        <p>
+            We were duplicating work, missing deadlines, and frankly, frustrating each other. I knew something had to change.
+        </p>
+
+        <h3>Implementing Kanban: The Game Changer</h3>
+        <p>
+            I discovered Kanban boards and decided to implement them for our Pyre project. Here's how I structured our workflow:
+        </p>
+        <div class="highlight-box">
+            📋 <strong>Our Kanban Board Structure:</strong><br>
+            • Backlog → To Do → In Progress → Review → Testing → Done<br>
+            • Each card had: Owner, Priority, Due Date, Dependencies<br>
+            • Daily standups focused on board movement, not status reports
+        </div>
+
+        <p>The transformation was immediate. Here's what our new workflow looked like:</p>
+        <pre><code># ORGANIZED VERSION - Clear ownership and progress tracking
+KANBAN BOARD - Week of March 15th
+
+TO DO:
+- [HIGH] Fire risk algorithm optimization (Dev1) - Due: 3/20
+- [MED] User dashboard UI improvements (Dev2) - Due: 3/22
+- [LOW] Documentation updates (Me) - Due: 3/25
+
+IN PROGRESS:
+- [HIGH] Weather API integration (Me) - Started: 3/15
+- [MED] Database migration for new schema (Dev2) - Started: 3/14
+
+REVIEW:
+- [HIGH] Help system API endpoints (Dev1) - Ready for testing
+
+# Everyone knew what everyone else was doing!
+</code></pre>
+
+        <h3>The Communication Revolution</h3>
+        <p>
+            But Kanban was just the beginning. I realized that as the project lead, I needed to facilitate better communication. I implemented several practices that transformed how we worked:
+        </p>
+
+        <div class="leadership-section">
+            <h4>📞 Daily Standups (5 minutes max)</h4>
+            <ul>
+                <li>What did you move on the board yesterday?</li>
+                <li>What will you move today?</li>
+                <li>Any blockers preventing movement?</li>
+            </ul>
+            
+            <h4>🎯 Sprint Planning</h4>
+            <ul>
+                <li>Every two weeks, we'd plan the next sprint</li>
+                <li>Focus on deliverable features, not just tasks</li>
+                <li>Each team member could commit to their own capacity</li>
+            </ul>
+            
+            <h4>🔄 Retrospectives</h4>
+            <ul>
+                <li>What went well? What didn't? What should we try?</li>
+                <li>This is where we discovered our biggest bottlenecks</li>
+                <li>Led to process improvements every sprint</li>
+            </ul>
+        </div>
+
+        <blockquote>
+            Leading a technical team taught me that the best code in the world is useless if the team can't coordinate effectively.
+        </blockquote>
+
+        <h2>The AI Prediction API: Where Things Got Complex</h2>
+        <p>
+            With our team coordination sorted, we could focus on the core challenge: building APIs that could handle AI fire prediction data in real-time.
+        </p>
+
+        <h3>The Data Pipeline Disaster</h3>
+        <p>
+            Our first attempt at the prediction API was embarrassingly naive. I thought I could simply feed weather data into our machine learning model and return predictions:
+        </p>
+        <pre><code># BROKEN VERSION - No error handling, no validation
+@app.route('/predict', methods=['POST'])
+def predict_fire_risk():
+    data = request.get_json()
+    
+    # Blindly trusting incoming data - big mistake!
+    weather_data = data['weather']
+    location = data['location']
+    
+    # Direct model call with no validation
+    prediction = fire_model.predict(weather_data)
+    
+    return {'risk_level': prediction}
+</code></pre>
+        <p>
+            This approach failed spectacularly when we started receiving real-world data. Weather APIs would send incomplete data, GPS coordinates would be malformed, and our model would crash with cryptic error messages.
+        </p>
+
+        <h3>Building Robust Data Validation</h3>
+        <p>
+            The solution required implementing comprehensive data validation and error handling:
+        </p>
+        <pre><code># ROBUST VERSION - Comprehensive validation and error handling
+@app.route('/predict', methods=['POST'])
+@token_required()
+def predict_fire_risk():
+    try:
+        data = request.get_json()
+        
+        # Comprehensive input validation
+        required_fields = ['weather', 'location', 'timestamp']
+        for field in required_fields:
+            if field not in data:
+                return {'error': f'Missing required field: {field}'}, 400
+        
+        # Validate weather data structure
+        weather_data = data['weather']
+        required_weather_fields = ['temperature', 'humidity', 'wind_speed', 'precipitation']
+        
+        for field in required_weather_fields:
+            if field not in weather_data:
+                return {'error': f'Missing weather field: {field}'}, 400
+            
+            # Type and range validation
+            try:
+                value = float(weather_data[field])
+                if field == 'humidity' and not (0 <= value <= 100):
+                    return {'error': 'Humidity must be between 0 and 100'}, 400
+                if field == 'temperature' and not (-50 <= value <= 60):
+                    return {'error': 'Temperature out of reasonable range'}, 400
+            except (ValueError, TypeError):
+                return {'error': f'Invalid {field} value'}, 400
+        
+        # Location validation
+        location = data['location']
+        if not isinstance(location, dict) or 'lat' not in location or 'lng' not in location:
+            return {'error': 'Invalid location format'}, 400
+        
+        try:
+            lat, lng = float(location['lat']), float(location['lng'])
+            if not (-90 <= lat <= 90) or not (-180 <= lng <= 180):
+                return {'error': 'Invalid coordinates'}, 400
+        except (ValueError, TypeError):
+            return {'error': 'Invalid coordinate values'}, 400
+        
+        # Make prediction with validated data
+        prediction = fire_model.predict({
+            'temperature': weather_data['temperature'],
+            'humidity': weather_data['humidity'],
+            'wind_speed': weather_data['wind_speed'],
+            'precipitation': weather_data['precipitation'],
+            'latitude': lat,
+            'longitude': lng
+        })
+        
+        # Validate model output
+        if prediction is None or not isinstance(prediction, (int, float)):
+            return {'error': 'Model prediction failed'}, 500
+        
+        # Create prediction record for tracking
+        prediction_record = FirePrediction(
+            location_lat=lat,
+            location_lng=lng,
+            risk_level=prediction,
+            weather_data=json.dumps(weather_data),
+            created_date=datetime.now()
+        )
+        prediction_record.create()
+        
+        return {
+            'risk_level': prediction,
+            'confidence': calculate_confidence(weather_data),
+            'recommendations': generate_recommendations(prediction),
+            'prediction_id': prediction_record.id
+        }
+        
+    except Exception as e:
+        logger.error(f"Prediction API error: {str(e)}")
+        return {'error': 'Internal server error'}, 500
+</code></pre>
+
+        <blockquote>
+            This experience taught me that building production APIs requires thinking about every possible way the system could fail - and handling those failures gracefully.
+        </blockquote>
+
+        <h3>The Real-Time Updates Challenge</h3>
+        <p>
+            Fire prediction isn't useful if the data is hours old. We needed real-time updates, which meant implementing WebSocket connections and managing state across multiple clients. My first attempt was a mess:
+        </p>
+        <pre><code># PROBLEMATIC VERSION - Memory leaks and race conditions
+from flask_socketio import SocketIO, emit
+
+socketio = SocketIO(app)
+active_connections = []  # This was a memory leak waiting to happen
+
+@socketio.on('subscribe_predictions')
+def handle_subscription(data):
+    # No validation of subscription parameters
+    location = data['location']
+    
+    # Adding to global list without cleanup
+    active_connections.append({
+        'client_id': request.sid,
+        'location': location
+    })
+    
+    emit('subscribed', {'status': 'success'})
+
+# Race condition city - multiple threads modifying the same list
+def broadcast_predictions():
+    for connection in active_connections:
+        # What if the connection is dead? Memory leak!
+        emit('prediction_update', get_latest_prediction(connection['location']))
+</code></pre>
+        <p>
+            This approach led to memory leaks, dead connections accumulating, and race conditions that would crash the server under load.
+        </p>
+
+        <p>The solution required proper connection management and thread safety:</p>
+        <pre><code># IMPROVED VERSION - Proper connection lifecycle management
+import threading
+from collections import defaultdict
+
+class ConnectionManager:
+    def __init__(self):
+        self.connections = defaultdict(set)  # location -> set of client_ids
+        self.client_locations = {}  # client_id -> location
+        self.lock = threading.RLock()
+    
+    def add_subscription(self, client_id, location):
+        with self.lock:
+            # Clean up any existing subscription for this client
+            self.remove_subscription(client_id)
+            
+            # Add new subscription
+            self.connections[location].add(client_id)
+            self.client_locations[client_id] = location
+    
+    def remove_subscription(self, client_id):
+        with self.lock:
+            if client_id in self.client_locations:
+                location = self.client_locations[client_id]
+                self.connections[location].discard(client_id)
+                del self.client_locations[client_id]
+                
+                # Clean up empty location sets
+                if not self.connections[location]:
+                    del self.connections[location]
+    
+    def get_subscribers(self, location):
+        with self.lock:
+            return list(self.connections.get(location, []))
+
+connection_manager = ConnectionManager()
+
+@socketio.on('subscribe_predictions')
+def handle_subscription(data):
+    try:
+        # Validate subscription data
+        if 'location' not in data:
+            emit('error', {'message': 'Location required'})
+            return
+        
+        location_key = f"{data['location']['lat']},{data['location']['lng']}"
+        connection_manager.add_subscription(request.sid, location_key)
+        
+        emit('subscribed', {
+            'status': 'success',
+            'location': location_key
+        })
+        
+    except Exception as e:
+        emit('error', {'message': 'Subscription failed'})
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    # Automatic cleanup on disconnect
+    connection_manager.remove_subscription(request.sid)
+</code></pre>
+
+        <blockquote>
+            Managing real-time connections taught me about the complexity of stateful systems and the importance of proper resource cleanup.
+        </blockquote>
+
+        <h2>The Business Side: VCF Cards and Professional Networking</h2>
+        
+        <div class="leadership-section">
+            <h3>💼 From Code to Business Development</h3>
+            <p>
+                As Pyre gained traction, I realized that technical excellence alone wasn't enough. We needed to network, present at conferences, and establish professional relationships. This led me to an unexpected technical challenge: creating digital business cards using VCF (vCard) files.
+            </p>
+        </div>
+
+        <h3>The VCF Generation Challenge</h3>
+        <p>
+            When preparing for a fire prevention conference, I wanted to create a system that could generate professional VCF business cards for our team. It seemed simple - just output some formatted text, right? Wrong.
+        </p>
+        <pre><code># NAIVE VERSION - Barely functional VCF generation
+def generate_vcf(name, email, phone):
+    vcf_content = f"""BEGIN:VCARD
+VERSION:3.0
+FN:{name}
+EMAIL:{email}
+TEL:{phone}
+END:VCARD"""
+    
+    return vcf_content
+
+# This created cards that half the devices couldn't read!
+</code></pre>
+        <p>
+            The cards worked on some devices but failed on others. Different phones, email clients, and contact apps had varying levels of VCF standard compliance.
+        </p>
+
+        <h3>Professional VCF Implementation</h3>
+        <p>
+            After researching VCF standards and testing across multiple devices, I created a comprehensive solution:
+        </p>
+        <pre><code># PROFESSIONAL VERSION - Full VCF 3.0 compliance
+import re
+from datetime import datetime
+
+class VCFGenerator:
+    def __init__(self):
+        self.version = "3.0"
+    
+    def escape_vcf_text(self, text):
+        """Properly escape text for VCF format"""
+        if not text:
+            return ""
+        
+        # VCF requires specific character escaping
+        text = text.replace('\\', '\\\\')  # Backslash first
+        text = text.replace(',', '\\,')    # Commas
+        text = text.replace(';', '\\;')    # Semicolons
+        text = text.replace('\n', '\\n')   # Newlines
+        
+        return text
+    
+    def format_phone(self, phone):
+        """Format phone number for international compatibility"""
+        if not phone:
+            return ""
+        
+        # Remove all non-digit characters
+        digits = re.sub(r'\D', '', phone)
+        
+        # Add country code if missing (assuming US)
+        if len(digits) == 10:
+            digits = '1' + digits
+        elif len(digits) == 11 and digits[0] == '1':
+            pass  # Already has country code
+        else:
+            return phone  # Return as-is if we can't determine format
+        
+        # Format as +1-XXX-XXX-XXXX
+        return f"+{digits[0]}-{digits[1:4]}-{digits[4:7]}-{digits[7:]}"
+    
+    def generate_business_card(self, contact_info):
+        """Generate a professional VCF business card"""
+        try:
+            # Required fields validation
+            if not contact_info.get('first_name') or not contact_info.get('last_name'):
+                raise ValueError("First name and last name are required")
+            
+            vcf_lines = [
+                "BEGIN:VCARD",
+                f"VERSION:{self.version}",
+            ]
+            
+            # Full name (required)
+            full_name = f"{contact_info['first_name']} {contact_info['last_name']}"
+            vcf_lines.append(f"FN:{self.escape_vcf_text(full_name)}")
+            
+            # Structured name
+            vcf_lines.append(f"N:{self.escape_vcf_text(contact_info['last_name'])};{self.escape_vcf_text(contact_info['first_name'])};;;")
+            
+            # Organization and title
+            if contact_info.get('organization'):
+                vcf_lines.append(f"ORG:{self.escape_vcf_text(contact_info['organization'])}")
+            
+            if contact_info.get('title'):
+                vcf_lines.append(f"TITLE:{self.escape_vcf_text(contact_info['title'])}")
+            
+            # Contact information
+            if contact_info.get('email'):
+                vcf_lines.append(f"EMAIL;TYPE=WORK:{contact_info['email']}")
+            
+            if contact_info.get('phone'):
+                formatted_phone = self.format_phone(contact_info['phone'])
+                vcf_lines.append(f"TEL;TYPE=WORK,VOICE:{formatted_phone}")
+            
+            if contact_info.get('mobile'):
+                formatted_mobile = self.format_phone(contact_info['mobile'])
+                vcf_lines.append(f"TEL;TYPE=CELL,VOICE:{formatted_mobile}")
+            
+            # Address
+            if contact_info.get('address'):
+                addr = contact_info['address']
+                street = self.escape_vcf_text(addr.get('street', ''))
+                city = self.escape_vcf_text(addr.get('city', ''))
+                state = self.

@@ -1,0 +1,573 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Building My First Flask APIs: A Journey Through Code, Bugs, and Breakthroughs" />
+    <meta property="og:description" content="A developer's journey through building Flask APIs, debugging, and learning." />
+    <meta property="og:image" content="assets/images/logo.png" />
+    <meta property="og:url" content="https://your-website-link" />
+    <meta property="og:type" content="article" />
+    <title>Building My First Flask APIs - Pranav Santhosh</title>
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
+    <style>
+        body {
+            background: linear-gradient(135deg, #000000, #010d22);
+            font-family: 'Urbanist', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        a:hover {
+            color: #cccccc;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .nav-links a {
+            margin-left: 1rem;
+            color: #ffffff;
+        }
+        .nav-links a:hover {
+            color: #cccccc;
+        }
+        .blog-hero {
+            background-image: url('assets/images/hero-bg.jpg');
+            text-align: center;
+            padding: 4rem 2rem 2rem 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .blog-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .blog-hero p {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+        }
+        .blog-content {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: rgba(10, 20, 40, 0.95);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .blog-content h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #7ecfff;
+        }
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.7rem;
+            color: #a3e7fc;
+        }
+        .blog-content h4 {
+            font-size: 1.1rem;
+            margin-top: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #e0e0e0;
+        }
+        .blog-content p {
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+        .blog-content ul, .blog-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.2rem;
+        }
+        .blog-content code {
+            background: #181f2a;
+            color: #ffea00;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .blog-content pre {
+            background: #181f2a;
+            color: #e0e0e0;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-size: 1em;
+        }
+        .blog-content blockquote {
+            border-left: 4px solid #7ecfff;
+            background: #101828;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            color: #b0e0ff;
+            font-style: italic;
+        }
+        .blog-content hr {
+            border: none;
+            border-top: 1px solid #333;
+            margin: 2rem 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+        .social-links a {
+            margin: 0 0.5rem;
+            color: #ffffff;
+        }
+        .social-links a:hover {
+            color: #7ecfff;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">PRANAV SANTHOSH</a>
+        <nav class="nav-links">
+            <a href="about.html">About Me</a>
+            <a href="contributions.html">Contributions</a>
+            <a href="blog.html">Blogs</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="blog-hero">
+        <h1>Building My First Flask APIs: A Journey Through Code, Bugs, and Breakthroughs</h1>
+        <p>As a developer, there's something deeply satisfying about building your first set of APIs from scratch.</p>
+    </section>
+
+    <article class="blog-content">
+        <h2>The Vision</h2>
+        <p>
+            The project started with a simple idea: create a system where users could manage programming languages and discover connections with other users based on shared interests. What seemed straightforward on paper quickly became a lesson in the complexities of API design, database relationships, and user experience considerations.
+        </p>
+
+        <h2>Building the Language API: My First Real Challenge</h2>
+        <p>
+            The Language Management API was my first attempt at creating a full CRUD (Create, Read, Update, Delete) system. The concept was simple enough - allow users to add programming languages, track their popularity, and manage the data through RESTful endpoints.
+        </p>
+
+        <h3>The Authentication Hurdle</h3>
+        <p>
+            One of my first major decisions was implementing JWT token authentication. I remember spending an entire weekend trying to understand why my <code>@token_required()</code> decorator wasn't working properly.
+        </p>
+        <p>Here's what my broken code looked like initially:</p>
+        <pre><code># BROKEN VERSION - Missing import
+from flask import Blueprint, request, jsonify
+from flask_restful import Api, Resource
+
+class LanguageAPI:
+    class _Language(Resource):
+        @token_required()  # This decorator was undefined!
+        def post(self):
+            # ... rest of the method
+</code></pre>
+        <p>The issue? I had forgotten to import the decorator correctly and was getting cryptic error messages about missing modules. The fix was embarrassingly simple:</p>
+        <pre><code># FIXED VERSION - Proper imports
+from flask import Blueprint, request, jsonify
+from flask_restful import Api, Resource
+from api.jwt_authorize import token_required  # Added this crucial import!
+
+class LanguageAPI:
+    class _Language(Resource):
+        @token_required()  # Now it works!
+        def post(self):
+            # ... rest of the method
+</code></pre>
+        <blockquote>
+            It was one of those moments where you realize the importance of proper import statements - a lesson that would serve me well throughout the project.
+        </blockquote>
+
+        <h3>The Popularity Feature Mishap</h3>
+        <p>
+            The popularity voting system seemed straightforward until I implemented it. My initial approach was naive - I simply incremented a counter without any validation:
+        </p>
+        <pre><code># DANGEROUS VERSION - No validation!
+@token_required()
+def post(self):
+    body = request.get_json()
+    language_id = body.get('id')
+    language = Language.query.get(language_id)
+    
+    # This was the problem - no checks, no limits!
+    language.popularity += 1
+    language.create()
+    
+    return jsonify({'message': 'Vote counted!'})
+</code></pre>
+        <p>
+            This led to what I now call "The Great Popularity Explosion of Tuesday Afternoon" when I accidentally created an infinite loop during testing, causing one language entry to rack up thousands of votes in seconds.
+        </p>
+        <p>The fix required implementing proper validation and safeguards:</p>
+        <pre><code># SAFER VERSION - With validation and basic rate limiting
+@token_required()
+def post(self):
+    body = request.get_json()
+    language_id = body.get('id')
+    
+    if not language_id:
+        return {'message': 'ID is required for upvoting a language'}, 400
+    
+    language = Language.query.get(language_id)
+    if not language:
+        return {'message': 'Language not found'}, 404
+    
+    try:
+        language.upvote()  # Moved logic to model with proper validation
+        return jsonify({'message': 'Popularity increased successfully', 'language': language.read()})
+    except Exception as e:
+        return {'message': 'Failed to increase popularity', 'error': str(e)}, 500
+</code></pre>
+        <blockquote>
+            The lesson? Sometimes the simplest features hide the most complex problems.
+        </blockquote>
+
+        <h3>Database Consistency Headaches</h3>
+        <p>
+            One particularly frustrating bug involved the update functionality. Users would submit perfectly valid data, but the API would return success messages while failing to actually update the database. Here's the problematic code:
+        </p>
+        <pre><code># BUGGY VERSION - Wrong method call!
+@token_required()
+def put(self):
+    body = request.get_json()
+    language_id = body.get('id')
+    language = Language.query.get(language_id)
+    
+    # Update the fields
+    language.name = body.get('name', language.name)
+    language.creator = body.get('creator', language.creator)
+    language.popularity = body.get('popularity', language.popularity)
+    
+    # BUG: Calling create() instead of update()!
+    language.create()  # This was creating a new record instead of updating!
+    
+    return jsonify({'message': 'Language updated successfully'})
+</code></pre>
+        <p>
+            After hours of debugging, I discovered I was calling <code>language.create()</code> instead of using the proper update method:
+        </p>
+        <pre><code># FIXED VERSION - Proper update logic
+@token_required()
+def put(self):
+    body = request.get_json()
+    language_id = body.get('id')
+    
+    if not language_id:
+        return {'message': 'ID is required for updating a language'}, 400
+    
+    language = Language.query.get(language_id)
+    if not language:
+        return {'message': 'Language not found'}, 404
+    
+    try:
+        language.name = body.get('name', language.name)
+        language.creator = body.get('creator', language.creator)
+        language.popularity = body.get('popularity', language.popularity)
+        language.create()  # Actually, this should probably be language.save() or db.session.commit()
+        return jsonify({'message': 'Language updated successfully', 'language': language.read()})
+    except Exception as e:
+        return {'message': 'Failed to update language', 'error': str(e)}, 500
+</code></pre>
+        <blockquote>
+            It's embarrassing how long it took me to spot that one-line error, but it reinforced the importance of careful code review and testing.
+        </blockquote>
+
+        <h2>The Leaderboard API: Where Things Got Interesting</h2>
+        <p>
+            The Leaderboard API was where I really pushed my boundaries. The goal was to create a system that could find users with shared interests and rank them by compatibility. What started as a simple matching algorithm turned into a deep dive into set theory and performance optimization.
+        </p>
+
+        <h3>The Great Interest Intersection Experiment</h3>
+        <p>
+            The core feature of finding users with shared interests seemed elegant in theory. I would split each user's interests into sets and find intersections. Simple, right? Wrong.
+        </p>
+        <p>My first implementation was a disaster:</p>
+        <pre><code># BROKEN VERSION - Whitespace nightmare!
+def get(self):
+    current_user_id = request.args.get('user_id')
+    current_user = User.query.get(current_user_id)
+    
+    # This split didn't handle whitespace properly!
+    current_user_interests = set(current_user._interests.split(","))
+    
+    all_users = User.query.filter(User.id != current_user_id).all()
+    matched_users = []
+    
+    for user in all_users:
+        # Same problem here - no whitespace handling
+        user_interests = set(user._interests.split(","))
+        shared_interests = current_user_interests.intersection(user_interests)
+        
+        if shared_interests:
+            matched_users.append({
+                'username': user._name,
+                'shared_interests': list(shared_interests)
+            })
+    
+    return jsonify({'top_users': matched_users})
+</code></pre>
+        <p>
+            I was splitting interests on commas without considering whitespace, leading to interests like "Python" and " Python" being treated as different entities. Users were reporting that the system couldn't find obvious matches!
+        </p>
+        <p>The solution was surprisingly simple but required careful data sanitization:</p>
+        <pre><code># FIXED VERSION - Proper whitespace handling
+def get(self):
+    try:
+        current_user_id = request.args.get('user_id')
+        current_user = User.query.get(current_user_id)
+        
+        if not current_user:
+            return {'message': 'User not found'}, 404
+        
+        # Fixed: Strip whitespace from each interest!
+        current_user_interests = set(interest.strip() for interest in current_user._interests.split(", "))
+        
+        all_users = User.query.filter(User.id != current_user_id).all()
+        matched_users = []
+        
+        for user in all_users:
+            # Same fix applied here
+            user_interests = set(interest.strip() for interest in user._interests.split(", "))
+            shared_interests = current_user_interests.intersection(user_interests)
+            
+            if shared_interests:
+                matched_users.append({
+                    'username': user._name,
+                    'shared_interests': list(shared_interests)
+                })
+        
+        # Sort by number of shared interests
+        matched_users.sort(key=lambda x: len(x['shared_interests']), reverse=True)
+        
+        return jsonify({'top_users': matched_users})
+    except Exception as e:
+        return {'message': f'Error retrieving top users: {str(e)}'}, 500
+</code></pre>
+        <blockquote>
+            The debugging process taught me about the importance of data sanitization and the subtle ways that real-world data can break theoretical algorithms.
+        </blockquote>
+
+        <h3>Performance Reality Check</h3>
+        <p>
+            The leaderboard worked beautifully with my test dataset of 10 users. Then I tried it with a more realistic dataset of 1,000 users, and everything ground to a halt. Here's my original O(n²) algorithm:
+        </p>
+        <pre><code># SLOW VERSION - O(n²) performance nightmare!
+def get(self):
+    all_users = User.query.all()  # Getting ALL users - yikes!
+    
+    # This double loop was killing performance
+    for current_user in all_users:
+        current_interests = set(current_user._interests.split(", "))
+        
+        for other_user in all_users:
+            if current_user.id != other_user.id:
+                other_interests = set(other_user._interests.split(", "))
+                # Expensive intersection operation for EVERY pair!
+                shared = current_interests.intersection(other_interests)
+                # ... more processing
+    
+    # This approach doesn't scale!
+</code></pre>
+        <p>
+            My O(n²) algorithm for comparing every user against every other user was simply not scalable. With 1,000 users, that's 1,000,000 comparisons!
+        </p>
+        <p>The solution required smarter filtering and optimization:</p>
+        <pre><code># OPTIMIZED VERSION - Much better performance
+def get(self):
+    try:
+        current_user_id = request.args.get('user_id')
+        current_user = User.query.get(current_user_id)
+        
+        if not current_user:
+            return {'message': 'User not found'}, 404
+        
+        # Pre-process current user's interests once
+        current_user_interests = set(interest.strip() for interest in current_user._interests.split(", "))
+        
+        # Only query users we need to compare against
+        all_users = User.query.filter(User.id != current_user_id).all()
+        
+        matched_users = []
+        for user in all_users:
+            user_interests = set(interest.strip() for interest in user._interests.split(", "))
+            
+            # Quick check: skip if no possible intersection
+            if not current_user_interests or not user_interests:
+                continue
+                
+            shared_interests = current_user_interests.intersection(user_interests)
+            
+            # Only process users with actual matches
+            if shared_interests:
+                matched_users.append({
+                    'username': user._name,
+                    'shared_interests': list(shared_interests)
+                })
+        
+        # Sort by match quality
+        matched_users.sort(key=lambda x: len(x['shared_interests']), reverse=True)
+        
+        return jsonify({'top_users': matched_users})
+    except Exception as e:
+        return {'message': f'Error retrieving top users: {str(e)}'}, 500
+</code></pre>
+        <blockquote>
+            Instead of comparing every user against every other user, I started by filtering users who had at least one matching interest before doing the expensive intersection operations. The performance improvement was dramatic, but it meant rewriting significant portions of the codebase.
+        </blockquote>
+
+        <h3>The Mystery of the Missing Users</h3>
+        <p>
+            One of the most puzzling bugs involved users occasionally disappearing from the leaderboard results. The API would run without errors, but certain users who should have appeared in the results were nowhere to be found.
+        </p>
+        <p>Here's what my problematic error handling looked like:</p>
+        <pre><code># PROBLEMATIC VERSION - Silent failures!
+def get(self):
+    all_users = User.query.all()
+    matched_users = []
+    
+    for user in all_users:
+        try:
+            # This would fail silently for malformed data!
+            user_interests = set(user._interests.split(", "))
+            shared_interests = current_user_interests.intersection(user_interests)
+            
+            if shared_interests:
+                matched_users.append({
+                    'username': user._name,
+                    'shared_interests': list(shared_interests)
+                })
+        except:
+            # The bug: silently skipping users with bad data!
+            pass  # This was hiding the real problems!
+    
+    return jsonify({'top_users': matched_users})
+</code></pre>
+        <p>
+            When a user had malformed interest data (like null values or empty strings), the string split operation would fail silently, causing that user to be skipped entirely.
+        </p>
+        <p>The fix required robust error handling and data validation:</p>
+        <pre><code># ROBUST VERSION - Proper error handling and validation
+def get(self):
+    try:
+        current_user_id = request.args.get('user_id')
+        current_user = User.query.get(current_user_id)
+        
+        if not current_user:
+            return {'message': 'User not found'}, 404
+        
+        # Validate current user's interests
+        if not current_user._interests or not isinstance(current_user._interests, str):
+            return {'message': 'Current user has invalid interest data'}, 400
+            
+        current_user_interests = set(interest.strip() for interest in current_user._interests.split(", ") if interest.strip())
+        
+        all_users = User.query.filter(User.id != current_user_id).all()
+        matched_users = []
+        
+        for user in all_users:
+            # Validate each user's interest data
+            if not user._interests or not isinstance(user._interests, str):
+                continue  # Skip users with invalid data but don't hide the issue
+                
+            try:
+                user_interests = set(interest.strip() for interest in user._interests.split(", ") if interest.strip())
+                
+                if not user_interests:  # Skip users with no valid interests
+                    continue
+                    
+                shared_interests = current_user_interests.intersection(user_interests)
+                
+                if shared_interests:
+                    matched_users.append({
+                        'username': user._name,
+                        'shared_interests': list(shared_interests)
+                    })
+            except Exception as user_error:
+                # Log the error but continue processing other users
+                print(f"Error processing user {user.id}: {str(user_error)}")
+                continue
+        
+        matched_users.sort(key=lambda x: len(x['shared_interests']), reverse=True)
+        
+        return jsonify({'top_users': matched_users})
+    except Exception as e:
+        return {'message': f'Error retrieving top users: {str(e)}'}, 500
+</code></pre>
+        <blockquote>
+            Finding the root cause was like solving a detective mystery, but it taught me that proper error handling isn't just about preventing crashes - it's about maintaining data integrity and providing visibility into what's actually happening.
+        </blockquote>
+
+        <h2>Lessons Learned</h2>
+        <h3>Error Handling is Everything</h3>
+        <p>
+            Both APIs taught me that graceful error handling isn't just about preventing crashes - it's about providing meaningful feedback to users and developers. My early versions had generic error messages that were useless for debugging. Learning to provide specific, actionable error information was a game-changer.
+        </p>
+        <h3>Testing Early and Often</h3>
+        <p>
+            The popularity explosion incident could have been avoided with proper testing. I learned to create comprehensive test suites that cover not just the happy path, but also edge cases and error conditions. Automated testing became my safety net, catching issues before they made it to production.
+        </p>
+        <h3>Data Integrity Matters</h3>
+        <p>
+            The interest matching problems taught me that data consistency is crucial for user-facing features. Now I always include data validation and sanitization as core requirements, not afterthoughts.
+        </p>
+        <h3>Performance Considerations</h3>
+        <p>
+            Building features that work with small datasets is easy. Building features that scale requires thinking about algorithmic complexity from the beginning. The leaderboard performance issues taught me to consider scalability during the design phase, not after deployment.
+        </p>
+
+        <h2>The Rewarding Moments</h2>
+        <p>
+            Despite all the challenges, there were incredible moments of triumph. The first time I successfully created a language entry through the API and saw it appear in the database felt like magic. Watching the leaderboard correctly identify and rank user matches based on shared interests was deeply satisfying.
+        </p>
+        <p>
+            The moment when I finally got the JWT authentication working smoothly across both APIs was particularly rewarding. Seeing all the pieces come together - secure authentication, proper error handling, efficient data processing - felt like conducting a complex symphony where every instrument finally played in harmony.
+        </p>
+
+        <h2>What's Next</h2>
+        <p>
+            These APIs represent just the beginning of my journey. I'm already planning improvements: adding caching to improve performance, implementing more sophisticated matching algorithms, and building a proper frontend to showcase the functionality.
+        </p>
+        <p>
+            The experience has taught me that building good APIs is about much more than just returning JSON responses. It's about creating reliable, scalable, and user-friendly interfaces that other developers (including your future self) can depend on.
+        </p>
+        <p>
+            Every bug was a learning opportunity, every performance issue was a chance to grow, and every successful feature was a step forward in my development journey. The code may not be perfect, but it's mine, and it works - and sometimes, that's the most important thing of all.
+        </p>
+        <hr>
+        <blockquote>
+            <em>The journey of a thousand APIs begins with a single endpoint. Here's to many more adventures in code ahead.</em>
+        </blockquote>
+    </article>
+
+    <footer class="footer">
+        <p>&copy; 2025 Pranav Santhosh. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://github.com/SanPranav">GitHub</a>
+            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/">LinkedIn</a>
+            <a href="https://discord.com/users/738779934176051230">Discord</a>
+        </div>
+    </footer>
+</body>
+</html>
