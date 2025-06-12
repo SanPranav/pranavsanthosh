@@ -1,0 +1,702 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="From Sketches to Skies: My Journey Through TARC and the Art of Rocket Science" />
+    <meta property="og:description" content="How competing in the Team America Rocketry Challenge taught me engineering principles, teamwork, and the physics of failure and success." />
+    <meta property="og:image" content="assets/images/logo.png" />
+    <meta property="og:url" content="https://your-website-link" />
+    <meta property="og:type" content="article" />
+    <title>From Sketches to Skies - TARC Journey</title>
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f1419, #1a365d, #2d1b69);
+            font-family: 'Urbanist', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        a:hover {
+            color: #cccccc;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .nav-links a {
+            margin-left: 1rem;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+        .blog-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><radialGradient id="space" cx="50%" cy="30%" r="70%"><stop offset="0%" style="stop-color:%23000033;stop-opacity:1" /><stop offset="50%" style="stop-color:%23000066;stop-opacity:1" /><stop offset="100%" style="stop-color:%23000011;stop-opacity:1" /></radialGradient><linearGradient id="rocket" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:%23ff4444;stop-opacity:1" /><stop offset="30%" style="stop-color:%23ffffff;stop-opacity:1" /><stop offset="70%" style="stop-color:%23ffffff;stop-opacity:1" /><stop offset="100%" style="stop-color:%23ff6b35;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23space)"/><circle cx="100" cy="80" r="2" fill="white" opacity="0.8"/><circle cx="200" cy="120" r="1.5" fill="white" opacity="0.6"/><circle cx="350" cy="90" r="1" fill="white" opacity="0.9"/><circle cx="450" cy="140" r="2" fill="white" opacity="0.7"/><circle cx="600" cy="70" r="1.5" fill="white" opacity="0.8"/><circle cx="750" cy="110" r="1" fill="white" opacity="0.6"/><circle cx="900" cy="85" r="2" fill="white" opacity="0.9"/><circle cx="1050" cy="125" r="1.5" fill="white" opacity="0.7"/><polygon points="580,450 590,420 610,420 620,450 610,480 590,480" fill="url(%23rocket)"/><polygon points="585,480 595,490 605,480" fill="%23ff4444"/><circle cx="600" cy="350" r="3" fill="%23ffaa00" opacity="0.9"/><circle cx="600" cy="340" r="2" fill="%23ffaa00" opacity="0.7"/><circle cx="600" cy="330" r="1" fill="%23ffaa00" opacity="0.5"/></svg>');
+            text-align: center;
+            padding: 5rem 2rem 3rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.6; }
+        }
+        .blog-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            background: linear-gradient(45deg, #ff6b35, #f7931e, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+        .blog-hero p {
+            font-size: 1.3rem;
+            color: #f0f0f0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 1;
+        }
+        .blog-content {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: rgba(15, 20, 25, 0.95);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            animation: slideUp 1s ease-out;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .blog-content h2 {
+            font-size: 2.2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .blog-content h3 {
+            font-size: 1.4rem;
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: #ffaa00;
+        }
+        .blog-content h4 {
+            font-size: 1.2rem;
+            margin-top: 1.4rem;
+            margin-bottom: 0.6rem;
+            color: #f0f0f0;
+        }
+        .blog-content p {
+            line-height: 1.8;
+            margin-bottom: 1.4rem;
+            color: #e0e0e0;
+        }
+        .blog-content ul, .blog-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.4rem;
+            color: #e0e0e0;
+        }
+        .blog-content code {
+            background: #1a2332;
+            color: #ff6b35;
+            padding: 0.3em 0.5em;
+            border-radius: 6px;
+            font-size: 1em;
+            border: 1px solid rgba(255,107,53,0.2);
+        }
+        .blog-content pre {
+            background: #1a2332;
+            color: #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 1.8rem;
+            font-size: 1em;
+            border-left: 4px solid #ff6b35;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .blog-content blockquote {
+            border-left: 4px solid #ff6b35;
+            background: rgba(255,107,53,0.1);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            color: #ffaa00;
+            font-style: italic;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(255,107,53,0.2);
+        }
+        .blog-content hr {
+            border: none;
+            border-top: 1px solid #444;
+            margin: 2.5rem 0;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(255,107,53,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 6px 20px rgba(255,107,53,0.3); }
+            to { box-shadow: 0 8px 25px rgba(255,107,53,0.5); }
+        }
+        .rocket-section {
+            background: rgba(255,107,53,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid #ff6b35;
+            backdrop-filter: blur(5px);
+        }
+        .engineering-section {
+            background: rgba(247,147,30,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid #f7931e;
+            backdrop-filter: blur(5px);
+        }
+        .team-section {
+            background: rgba(255,170,0,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid #ffaa00;
+            backdrop-filter: blur(5px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: #ffffff;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+        .social-links a {
+            margin: 0 1rem;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #ff6b35;
+        }
+        .launch-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-card {
+            background: rgba(255,107,53,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(255,107,53,0.2);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b35;
+            display: block;
+        }
+        .stat-label {
+            color: #e0e0e0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">PRANAV SANTHOSH</a>
+        <nav class="nav-links">
+            <a href="about.html">About Me</a>
+            <a href="contributions.html">Contributions</a>
+            <a href="blog.html">Blogs</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="blog-hero">
+        <h1>From Sketches to Skies</h1>
+        <p>My journey through TARC and the art of rocket science - where physics meets passion, and failure teaches more than success.</p>
+    </section>
+
+    <article class="blog-content">
+        <h2>The Challenge: 800 Feet and Two Eggs</h2>
+        <p>
+            When I first heard about the Team America Rocketry Challenge (TARC), the mission seemed deceptively simple: design and build a rocket that could carry two raw eggs to exactly 800 feet, deploy a parachute, and bring them back uncracked. What I didn't realize was that this "simple" challenge would become one of the most intense engineering experiences of my life.
+        </p>
+
+        <div class="highlight-box">
+            🚀 The Mission: Reach 800 feet altitude ± 75 feet, carry 2 raw eggs, duration 41-44 seconds, eggs survive landing
+        </div>
+
+        <div class="rocket-section">
+            <h3>🎯 The TARC Rules: Precision Engineering in Action</h3>
+            <p>
+                TARC isn't just about building rockets that fly high - it's about building rockets that fly precisely. Every rule was designed to push us toward real engineering constraints, the kind that NASA engineers face when designing missions.
+            </p>
+        </div>
+
+        <h3>Day One: The Napkin Calculations</h3>
+        <p>
+            Our first team meeting was held in the school cafeteria, armed with nothing but enthusiasm and a stack of napkins. I remember scribbling our initial calculations:
+        </p>
+        <pre><code># Our naive first attempt at rocket science
+target_altitude = 800  # feet
+egg_mass = 2 * 60  # grams (2 eggs)
+rocket_mass = 500  # grams (our wild guess)
+motor_impulse = 40  # Newton-seconds (Estes D12-5)
+
+# The equation we thought we understood:
+# h = (impulse^2) / (2 * mass * g * drag_coefficient)
+
+print("How hard could this be?")
+# Spoiler alert: Very hard.
+</code></pre>
+        <p>
+            Looking back, those napkin calculations were laughably optimistic. We had no idea about drag coefficients, recovery system mass, or the complexity of achieving precise altitude control.
+        </p>
+
+        <h3>The Reality Check: When Everything Goes Wrong</h3>
+        <p>
+            Three weeks later, standing in an empty field with our first rocket - a beautiful 4-foot tall beast we'd named "Icarus" - reality hit us like a freight train.
+        </p>
+        <blockquote>
+            "3... 2... 1... LAUNCH!" The rocket ignited... and immediately caught fire on the pad. Flames engulfed the entire body tube. Our beautiful Icarus became a $200 bonfire in 3 seconds.
+        </blockquote>
+
+        <div class="launch-stats">
+            <div class="stat-card">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Feet Altitude</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Rocket Destroyed</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Seconds to Disaster</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">∞</span>
+                <span class="stat-label">Lessons Learned</span>
+            </div>
+        </div>
+
+        <h3>Launch #2: Nearly Burning Down the Park</h3>
+        <p>
+            Two weeks and one completely rebuilt rocket later, we returned to the field with "Icarus II" and enough confidence to be dangerous. This time, the rocket actually left the pad.
+        </p>
+        <blockquote>
+            "It's flying! It's actually flying! Wait, why is it on fire again?!"
+        </blockquote>
+        <p>
+            Our second rocket climbed to about 400 feet while completely engulfed in flames, then crashed into a dry grass field and started a small wildfire. Twenty minutes and lots of stomping, we learned why proper motor mounting is absolutely critical.
+        </p>
+
+        <h3>Launch #3: The Fire Extinguisher Incident</h3>
+        <p>
+            By our third attempt, we thought we'd learned our lesson. Better motor mount, fireproof recovery wadding, and - most importantly - we brought a fire extinguisher. We were prepared for everything. Except for our preparation failing us.
+        </p>
+        <pre><code># What we expected:
+launch_sequence = {
+    'ignition': 'clean_start',
+    'liftoff': 'normal_flight',
+    'recovery': 'successful_landing'
+}
+
+# What actually happened:
+reality = {
+    'ignition': 'motor_blowout',
+    'liftoff': 'rocket_catches_fire_immediately',
+    'recovery': 'fire_extinguisher_malfunction',
+    'result': 'chaos_and_panic'
+}
+</code></pre>
+        <p>
+            The rocket ignited, shot up maybe 50 feet, and burst into flames mid-air like a Roman candle. As burning debris rained down, I grabbed our fire extinguisher and... nothing. The pin was stuck. The handle wouldn't budge. We watched helplessly as our third rocket became expensive fireworks while I wrestled with a malfunctioning fire extinguisher.
+        </p>
+
+        <blockquote>
+            "At that moment, standing in a field of smoking rocket debris with a broken fire extinguisher in my hands, I realized we weren't just bad at rocket science - we were dangerously bad at it."
+        </blockquote>
+
+        <h3>The Humbling Reality: Back to Fundamentals</h3>
+        <p>
+            Three spectacular failures taught us that rocket science isn't about building something that works once - it's about understanding why things fail and systematically eliminating those failure modes. We were clearly missing something fundamental.
+        </p>
+
+        <div class="engineering-section">
+            <h3>🔧 The Variables We Had to Master:</h3>
+            <ul>
+                <li><strong>Aerodynamics:</strong> Fin design, body tube diameter, nose cone shape</li>
+                <li><strong>Mass Distribution:</strong> Center of gravity vs. center of pressure</li>
+                <li><strong>Recovery Systems:</strong> Parachute size, deployment timing, shock cord length</li>
+                <li><strong>Motor Selection:</strong> Impulse curves, burn time, ejection charges</li>
+                <li><strong>Payload Protection:</strong> Egg compartment design, cushioning materials</li>
+            </ul>
+        </div>
+
+        <h3>The Breakthrough: Discovering OpenRocket Simulation</h3>
+        <p>
+            After three catastrophic failures, our mentor took pity on us and introduced us to OpenRocket - a flight simulation software that would completely revolutionize our approach to rocket design. This wasn't just a tool; it was our salvation.
+        </p>
+        <blockquote>
+            "You can't just throw motors in tubes and hope for the best. You need to understand the physics before you light the fuse." - Our mentor, after watching us nearly burn down half the county
+        </blockquote>
+
+        <div class="engineering-section">
+            <h3>🖥️ OpenRocket: Our Digital Wind Tunnel</h3>
+            <p>
+                OpenRocket became our secret weapon. Instead of building physical prototypes that would inevitably catch fire, we could test hundreds of designs virtually, understanding exactly how each component affected flight performance.
+            </p>
+            <ul>
+                <li><strong>Aerodynamic Modeling:</strong> Calculating drag coefficients, center of pressure, stability margins</li>
+                <li><strong>Flight Simulation:</strong> Predicting altitude, velocity, acceleration throughout the flight</li>
+                <li><strong>Recovery Analysis:</strong> Modeling parachute deployment, descent rates, landing patterns</li>
+                <li><strong>Stability Testing:</strong> Ensuring our rocket wouldn't tumble or fly erratically</li>
+                <li><strong>Motor Selection:</strong> Comparing different motors without risking another fire</li>
+            </ul>
+        </div>
+
+        <pre><code># OpenRocket simulation parameters for "Phoenix v1.0" (post-disaster)
+rocket_specs = {
+    'body_tube_diameter': 2.6,  # inches
+    'length': 36,  # inches (shorter = more stable)
+    'fin_span': 4.5,  # inches (smaller = less likely to break)
+    'nose_cone': 'conical',  # simple and reliable
+    'recovery_mass': 0.08,  # kg (lightweight parachute)
+    'payload_mass': 0.12,  # kg (eggs + minimal protection)
+    'motor': 'Estes_C6-5',  # much smaller motor
+    'stability_margin': 2.1  # very conservative
+}
+
+# Simulated results (what we HOPED would happen):
+predicted_altitude = 520  # feet (conservative target)
+predicted_max_velocity = 180  # fps (much slower)
+predicted_duration = 35  # seconds
+fire_risk = 'hopefully_none'  # Our new favorite parameter
+
+print("This time, we're actually doing science!")
+</code></pre>
+
+        <h3>Virtual Testing: Hundreds of Rockets, Zero Fires</h3>
+        <p>
+            OpenRocket allowed us to test design variations that would have been impossible (and expensive) to build physically. We could experiment with different fin shapes, nose cones, and recovery systems without risking another catastrophe.
+        </p>
+
+        <div class="rocket-section">
+            <h4>🚀 Our Virtual Testing Campaign:</h4>
+            <ul>
+                <li><strong>Design Iteration 1-25:</strong> Testing basic stability and motor selection</li>
+                <li><strong>Design Iteration 26-50:</strong> Optimizing aerodynamics and fin design</li>
+                <li><strong>Design Iteration 51-75:</strong> Recovery system optimization</li>
+                <li><strong>Design Iteration 76-100:</strong> Fine-tuning for altitude precision</li>
+                <li><strong>Design Iteration 101:</strong> The "Phoenix Final" - our competition rocket</li>
+            </ul>
+        </div>
+
+        <p>
+            The simulation showed us that our original designs were fundamentally flawed. We were overpowered, understable, and had no understanding of recovery system dynamics. OpenRocket became our teacher, showing us the physics we'd been ignoring.
+        </p>
+
+        <blockquote>
+            "OpenRocket taught us that rocket science isn't about trial and error - it's about understanding the underlying physics and then building rockets that work the first time."
+        </blockquote>
+
+        <h3>The Design Evolution: From Disasters to Success</h3>
+        <p>
+            Armed with OpenRocket simulations and hard-earned wisdom from our spectacular failures, we completely redesigned our approach. Instead of ambitious rockets destined for fiery doom, we built conservative prototypes focused on reliability.
+        </p>
+
+        <div class="rocket-section">
+            <h4>🚀 Our Rocket Evolution (The Real Story):</h4>
+            <ul>
+                <li><strong>Icarus (v1):</strong> Caught fire on the pad - motor mount failure</li>
+                <li><strong>Icarus v2:</strong> Nearly burned down the park - improper motor installation</li>
+                <li><strong>Icarus v3:</strong> Exploded at 50 feet while our fire extinguisher malfunctioned</li>
+                <li><strong>Phoenix (v1):</strong> First successful flight! Reached 520 feet, no fires</li>
+                <li><strong>Phoenix v2:</strong> Refined design, reached 680 feet</li>
+                <li><strong>Phoenix v3:</strong> Competition ready - reached 798 feet consistently</li>
+            </ul>
+        </div>
+
+        <blockquote>
+            "The difference between Phoenix v1 and our earlier disasters wasn't just better construction - it was understanding the physics through OpenRocket before we ever struck a match."
+        </blockquote>
+
+        <h3>The Team Dynamics: Engineering Under Pressure</h3>
+        <p>
+            What nobody tells you about TARC is that rocket engineering is only half the challenge. The other half is team management, especially when you're working with limited budgets and tight deadlines.
+        </p>
+
+        <div class="team-section">
+            <h3>👥 Team Roles and Responsibilities:</h3>
+            <p>
+                Our team naturally evolved into specialized roles, each critical to our success:
+            </p>
+            <ul>
+                <li><strong>Aerodynamics Team:</strong> Fin design, stability calculations, drag optimization</li>
+                <li><strong>Recovery Team:</strong> Parachute sizing, deployment mechanisms, landing predictions</li>
+                <li><strong>Payload Team:</strong> Egg protection, mass distribution, cushioning systems</li>
+                <li><strong>Simulation Team:</strong> OpenRocket modeling, flight predictions, weather analysis</li>
+                <li><strong>Manufacturing Team:</strong> Precision construction, quality control, launch prep</li>
+            </ul>
+        </div>
+
+        <h3>The Crisis: Three Weeks Before Nationals</h3>
+        <p>
+            Just when we thought we had it figured out, disaster struck. Our Phoenix v3 rocket, which had performed flawlessly in five consecutive test flights, suddenly started behaving erratically.
+        </p>
+        <blockquote>
+            "The parachute deployed at apogee, but the rocket separated into two pieces. Both eggs cracked. The shock cord had burned through." - Flight Log, Entry #23
+        </blockquote>
+        <p>
+            With three weeks until nationals, we had to diagnose and solve a problem that threatened to end our season. The culprit? Ejection charge timing that worked fine in cool spring weather but failed in the heat of summer launches.
+        </p>
+
+        <h3>The Engineering Deep Dive: Solving the Ejection Problem</h3>
+        <p>
+            The shock cord burn-through forced us to understand ejection charge dynamics at a level we'd never considered. We spent a week in the lab, testing different materials and configurations.
+        </p>
+        <pre><code># Ejection charge analysis
+ejection_charge_pressure = 15  # psi (estimated)
+shock_cord_materials = [
+    {'material': 'nylon', 'melting_point': 220, 'status': 'burned'},
+    {'material': 'kevlar', 'melting_point': 427, 'status': 'survived'},
+    {'material': 'nomex', 'melting_point': 371, 'status': 'survived'}
+]
+
+# Solution: Kevlar shock cord with nomex protection sleeve
+final_solution = {
+    'primary_cord': 'kevlar_300lb',
+    'protection': 'nomex_sleeve',
+    'length': 36,  # inches
+    'attachment': 'reinforced_eye_bolts'
+}
+
+print("Problem solved through systematic engineering!")
+</code></pre>
+
+        <div class="highlight-box">
+            ⚡ The Fix: Kevlar shock cord with Nomex protection sleeve, reinforced attachment points, and extended recovery bay length
+        </div>
+
+        <h2>Competition Day: Where Theory Meets Reality</h2>
+        <p>
+            The morning of nationals, standing on the launch field with 800 other teams, our months of preparation condensed into a single moment of truth.
+        </p>
+
+        <h3>The Pressure: One Shot, One Chance</h3>
+        <p>
+            Unlike our practice launches where we could iterate and improve, nationals gave us exactly one official flight. Everything had to work perfectly - the rocket, the recovery system, the weather calculations, and our nerves.
+        </p>
+
+        <div class="engineering-section">
+            <h3>⚙️ Pre-Flight Checklist: Competition Day</h3>
+            <ul>
+                <li>✅ Rocket inspection and weight verification</li>
+                <li>✅ Parachute packing and shock cord inspection</li>
+                <li>✅ Egg loading and payload bay sealing</li>
+                <li>✅ Motor installation and recovery charge check</li>
+                <li>✅ Weather analysis and trajectory calculation</li>
+                <li>✅ Team briefing and contingency planning</li>
+            </ul>
+        </div>
+
+        <h3>The Launch: 15 Seconds That Defined Us</h3>
+        <p>
+            As I connected the igniter leads and stepped back from the launch pad, months of calculations, simulations, and iterations came down to this moment.
+        </p>
+        <blockquote>
+            "Phoenix Final, you are cleared for launch. Range is hot. All spectators behind the line."
+        </blockquote>
+
+        <pre><code># The moment of truth
+launch_sequence = {
+    't_minus_5': 'Igniter connected, continuity confirmed',
+    't_minus_3': 'Range clear, all systems nominal',
+    't_minus_1': 'Final go/no-go poll: GO',
+    't_0': 'LAUNCH!',
+    't_plus_1': 'Clean ignition, rocket accelerating',
+    't_plus_3': 'Supersonic, trajectory nominal',
+    't_plus_6': 'Motor burnout, coasting to apogee',
+    't_plus_12': 'Apogee, recovery system deploying',
+    't_plus_15': 'Parachute deployed, descent initiated'
+}
+
+# Result: Success beyond our wildest dreams
+</code></pre>
+
+        <div class="launch-stats">
+            <div class="stat-card">
+                <span class="stat-number">803</span>
+                <span class="stat-label">Feet Altitude</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">42.7</span>
+                <span class="stat-label">Seconds Duration</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Eggs Cracked</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">47th</span>
+                <span class="stat-label">National Ranking</span>
+            </div>
+        </div>
+
+        <h3>The Results: More Than Just Numbers</h3>
+        <p>
+            When the dust settled and the scores were calculated, we had achieved something remarkable: 803 feet altitude (3 feet from perfect), 42.7 seconds duration (well within range), and two intact eggs. We finished 47th out of 806 teams nationally.
+        </p>
+
+        <blockquote>
+            The real victory wasn't our ranking - it was the realization that we had become engineers. We had taken a complex problem, broken it down into manageable pieces, and solved it through systematic analysis and iteration.
+        </blockquote>
+
+        <h2>Beyond the Competition: Lessons in Engineering Leadership</h2>
+        <p>
+            TARC taught me that engineering isn't just about technical skills - it's about leadership, problem-solving under pressure, and the ability to work effectively in teams where everyone's expertise is critical.
+        </p>
+
+        <h3>The Leadership Lessons</h3>
+        <div class="team-section">
+            <h4>🎯 Leadership Skills Developed Through TARC:</h4>
+            <ul>
+                <li><strong>Technical Communication:</strong> Explaining complex aerodynamics to team members with different backgrounds</li>
+                <li><strong>Crisis Management:</strong> Solving the shock cord problem with three weeks to nationals</li>
+                <li><strong>Resource Allocation:</strong> Managing a limited budget across multiple prototypes</li>
+                <li><strong>Risk Assessment:</strong> Balancing innovative designs with proven reliability</li>
+                <li><strong>Performance Under Pressure:</strong> Executing flawlessly when it mattered most</li>
+            </ul>
+        </div>
+
+        <h3>The Engineering Mindset</h3>
+        <p>
+            Before TARC, I thought engineering was about having the right formulas. After TARC, I realized engineering is about asking the right questions:
+        </p>
+        <ul>
+            <li>What are the constraints and requirements?</li>
+            <li>What are the critical failure modes?</li>
+            <li>How do we validate our assumptions?</li>
+            <li>What are the trade-offs between different approaches?</li>
+            <li>How do we ensure reproducible results?</li>
+        </ul>
+
+        <h3>From Competition to Career: The Lasting Impact</h3>
+        <p>
+            The skills I developed through TARC have shaped my approach to every technical challenge since. The systematic problem-solving, attention to detail, and ability to work under pressure have proven invaluable.
+        </p>
+
+        <pre><code># The TARC methodology applied to any engineering problem
+def solve_engineering_problem(requirements, constraints):
+    """
+    The systematic approach TARC taught me
+    """
+    # Phase 1: Understand the problem
+    analyze_requirements(requirements)
+    identify_constraints(constraints)
+    
+    # Phase 2: Research and model
+    literature_review()
+    build_mathematical_model()
+    run_simulations()
+    
+    # Phase 3: Prototype and test
+    while not meeting_requirements():
+        build_prototype()
+        test_prototype()
+        analyze_results()
+        iterate_design()
+    
+    # Phase 4: Validate and optimize
+    validate_solution()
+    optimize_performance()
+    document_lessons_learned()
+    
+    return solution
+
+# This process works for rockets, software, and everything in between
+</code></pre>
+
+        <h2>The Ripple Effect: Inspiring Others</h2>
+        <p>
+            One of the most rewarding aspects of our TARC success was the opportunity to inspire younger students. We started visiting middle schools, sharing our experience and encouraging kids to pursue STEM fields.
+        </p>
+
+        <div class="rocket-section">
+            <h3>🌟 Outreach Impact:</h3>
+            <ul>
+                <li>Presented to 8 middle schools about aerospace engineering</li>
+                <li>Mentored 3 junior high TARC teams</li>
+                <li>Conducted 12 model rocket workshops</li>
+                <li>Inspired 47 students to join high school engineering programs</li>
+            </ul>
+        </div>
+
+        <blockquote>
+            "The best part about TARC wasn't winning - it was seeing the spark in a 12-year-old's eyes when they realized they could build something that actually flies."
+        </blockquote>
+
+        <h3>Building the Next Generation</h3>
+        <p>
+            Working with younger students showed me that technical expertise is only valuable when shared. Teaching rocket science to middle schoolers required me to break down complex concepts into understandable pieces - a skill that has made me a better engineer and communicator.
+        </p>
+
+        <h2>Current Trajectory: From Rockets to Real-World Impact</h2>
+        <p>
+            Today, the lessons from TARC continue to guide my approach to engineering challenges. Whether I'm designing software systems, optimizing algorithms, or leading technical teams, the fundamental principles remain the same.
+        </p>
+
+        <h3>The Compound Learning Effect</h3>
+        <p>
