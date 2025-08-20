@@ -3,140 +3,797 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Pranav Santhosh" />
-    <meta property="og:description" content="Welcome to my world of software, robotics, and creativity." />
+    <meta property="og:title" content="Pranav Santhosh - Software Architect & Innovation Engineer" />
+    <meta property="og:description" content="Step into the future of software, robotics, and digital creativity." />
     <meta property="og:image" content="assets/images/logo.png" />
     <meta property="og:url" content="https://your-website-link" />
     <meta property="og:type" content="website" />
     <title>{% if page.title %}{{ page.title }} - {% endif %}Pranav Santhosh</title>
     <link rel="icon" href="assets/images/logo.png" type="image/png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <style>
-        body {
-            background: linear-gradient(135deg, #000000, #010d22);
-            font-family: 'Urbanist', sans-serif;
-            color: white;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        a { text-decoration: none; color: #ffffff; }
-        a:hover { color: #cccccc; }
-        .navbar {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --accent-color: #00ff88;
+            --accent-secondary: #ff0080;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
-        .logo { font-size: 1.5rem; font-weight: bold; }
-        .nav-links a { margin-left: 1rem; color: #ffffff; }
-        .nav-links a:hover { color: #cccccc; }
-        .hero {
-            background-image: url('assets/images/hero-bg.jpg');
-            text-align: center;
-            padding: 6rem 2rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
+
+        body {
+            background: var(--primary-bg);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.5rem; color: #f0f0f0; }
-        .cta-button {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
-            background-color: #000000;
-            color: #ffffff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-        .cta-button:hover { background-color: #333333; }
-        #navigation-buttons {
-            padding: 2rem;
-            text-align: center;
-        }
-        #navigation-buttons a {
-            display: inline-block;
-            margin: 0.5rem;
-            padding: 1rem 2rem;
-            background-color: #000000;
-            color: #ffffff;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        #navigation-buttons a:hover { background-color: #333333; }
-        #contact {
-            padding: 2rem;
-            background-color: #f5f5f5;
-            text-align: center;
-            color: #333;
-            animation: fadeIn 1s ease-in-out;
-        }
-        #contact h2 { font-size: 2rem; margin-bottom: 1rem; }
-        #contact form { max-width: 600px; margin: 0 auto; }
-        #contact input,
-        #contact textarea {
+
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(0, 100, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
         }
-        #contact button {
-            padding: 0.75rem 1.5rem;
-            background-color: #000000;
-            color: #ffffff;
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* Glass Morphism Navbar */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 12px 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: heroFadeIn 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-greeting {
+            font-size: 18px;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: slideInLeft 1s ease-out 0.2s both;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 50%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-weight: 300;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.8;
+            animation: slideInUp 1s ease-out 0.8s both;
+        }
+
+        @keyframes slideInLeft {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CTA Buttons */
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 1s both;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            color: var(--primary-bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
+        }
+
+        .cta-secondary {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Navigation Grid */
+        .navigation-grid {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .nav-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .nav-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 25px 50px rgba(0, 255, 136, 0.2);
+        }
+
+        .nav-card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .nav-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--secondary-bg), var(--primary-bg));
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-form {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            color: var(--primary-bg);
             border: none;
-            border-radius: 5px;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
-        #contact button:hover { background-color: #333333; }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-bg);
+            padding: 60px 20px 30px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 20px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                left: 20px;
+                right: 20px;
+                transform: none;
+                border-radius: 20px;
+                padding: 10px 20px;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-form {
+                padding: 25px;
+            }
+
+            .social-links {
+                gap: 20px;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <header class="navbar">
-        <a href="index.html" class="logo">PRANAV SANTHOSH</a>
-        <nav class="nav-links">
-            <a href="about.html">About Me</a>
-            <a href="contributions.html">Contributions</a>
-            <a href="blog.html">Blogs</a>
+    <div class="background-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <nav class="navbar">
+        <div class="logo">PRANAV.SANTHOSH</div>
+        <div class="nav-links">
+            <a href="about.html">About</a>
+            <a href="contributions.html">Work</a>
+            <a href="blog.html">Blog</a>
             <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    <main class="hero">
-        <h1>Welcome to My World</h1>
-        <p>Exploring software, robotics, and creativity!</p>
-        <a href="about.html" class="cta-button">Learn More</a>
-    </main>
-    <section id="navigation-buttons">
-        <a href="about.html">About Me</a>
-        <a href="contributions.html">Contributions</a>
-        <a href="blog.html">Blogs</a>
-        <a href="contact.html">Contact</a>
-    </section>
-    <section id="contact">
-        <h2>Get in Touch</h2>
-        <form action="mailto:Pranavs22638@gmail.com" method="post" enctype="text/plain">
-            <input type="email" placeholder="Enter your email" required>
-            <textarea placeholder="Write your message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
-    <footer style="text-align: center; padding: 1rem 0; background-color: #000000; color: #ffffff; font-size: 0.9rem;">
-        <p>&copy; 2025 Pranav Santhosh. All Rights Reserved.</p>
-        <div class="social-links">
-            <a href="https://github.com/SanPranav" style="margin: 0 0.5rem; color: #ffffff;">GitHub</a>
-            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/" style="margin: 0 0.5rem; color: #ffffff;">LinkedIn</a>
-            <a href="https://discord.com/users/738779934176051230" style="margin: 0 0.5rem; color: #ffffff;">Discord</a>
         </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-greeting">Software Architect & Innovation Engineer</div>
+            <h1>Pranav Santhosh</h1>
+            <p class="hero-subtitle">Crafting the future through code, robotics, and digital innovation</p>
+            <p class="hero-description">
+                Welcome to my digital realm where creativity meets technology. I specialize in building cutting-edge software solutions, 
+                robotics systems, and pushing the boundaries of what's possible in the digital world.
+            </p>
+            <div class="hero-buttons">
+                <a href="about.html" class="cta-button">
+                    <span>Explore My Work</span>
+                    <span>→</span>
+                </a>
+                <a href="contact.html" class="cta-button cta-secondary">
+                    <span>Let's Connect</span>
+                    <span>✦</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="navigation-grid">
+        <h2 class="grid-title fade-in-up">Discover My World</h2>
+        <div class="nav-grid">
+            <a href="about.html" class="nav-card fade-in-up">
+                <div class="nav-card-icon">👨‍💻</div>
+                <h3>About Me</h3>
+                <p>Dive deep into my journey, skills, and the passion that drives my innovations in technology and software development.</p>
+            </a>
+            <a href="contributions.html" class="nav-card fade-in-up">
+                <div class="nav-card-icon">🚀</div>
+                <h3>Contributions</h3>
+                <p>Explore my portfolio of cutting-edge projects, open-source contributions, and revolutionary software solutions.</p>
+            </a>
+            <a href="blog.html" class="nav-card fade-in-up">
+                <div class="nav-card-icon">📝</div>
+                <h3>Blog & Insights</h3>
+                <p>Read my thoughts on technology trends, coding best practices, and insights from the world of software engineering.</p>
+            </a>
+            <a href="contact.html" class="nav-card fade-in-up">
+                <div class="nav-card-icon">💬</div>
+                <h3>Get in Touch</h3>
+                <p>Ready to collaborate? Let's discuss your next project, share ideas, or explore opportunities together.</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <h2 class="contact-title fade-in-up">Let's Build Something Amazing</h2>
+            <p class="contact-subtitle fade-in-up">
+                Have a project in mind? I'm always excited to collaborate on innovative ideas and challenging problems.
+            </p>
+            <form class="contact-form fade-in-up" action="mailto:Pranavs22638@gmail.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell me about your project, idea, or just say hello!" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://github.com/SanPranav" class="social-link" title="GitHub">
+                <span>⚡</span>
+            </a>
+            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/" class="social-link" title="LinkedIn">
+                <span>💼</span>
+            </a>
+            <a href="https://discord.com/users/738779934176051230" class="social-link" title="Discord">
+                <span>💬</span>
+            </a>
+        </div>
+        <p class="footer-text">&copy; 2025 Pranav Santhosh. Crafted with passion and innovation.</p>
     </footer>
-    <script src="assets/js/script.js"></script>
+
+    <script>
+        // Particle system
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    navbar.style.background = 'rgba(10, 10, 10, 0.8)';
+                    navbar.style.backdropFilter = 'blur(30px)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+                    navbar.style.backdropFilter = 'blur(20px)';
+                }
+
+                if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                    navbar.style.transform = 'translateX(-50%) translateY(-100px)';
+                } else {
+                    navbar.style.transform = 'translateX(-50%) translateY(0)';
+                }
+
+                lastScrollY = currentScrollY;
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        function handleSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Enhanced form handling
+        function enhanceForm() {
+            const form = document.querySelector('.contact-form form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const submitBtn = form.querySelector('.submit-btn');
+                    const originalText = submitBtn.textContent;
+                    
+                    submitBtn.textContent = 'Sending...';
+                    submitBtn.style.opacity = '0.7';
+                    
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.opacity = '1';
+                    }, 2000);
+                });
+            }
+        }
+
+        // Mouse movement parallax effect
+        function handleMouseParallax() {
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                const backgroundAnimation = document.querySelector('.background-animation');
+                if (backgroundAnimation) {
+                    backgroundAnimation.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px) scale(1.05)`;
+                }
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            handleScrollAnimations();
+            handleNavbarScroll();
+            handleSmoothScrolling();
+            enhanceForm();
+            handleMouseParallax();
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease-in-out';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Performance optimization
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateAnimations);
+                ticking = true;
+            }
+        }
+
+        function updateAnimations() {
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', requestTick);
+        window.addEventListener('resize', requestTick);
+    </script>
 </body>
 </html>

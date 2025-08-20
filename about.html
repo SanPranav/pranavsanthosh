@@ -3,173 +3,587 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="About Pranav Santhosh" />
-    <meta property="og:description" content="Learn more about Pranav Santhosh, his passions, and his journey in robotics and software development." />
+    <meta property="og:title" content="About - Pranav Santhosh" />
+    <meta property="og:description" content="Learn more about Pranav Santhosh's journey and expertise." />
     <meta property="og:image" content="assets/images/logo.png" />
     <meta property="og:url" content="https://your-website-link/about.html" />
     <meta property="og:type" content="website" />
-    <title>About Me - Pranav Santhosh</title>
+    <title>About - Pranav Santhosh</title>
     <link rel="icon" href="assets/images/logo.png" type="image/png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <style>
-        body {
-            background: linear-gradient(135deg, #000000, #061631);
-            font-family: 'Urbanist', sans-serif;
-            color: white;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        a {
-            text-decoration: none;
-            color: #ffffff;
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --accent-color: #00ff88;
+            --accent-secondary: #ff0080;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        a:hover {
-            color: #cccccc;
+        body {
+            background: var(--primary-bg);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(0, 100, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* Glass Morphism Navbar */
         .navbar {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1rem 2rem;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 12px 30px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 30px;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
         }
 
         .nav-links a {
-            margin-left: 1rem;
-            color: #ffffff;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            position: relative;
+            transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #cccccc;
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-links a.active::before {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
         }
 
         .about-section {
-            padding: 2rem;
-            background-color: #ffffff;
-            color: #333333;
-            animation: fadeIn 1s ease-in-out;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        .about-section h1 {
+        .about-hero {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .about-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 255, 136, 0.1);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .skills-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .skills-title {
             font-size: 2rem;
-            margin-bottom: 1rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--accent-color);
         }
 
-        .about-section p {
-            font-size: 1.2rem;
-            color: #666666;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
         }
 
-        .skills, .experience, .education, .extracurriculars {
-            padding: 2rem;
-            background-color: #f5f5f5;
-            color: #333333;
-            margin: 1rem 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            animation: slideIn 1s ease-in-out;
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        .skills h2, .experience h2, .education h2, .extracurriculars h2 {
+        .skill-item:hover {
+            background: rgba(0, 255, 136, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .story-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .story-title {
             font-size: 2rem;
-            margin-bottom: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--accent-color);
         }
 
-        .skills ul, .experience .job, .education p, .extracurriculars p {
-            font-size: 1.2rem;
-            color: #666666;
+        .story-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        /* Footer */
+        .footer {
+            background: var(--primary-bg);
+            padding: 60px 20px 30px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 20px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                left: 20px;
+                right: 20px;
+                transform: none;
+                border-radius: 20px;
+                padding: 10px 20px;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .about-title {
+                font-size: 2.5rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .social-links {
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="navbar">
-        <a href="index.html" class="logo">PRANAV SANTHOSH</a>
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="contributions.html">Contributions</a>
-            <a href="blog.html">Blogs</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
+    <div class="background-animation"></div>
+    <div class="particles" id="particles"></div>
 
-    <main class="about-section">
-        <h1>About Me</h1>
-        <p>
-            Hi, I'm Pranav Santhosh! I'm passionate about robotics, software development, and solving complex problems. 
-            From coding projects to participating in hackathons, I'm always looking for ways to innovate and create. 
-            Let's connect and build something amazing together!
-        </p>
+    <nav class="navbar">
+        <div class="logo">PRANAV.SANTHOSH</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="contributions.html">Work</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="about-section">
+            <div class="about-hero">
+                <h1 class="about-title">About Me</h1>
+                <p class="about-subtitle">
+                    A passionate software architect and innovation engineer dedicated to crafting the future through code, robotics, and digital creativity.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="card-icon">🚀</div>
+                    <h3 class="card-title">Innovation Focus</h3>
+                    <p class="card-description">
+                        I thrive on pushing the boundaries of what's possible in technology. From developing cutting-edge software solutions to exploring the frontiers of robotics, I'm always looking for ways to innovate and create meaningful impact.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="card-icon">🎓</div>
+                    <h3 class="card-title">Teaching & Mentoring</h3>
+                    <p class="card-description">
+                        At SDSC Team Optix, I teach Python programming to young minds, making complex concepts accessible and exciting. There's nothing more rewarding than watching students have their "aha!" moments and develop their own passion for coding.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="card-icon">🌱</div>
+                    <h3 class="card-title">Community Impact</h3>
+                    <p class="card-description">
+                        Through environmental conservation efforts like Del Mar beach cleanups and scouting leadership at Ventura, I believe in using technology and leadership skills to make a positive difference in our communities.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <div class="card-icon">⚡</div>
+                    <h3 class="card-title">Technical Excellence</h3>
+                    <p class="card-description">
+                        With expertise spanning multiple programming languages, robotics systems, and emerging technologies, I focus on building robust, scalable solutions that solve real-world problems with elegant code.
+                    </p>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h2 class="skills-title">Technical Skills & Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">React</div>
+                    <div class="skill-item">Node.js</div>
+                    <div class="skill-item">Robotics</div>
+                    <div class="skill-item">Machine Learning</div>
+                    <div class="skill-item">Web Development</div>
+                    <div class="skill-item">Software Architecture</div>
+                    <div class="skill-item">Database Design</div>
+                    <div class="skill-item">API Development</div>
+                    <div class="skill-item">DevOps</div>
+                    <div class="skill-item">Project Management</div>
+                </div>
+            </div>
+
+            <div class="story-section">
+                <h2 class="story-title">My Journey</h2>
+                <div class="story-content">
+                    <p>
+                        My journey in technology began with curiosity and has evolved into a passion for creating meaningful change through innovation. From my early days experimenting with code to now teaching the next generation of programmers, every step has reinforced my belief that technology should serve humanity.
+                    </p>
+                    <br>
+                    <p>
+                        Through my work at SDSC Team Optix, I've discovered the joy of making complex programming concepts accessible to young learners. The 4:30 PM Python sessions aren't just about syntax and algorithms - they're about nurturing computational thinking and problem-solving skills that will serve these students throughout their lives.
+                    </p>
+                    <br>
+                    <p>
+                        My involvement in environmental conservation and scouting has shaped my leadership philosophy. Whether it's extracting shopping carts from Del Mar beaches or guiding fellow scouts through challenging terrain, I've learned that effective leadership combines technical competence with empathy, persistence, and a genuine commitment to collective success.
+                    </p>
+                    <br>
+                    <p>
+                        Looking ahead, I'm excited about the convergence of technology and social impact. My goal is to continue developing innovative solutions that not only showcase technical excellence but also address real-world challenges in education, environmental conservation, and community development.
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <section class="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Calculus AB from DNHS</li>
-            <li>CSS from DNHS</li>
-            <li>CAD from Team Optix 3749</li>
-            <li>Python from DNHS</li>
-            <li>Email Strategy from Scioly/TeamOptix3749</li>
-            <li>Material Science from SciOly</li>
-            <li>Earth Science from SciOly</li>
-            <li>Outreach from TeamOptix3749</li>
-            <li>Event Planning from TeamOptix 3749</li>
-        </ul>
-    </section>
-
-    <section class="experience">
-        <h2>Experience</h2>
-        <div class="job">
-            <h3>SDC Programming Tutoring</h3>
-            <p>Hosted FTC (First Tech Challenge) competition at DNHS</p>
-        </div>
-        <div class="job">
-            <h3>Science Olympiad</h3>
-            <p>Attended many regionals and invitationals for SciOly. Proctored invitationals for SciOly.</p>
-        </div>
-        <div class="job">
-            <h3>Team Optix 3749</h3>
-            <p>Hosted food drives, adopted a beach (Mission Beach), and donated books to kids around the world for Books4All Club Leadership.</p>
-        </div>
-    </section>
-
-    <section class="education">
-        <h2>Education</h2>
-        <p>Del Norte High School / Expected to Graduate 2027</p>
-        <p>Has taken Honors Principles Engineering 1-2, Computer Science and Software Engineering (CSSE 1-2). Currently taking Computer Science Principles.</p>
-    </section>
-
-    <section class="extracurriculars">
-        <h2>Extracurricular Activities</h2>
-        <p>Was an avid music learner from ages 7-12, played the Violin and participated in many recitals from the Rancho Bernardo Youth Symphony orchestra. Currently focusing mostly on sports such as badminton, and study type extracurriculars such as Science Olympiad or Team Optix 3749.</p>
-        <p>*Team Optix 3749 is part of Del Norte Clubs along with Science Olympiad however it also designs large scale things such as First Robotics Competition Robots.</p>
-    </section>
-
-    <footer style="text-align: center; padding: 1rem 0; background-color: #000000; color: #ffffff; font-size: 0.9rem;">
-        <p>&copy; 2025 Pranav Santhosh. All Rights Reserved.</p>
+    <footer class="footer">
         <div class="social-links">
-            <a href="https://github.com/SanPranav" style="margin: 0 0.5rem; color: #ffffff;">GitHub</a>
-            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/" style="margin: 0 0.5rem; color: #ffffff;">LinkedIn</a>
-            <a href="https://discord.com/users/738779934176051230" style="margin: 0 0.5rem; color: #ffffff;">Discord</a>
+            <a href="https://github.com/SanPranav" class="social-link" title="GitHub">
+                <span>⚡</span>
+            </a>
+            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/" class="social-link" title="LinkedIn">
+                <span>💼</span>
+            </a>
+            <a href="https://discord.com/users/738779934176051230" class="social-link" title="Discord">
+                <span>💬</span>
+            </a>
         </div>
+        <p class="footer-text">&copy; 2025 Pranav Santhosh. Crafted with passion and innovation.</p>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <script>
+        // Particle system
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    navbar.style.background = 'rgba(10, 10, 10, 0.8)';
+                    navbar.style.backdropFilter = 'blur(30px)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+                    navbar.style.backdropFilter = 'blur(20px)';
+                }
+
+                if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                    navbar.style.transform = 'translateX(-50%) translateY(-100px)';
+                } else {
+                    navbar.style.transform = 'translateX(-50%) translateY(0)';
+                }
+
+                lastScrollY = currentScrollY;
+            });
+        }
+
+        // Mouse movement parallax effect
+        function handleMouseParallax() {
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                const backgroundAnimation = document.querySelector('.background-animation');
+                if (backgroundAnimation) {
+                    backgroundAnimation.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px) scale(1.05)`;
+                }
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            handleNavbarScroll();
+            handleMouseParallax();
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease-in-out';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Performance optimization
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateAnimations);
+                ticking = true;
+            }
+        }
+
+        function updateAnimations() {
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', requestTick);
+        window.addEventListener('resize', requestTick);
+    </script>
 </body>
 </html>

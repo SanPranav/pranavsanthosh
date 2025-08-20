@@ -10,129 +10,496 @@
     <meta property="og:type" content="website" />
     <title>Contact - Pranav Santhosh</title>
     <link rel="icon" href="assets/images/logo.png" type="image/png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <style>
-        body {
-            background: linear-gradient(135deg, #000000, #000b1e);
-            font-family: 'Urbanist', sans-serif;
-            color: white;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        a {
-            text-decoration: none;
-            color: #ffffff;
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --accent-color: #00ff88;
+            --accent-secondary: #ff0080;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        a:hover {
-            color: #cccccc;
+        body {
+            background: var(--primary-bg);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(0, 100, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* Glass Morphism Navbar */
         .navbar {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1rem 2rem;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 12px 30px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 30px;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
         }
 
         .nav-links a {
-            margin-left: 1rem;
-            color: #ffffff;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            position: relative;
+            transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #cccccc;
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-links a.active::before {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
         }
 
         .contact-section {
-            padding: 2rem;
-            background-color: #ffffff;
-            color: #333333;
-            animation: fadeIn 1s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-section h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-section p {
-            font-size: 1.2rem;
-            color: #666666;
-        }
-
-        .contact-section form {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .contact-section input,
-        .contact-section textarea {
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-form {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
 
-        .contact-section button {
-            padding: 0.75rem 1.5rem;
-            background-color: #000000;
-            color: #ffffff;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            color: var(--primary-bg);
             border: none;
-            border-radius: 5px;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .contact-section button:hover {
-            background-color: #333333;
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Footer */
+        .footer {
+            background: var(--primary-bg);
+            padding: 60px 20px 30px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 20px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                left: 20px;
+                right: 20px;
+                transform: none;
+                border-radius: 20px;
+                padding: 10px 20px;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .contact-form {
+                padding: 25px;
+            }
+
+            .social-links {
+                gap: 20px;
+            }
+
+            .contact-title {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="navbar">
-        <a href="index.html" class="logo">PRANAV SANTHOSH</a>
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Me</a>
-            <a href="contributions.html">Contributions</a>
-            <a href="blog.html">Blogs</a>
-        </nav>
-    </header>
+    <div class="background-animation"></div>
+    <div class="particles" id="particles"></div>
 
-    <main class="contact-section">
-        <h1>Contact Me</h1>
-        <p>Feel free to reach out to me through the form below:</p>
-        <form action="mailto:Pranavs22638@gmail.com" method="post" enctype="text/plain">
-            <input type="email" placeholder="Enter your email" required>
-            <textarea placeholder="Write your message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
+    <nav class="navbar">
+        <div class="logo">PRANAV.SANTHOSH</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contributions.html">Work</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="contact-section">
+            <h1 class="contact-title">Let's Build Something Amazing</h1>
+            <p class="contact-subtitle">
+                Have a project in mind? I'm always excited to collaborate on innovative ideas and challenging problems.
+            </p>
+            <form class="contact-form" action="mailto:Pranavs22638@gmail.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell me about your project, idea, or just say hello!" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
     </main>
 
-    <footer style="text-align: center; padding: 1rem 0; background-color: #000000; color: #ffffff; font-size: 0.9rem;">
-        <p>&copy; 2025 Pranav Santhosh. All Rights Reserved.</p>
+    <footer class="footer">
         <div class="social-links">
-            <a href="https://github.com/SanPranav" style="margin: 0 0.5rem; color: #ffffff;">GitHub</a>
-            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/" style="margin: 0 0.5rem; color: #ffffff;">LinkedIn</a>
-            <a href="https://discord.com/users/738779934176051230" style="margin: 0 0.5rem; color: #ffffff;">Discord</a>
+            <a href="https://github.com/SanPranav" class="social-link" title="GitHub">
+                <span>⚡</span>
+            </a>
+            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/" class="social-link" title="LinkedIn">
+                <span>💼</span>
+            </a>
+            <a href="https://discord.com/users/738779934176051230" class="social-link" title="Discord">
+                <span>💬</span>
+            </a>
         </div>
+        <p class="footer-text">&copy; 2025 Pranav Santhosh. Crafted with passion and innovation.</p>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <script>
+        // Particle system
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    navbar.style.background = 'rgba(10, 10, 10, 0.8)';
+                    navbar.style.backdropFilter = 'blur(30px)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+                    navbar.style.backdropFilter = 'blur(20px)';
+                }
+
+                if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                    navbar.style.transform = 'translateX(-50%) translateY(-100px)';
+                } else {
+                    navbar.style.transform = 'translateX(-50%) translateY(0)';
+                }
+
+                lastScrollY = currentScrollY;
+            });
+        }
+
+        // Enhanced form handling
+        function enhanceForm() {
+            const form = document.querySelector('.contact-form form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const submitBtn = form.querySelector('.submit-btn');
+                    const originalText = submitBtn.textContent;
+                    
+                    submitBtn.textContent = 'Sending...';
+                    submitBtn.style.opacity = '0.7';
+                    
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.opacity = '1';
+                    }, 2000);
+                });
+            }
+        }
+
+        // Mouse movement parallax effect
+        function handleMouseParallax() {
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                const backgroundAnimation = document.querySelector('.background-animation');
+                if (backgroundAnimation) {
+                    backgroundAnimation.style.transform = `translate(${mouseX * 10}px, ${mouseY * 10}px) scale(1.05)`;
+                }
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            handleNavbarScroll();
+            enhanceForm();
+            handleMouseParallax();
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease-in-out';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Performance optimization
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateAnimations);
+                ticking = true;
+            }
+        }
+
+        function updateAnimations() {
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', requestTick);
+        window.addEventListener('resize', requestTick);
+    </script>
 </body>
 </html>

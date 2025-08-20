@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,172 +10,352 @@
     <meta property="og:type" content="article" />
     <title>Building My First Flask APIs - Pranav Santhosh</title>
     <link rel="icon" href="assets/images/logo.png" type="image/png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --accent-color: #00ff88;
+            --accent-secondary: #ff0080;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --code-bg: #1a1a1a;
+            --quote-bg: rgba(0, 255, 136, 0.1);
+        }
         body {
-            background: linear-gradient(135deg, #000000, #010d22);
-            font-family: 'Urbanist', sans-serif;
-            color: white;
-            margin: 0;
-            padding: 0;
+            background: var(--primary-bg);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.7;
         }
-        a {
-            text-decoration: none;
-            color: #ffffff;
+        .background-animation {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(0, 100, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
         }
-        a:hover {
-            color: #cccccc;
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            width: 2px; height: 2px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
         }
         .navbar {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1rem 2rem;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 12px 30px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 30px;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
         }
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
         }
         .nav-links a {
-            margin-left: 1rem;
-            color: #ffffff;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            position: relative;
+            transition: all 0.3s ease;
         }
         .nav-links a:hover {
-            color: #cccccc;
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
         }
         .blog-hero {
-            background-image: url('assets/images/hero-bg.jpg');
             text-align: center;
-            padding: 4rem 2rem 2rem 2rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
+            padding: 80px 40px;
+            margin-bottom: 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
         }
         .blog-hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .blog-hero p {
-            font-size: 1.2rem;
-            color: #f0f0f0;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
         }
         .blog-content {
-            max-width: 900px;
-            margin: 2rem auto;
-            background: rgba(10, 20, 40, 0.95);
-            border-radius: 12px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
-            animation: fadeIn 1s ease-in-out;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 60px;
+            animation: fadeInUp 1s ease-out;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
         .blog-content h2 {
-            font-size: 2rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: #7ecfff;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
         }
         .blog-content h3 {
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.7rem;
-            color: #a3e7fc;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
         }
         .blog-content h4 {
-            font-size: 1.1rem;
-            margin-top: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #e0e0e0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
         }
         .blog-content p {
-            line-height: 1.7;
-            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
         }
         .blog-content ul, .blog-content ol {
-            margin-left: 2rem;
-            margin-bottom: 1.2rem;
+            margin-left: 30px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        .blog-content li {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
         .blog-content code {
-            background: #181f2a;
-            color: #ffea00;
-            padding: 0.2em 0.4em;
-            border-radius: 4px;
-            font-size: 1em;
+            background: var(--code-bg);
+            color: var(--accent-color);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95em;
         }
         .blog-content pre {
-            background: #181f2a;
-            color: #e0e0e0;
-            padding: 1rem;
-            border-radius: 8px;
+            background: var(--code-bg);
+            color: var(--text-secondary);
+            padding: 25px;
+            border-radius: 12px;
             overflow-x: auto;
-            margin-bottom: 1.5rem;
-            font-size: 1em;
+            margin: 25px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95em;
+            border-left: 4px solid var(--accent-color);
+            line-height: 1.6;
+        }
+        .blog-content pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
         }
         .blog-content blockquote {
-            border-left: 4px solid #7ecfff;
-            background: #101828;
-            padding: 1rem 1.5rem;
-            margin: 1.5rem 0;
-            color: #b0e0ff;
+            border-left: 4px solid var(--accent-color);
+            background: var(--quote-bg);
+            backdrop-filter: blur(10px);
+            padding: 25px 30px;
+            margin: 30px 0;
+            border-radius: 12px;
             font-style: italic;
+            font-size: 1.15rem;
+            color: var(--text-primary);
         }
         .blog-content hr {
             border: none;
-            border-top: 1px solid #333;
-            margin: 2rem 0;
+            border-top: 1px solid var(--glass-border);
+            margin: 40px 0;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         .footer {
+            background: var(--primary-bg);
+            padding: 60px 20px 30px;
             text-align: center;
-            padding: 1rem 0;
-            background-color: #000000;
-            color: #ffffff;
-            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 60px;
         }
-        .social-links a {
-            margin: 0 0.5rem;
-            color: #ffffff;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
         }
-        .social-links a:hover {
-            color: #7ecfff;
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 20px;
+        }
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+        }
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                left: 20px;
+                right: 20px;
+                transform: none;
+                border-radius: 20px;
+                padding: 10px 20px;
+                gap: 20px;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+            .nav-links a {
+                font-size: 13px;
+            }
+            .blog-hero {
+                padding: 60px 30px;
+            }
+            .blog-hero h1 {
+                font-size: 2.5rem;
+            }
+            .blog-content {
+                padding: 40px 30px;
+            }
+            .social-links {
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="navbar">
-        <a href="index.html" class="logo">PRANAV SANTHOSH</a>
-        <nav class="nav-links">
-            <a href="about.html">About Me</a>
-            <a href="contributions.html">Contributions</a>
-            <a href="blog.html">Blogs</a>
+    <div class="background-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <nav class="navbar">
+        <div class="logo">PRANAV.SANTHOSH</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contributions.html">Work</a>
+            <a href="blog.html">Blog</a>
             <a href="contact.html">Contact</a>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <section class="blog-hero">
-        <h1>Building My First Flask APIs: A Journey Through Code, Bugs, and Breakthroughs</h1>
-        <p>As a developer, there's something deeply satisfying about building your first set of APIs from scratch.</p>
-    </section>
+    <main class="main-content">
+        <section class="blog-hero">
+            <h1>Building My First Flask APIs: A Journey Through Code, Bugs, and Breakthroughs</h1>
+            <p>As a developer, there's something deeply satisfying about building your first set of APIs from scratch.</p>
+        </section>
+        <article class="blog-content">
+            <h2>The Vision</h2>
+            <p>
+                The project started with a simple idea: create a system where users could manage programming languages and discover connections with other users based on shared interests. What seemed straightforward on paper quickly became a lesson in the complexities of API design, database relationships, and user experience considerations.
+            </p>
 
-    <article class="blog-content">
-        <h2>The Vision</h2>
-        <p>
-            The project started with a simple idea: create a system where users could manage programming languages and discover connections with other users based on shared interests. What seemed straightforward on paper quickly became a lesson in the complexities of API design, database relationships, and user experience considerations.
-        </p>
+            <h2>Building the Language API: My First Real Challenge</h2>
+            <p>
+                The Language Management API was my first attempt at creating a full CRUD (Create, Read, Update, Delete) system. The concept was simple enough - allow users to add programming languages, track their popularity, and manage the data through RESTful endpoints.
+            </p>
 
-        <h2>Building the Language API: My First Real Challenge</h2>
-        <p>
-            The Language Management API was my first attempt at creating a full CRUD (Create, Read, Update, Delete) system. The concept was simple enough - allow users to add programming languages, track their popularity, and manage the data through RESTful endpoints.
-        </p>
-
-        <h3>The Authentication Hurdle</h3>
-        <p>
-            One of my first major decisions was implementing JWT token authentication. I remember spending an entire weekend trying to understand why my <code>@token_required()</code> decorator wasn't working properly.
-        </p>
-        <p>Here's what my broken code looked like initially:</p>
-        <pre><code># BROKEN VERSION - Missing import
+            <h3>The Authentication Hurdle</h3>
+            <p>
+                One of my first major decisions was implementing JWT token authentication. I remember spending an entire weekend trying to understand why my <code>@token_required()</code> decorator wasn't working properly.
+            </p>
+            <p>Here's what my broken code looked like initially:</p>
+            <pre><code># BROKEN VERSION - Missing import
 from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource
 
@@ -184,8 +365,8 @@ class LanguageAPI:
         def post(self):
             # ... rest of the method
 </code></pre>
-        <p>The issue? I had forgotten to import the decorator correctly and was getting cryptic error messages about missing modules. The fix was embarrassingly simple:</p>
-        <pre><code># FIXED VERSION - Proper imports
+            <p>The issue? I had forgotten to import the decorator correctly and was getting cryptic error messages about missing modules. The fix was embarrassingly simple:</p>
+            <pre><code># FIXED VERSION - Proper imports
 from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource
 from api.jwt_authorize import token_required  # Added this crucial import!
@@ -196,15 +377,15 @@ class LanguageAPI:
         def post(self):
             # ... rest of the method
 </code></pre>
-        <blockquote>
-            It was one of those moments where you realize the importance of proper import statements - a lesson that would serve me well throughout the project.
-        </blockquote>
+            <blockquote>
+                It was one of those moments where you realize the importance of proper import statements - a lesson that would serve me well throughout the project.
+            </blockquote>
 
-        <h3>The Popularity Feature Mishap</h3>
-        <p>
-            The popularity voting system seemed straightforward until I implemented it. My initial approach was naive - I simply incremented a counter without any validation:
-        </p>
-        <pre><code># DANGEROUS VERSION - No validation!
+            <h3>The Popularity Feature Mishap</h3>
+            <p>
+                The popularity voting system seemed straightforward until I implemented it. My initial approach was naive - I simply incremented a counter without any validation:
+            </p>
+            <pre><code># DANGEROUS VERSION - No validation!
 @token_required()
 def post(self):
     body = request.get_json()
@@ -217,11 +398,11 @@ def post(self):
     
     return jsonify({'message': 'Vote counted!'})
 </code></pre>
-        <p>
-            This led to what I now call "The Great Popularity Explosion of Tuesday Afternoon" when I accidentally created an infinite loop during testing, causing one language entry to rack up thousands of votes in seconds.
-        </p>
-        <p>The fix required implementing proper validation and safeguards:</p>
-        <pre><code># SAFER VERSION - With validation and basic rate limiting
+            <p>
+                This led to what I now call "The Great Popularity Explosion of Tuesday Afternoon" when I accidentally created an infinite loop during testing, causing one language entry to rack up thousands of votes in seconds.
+            </p>
+            <p>The fix required implementing proper validation and safeguards:</p>
+            <pre><code># SAFER VERSION - With validation and basic rate limiting
 @token_required()
 def post(self):
     body = request.get_json()
@@ -240,15 +421,15 @@ def post(self):
     except Exception as e:
         return {'message': 'Failed to increase popularity', 'error': str(e)}, 500
 </code></pre>
-        <blockquote>
-            The lesson? Sometimes the simplest features hide the most complex problems.
-        </blockquote>
+            <blockquote>
+                The lesson? Sometimes the simplest features hide the most complex problems.
+            </blockquote>
 
-        <h3>Database Consistency Headaches</h3>
-        <p>
-            One particularly frustrating bug involved the update functionality. Users would submit perfectly valid data, but the API would return success messages while failing to actually update the database. Here's the problematic code:
-        </p>
-        <pre><code># BUGGY VERSION - Wrong method call!
+            <h3>Database Consistency Headaches</h3>
+            <p>
+                One particularly frustrating bug involved the update functionality. Users would submit perfectly valid data, but the API would return success messages while failing to actually update the database. Here's the problematic code:
+            </p>
+            <pre><code># BUGGY VERSION - Wrong method call!
 @token_required()
 def put(self):
     body = request.get_json()
@@ -265,10 +446,10 @@ def put(self):
     
     return jsonify({'message': 'Language updated successfully'})
 </code></pre>
-        <p>
-            After hours of debugging, I discovered I was calling <code>language.create()</code> instead of using the proper update method:
-        </p>
-        <pre><code># FIXED VERSION - Proper update logic
+            <p>
+                After hours of debugging, I discovered I was calling <code>language.create()</code> instead of using the proper update method:
+            </p>
+            <pre><code># FIXED VERSION - Proper update logic
 @token_required()
 def put(self):
     body = request.get_json()
@@ -290,21 +471,21 @@ def put(self):
     except Exception as e:
         return {'message': 'Failed to update language', 'error': str(e)}, 500
 </code></pre>
-        <blockquote>
-            It's embarrassing how long it took me to spot that one-line error, but it reinforced the importance of careful code review and testing.
-        </blockquote>
+            <blockquote>
+                It's embarrassing how long it took me to spot that one-line error, but it reinforced the importance of careful code review and testing.
+            </blockquote>
 
-        <h2>The Leaderboard API: Where Things Got Interesting</h2>
-        <p>
-            The Leaderboard API was where I really pushed my boundaries. The goal was to create a system that could find users with shared interests and rank them by compatibility. What started as a simple matching algorithm turned into a deep dive into set theory and performance optimization.
-        </p>
+            <h2>The Leaderboard API: Where Things Got Interesting</h2>
+            <p>
+                The Leaderboard API was where I really pushed my boundaries. The goal was to create a system that could find users with shared interests and rank them by compatibility. What started as a simple matching algorithm turned into a deep dive into set theory and performance optimization.
+            </p>
 
-        <h3>The Great Interest Intersection Experiment</h3>
-        <p>
-            The core feature of finding users with shared interests seemed elegant in theory. I would split each user's interests into sets and find intersections. Simple, right? Wrong.
-        </p>
-        <p>My first implementation was a disaster:</p>
-        <pre><code># BROKEN VERSION - Whitespace nightmare!
+            <h3>The Great Interest Intersection Experiment</h3>
+            <p>
+                The core feature of finding users with shared interests seemed elegant in theory. I would split each user's interests into sets and find intersections. Simple, right? Wrong.
+            </p>
+            <p>My first implementation was a disaster:</p>
+            <pre><code># BROKEN VERSION - Whitespace nightmare!
 def get(self):
     current_user_id = request.args.get('user_id')
     current_user = User.query.get(current_user_id)
@@ -328,11 +509,11 @@ def get(self):
     
     return jsonify({'top_users': matched_users})
 </code></pre>
-        <p>
-            I was splitting interests on commas without considering whitespace, leading to interests like "Python" and " Python" being treated as different entities. Users were reporting that the system couldn't find obvious matches!
-        </p>
-        <p>The solution was surprisingly simple but required careful data sanitization:</p>
-        <pre><code># FIXED VERSION - Proper whitespace handling
+            <p>
+                I was splitting interests on commas without considering whitespace, leading to interests like "Python" and " Python" being treated as different entities. Users were reporting that the system couldn't find obvious matches!
+            </p>
+            <p>The solution was surprisingly simple but required careful data sanitization:</p>
+            <pre><code># FIXED VERSION - Proper whitespace handling
 def get(self):
     try:
         current_user_id = request.args.get('user_id')
@@ -365,15 +546,15 @@ def get(self):
     except Exception as e:
         return {'message': f'Error retrieving top users: {str(e)}'}, 500
 </code></pre>
-        <blockquote>
-            The debugging process taught me about the importance of data sanitization and the subtle ways that real-world data can break theoretical algorithms.
-        </blockquote>
+            <blockquote>
+                The debugging process taught me about the importance of data sanitization and the subtle ways that real-world data can break theoretical algorithms.
+            </blockquote>
 
-        <h3>Performance Reality Check</h3>
-        <p>
-            The leaderboard worked beautifully with my test dataset of 10 users. Then I tried it with a more realistic dataset of 1,000 users, and everything ground to a halt. Here's my original O(n²) algorithm:
-        </p>
-        <pre><code># SLOW VERSION - O(n²) performance nightmare!
+            <h3>Performance Reality Check</h3>
+            <p>
+                The leaderboard worked beautifully with my test dataset of 10 users. Then I tried it with a more realistic dataset of 1,000 users, and everything ground to a halt. Here's my original O(n²) algorithm:
+            </p>
+            <pre><code># SLOW VERSION - O(n²) performance nightmare!
 def get(self):
     all_users = User.query.all()  # Getting ALL users - yikes!
     
@@ -390,11 +571,11 @@ def get(self):
     
     # This approach doesn't scale!
 </code></pre>
-        <p>
-            My O(n²) algorithm for comparing every user against every other user was simply not scalable. With 1,000 users, that's 1,000,000 comparisons!
-        </p>
-        <p>The solution required smarter filtering and optimization:</p>
-        <pre><code># OPTIMIZED VERSION - Much better performance
+            <p>
+                My O(n²) algorithm for comparing every user against every other user was simply not scalable. With 1,000 users, that's 1,000,000 comparisons!
+            </p>
+            <p>The solution required smarter filtering and optimization:</p>
+            <pre><code># OPTIMIZED VERSION - Much better performance
 def get(self):
     try:
         current_user_id = request.args.get('user_id')
@@ -433,16 +614,16 @@ def get(self):
     except Exception as e:
         return {'message': f'Error retrieving top users: {str(e)}'}, 500
 </code></pre>
-        <blockquote>
-            Instead of comparing every user against every other user, I started by filtering users who had at least one matching interest before doing the expensive intersection operations. The performance improvement was dramatic, but it meant rewriting significant portions of the codebase.
-        </blockquote>
+            <blockquote>
+                Instead of comparing every user against every other user, I started by filtering users who had at least one matching interest before doing the expensive intersection operations. The performance improvement was dramatic, but it meant rewriting significant portions of the codebase.
+            </blockquote>
 
-        <h3>The Mystery of the Missing Users</h3>
-        <p>
-            One of the most puzzling bugs involved users occasionally disappearing from the leaderboard results. The API would run without errors, but certain users who should have appeared in the results were nowhere to be found.
-        </p>
-        <p>Here's what my problematic error handling looked like:</p>
-        <pre><code># PROBLEMATIC VERSION - Silent failures!
+            <h3>The Mystery of the Missing Users</h3>
+            <p>
+                One of the most puzzling bugs involved users occasionally disappearing from the leaderboard results. The API would run without errors, but certain users who should have appeared in the results were nowhere to be found.
+            </p>
+            <p>Here's what my problematic error handling looked like:</p>
+            <pre><code># PROBLEMATIC VERSION - Silent failures!
 def get(self):
     all_users = User.query.all()
     matched_users = []
@@ -464,11 +645,11 @@ def get(self):
     
     return jsonify({'top_users': matched_users})
 </code></pre>
-        <p>
-            When a user had malformed interest data (like null values or empty strings), the string split operation would fail silently, causing that user to be skipped entirely.
-        </p>
-        <p>The fix required robust error handling and data validation:</p>
-        <pre><code># ROBUST VERSION - Proper error handling and validation
+            <p>
+                When a user had malformed interest data (like null values or empty strings), the string split operation would fail silently, causing that user to be skipped entirely.
+            </p>
+            <p>The fix required robust error handling and data validation:</p>
+            <pre><code># ROBUST VERSION - Proper error handling and validation
 def get(self):
     try:
         current_user_id = request.args.get('user_id')
@@ -505,8 +686,8 @@ def get(self):
                         'shared_interests': list(shared_interests)
                     })
             except Exception as user_error:
-                # Log the error but continue processing other users
-                print(f"Error processing user {user.id}: {str(user_error)}")
+                // Log the error but continue processing other users
+                console.log(`Error processing user ${user.id}: ${user_error}`);
                 continue
         
         matched_users.sort(key=lambda x: len(x['shared_interests']), reverse=True)
@@ -515,59 +696,77 @@ def get(self):
     except Exception as e:
         return {'message': f'Error retrieving top users: {str(e)}'}, 500
 </code></pre>
-        <blockquote>
-            Finding the root cause was like solving a detective mystery, but it taught me that proper error handling isn't just about preventing crashes - it's about maintaining data integrity and providing visibility into what's actually happening.
-        </blockquote>
+            <blockquote>
+                Finding the root cause was like solving a detective mystery, but it taught me that proper error handling isn't just about preventing crashes - it's about maintaining data integrity and providing visibility into what's actually happening.
+            </blockquote>
 
-        <h2>Lessons Learned</h2>
-        <h3>Error Handling is Everything</h3>
-        <p>
-            Both APIs taught me that graceful error handling isn't just about preventing crashes - it's about providing meaningful feedback to users and developers. My early versions had generic error messages that were useless for debugging. Learning to provide specific, actionable error information was a game-changer.
-        </p>
-        <h3>Testing Early and Often</h3>
-        <p>
-            The popularity explosion incident could have been avoided with proper testing. I learned to create comprehensive test suites that cover not just the happy path, but also edge cases and error conditions. Automated testing became my safety net, catching issues before they made it to production.
-        </p>
-        <h3>Data Integrity Matters</h3>
-        <p>
-            The interest matching problems taught me that data consistency is crucial for user-facing features. Now I always include data validation and sanitization as core requirements, not afterthoughts.
-        </p>
-        <h3>Performance Considerations</h3>
-        <p>
-            Building features that work with small datasets is easy. Building features that scale requires thinking about algorithmic complexity from the beginning. The leaderboard performance issues taught me to consider scalability during the design phase, not after deployment.
-        </p>
+            <h2>Lessons Learned</h2>
+            <h3>Error Handling is Everything</h3>
+            <p>
+                Both APIs taught me that graceful error handling isn't just about preventing crashes - it's about providing meaningful feedback to users and developers. My early versions had generic error messages that were useless for debugging. Learning to provide specific, actionable error information was a game-changer.
+            </p>
+            <h3>Testing Early and Often</h3>
+            <p>
+                The popularity explosion incident could have been avoided with proper testing. I learned to create comprehensive test suites that cover not just the happy path, but also edge cases and error conditions. Automated testing became my safety net, catching issues before they made it to production.
+            </p>
+            <h3>Data Integrity Matters</h3>
+            <p>
+                The interest matching problems taught me that data consistency is crucial for user-facing features. Now I always include data validation and sanitization as core requirements, not afterthoughts.
+            </p>
+            <h3>Performance Considerations</h3>
+            <p>
+                Building features that work with small datasets is easy. Building features that scale requires thinking about algorithmic complexity from the beginning. The leaderboard performance issues taught me to consider scalability during the design phase, not after deployment.
+            </p>
 
-        <h2>The Rewarding Moments</h2>
-        <p>
-            Despite all the challenges, there were incredible moments of triumph. The first time I successfully created a language entry through the API and saw it appear in the database felt like magic. Watching the leaderboard correctly identify and rank user matches based on shared interests was deeply satisfying.
-        </p>
-        <p>
-            The moment when I finally got the JWT authentication working smoothly across both APIs was particularly rewarding. Seeing all the pieces come together - secure authentication, proper error handling, efficient data processing - felt like conducting a complex symphony where every instrument finally played in harmony.
-        </p>
+            <h2>The Rewarding Moments</h2>
+            <p>
+                Despite all the challenges, there were incredible moments of triumph. The first time I successfully created a language entry through the API and saw it appear in the database felt like magic. Watching the leaderboard correctly identify and rank user matches based on shared interests was deeply satisfying.
+            </p>
+            <p>
+                The moment when I finally got the JWT authentication working smoothly across both APIs was particularly rewarding. Seeing all the pieces come together - secure authentication, proper error handling, efficient data processing - felt like conducting a complex symphony where every instrument finally played in harmony.
+            </p>
 
-        <h2>What's Next</h2>
-        <p>
-            These APIs represent just the beginning of my journey. I'm already planning improvements: adding caching to improve performance, implementing more sophisticated matching algorithms, and building a proper frontend to showcase the functionality.
-        </p>
-        <p>
-            The experience has taught me that building good APIs is about much more than just returning JSON responses. It's about creating reliable, scalable, and user-friendly interfaces that other developers (including your future self) can depend on.
-        </p>
-        <p>
-            Every bug was a learning opportunity, every performance issue was a chance to grow, and every successful feature was a step forward in my development journey. The code may not be perfect, but it's mine, and it works - and sometimes, that's the most important thing of all.
-        </p>
-        <hr>
-        <blockquote>
-            <em>The journey of a thousand APIs begins with a single endpoint. Here's to many more adventures in code ahead.</em>
-        </blockquote>
-    </article>
+            <h2>What's Next</h2>
+            <p>
+                These APIs represent just the beginning of my journey. I'm already planning improvements: adding caching to improve performance, implementing more sophisticated matching algorithms, and building a proper frontend to showcase the functionality.
+            </p>
+            <p>
+                The experience has taught me that building good APIs is about much more than just returning JSON responses. It's about creating reliable, scalable, and user-friendly interfaces that other developers (including your future self) can depend on.
+            </p>
+            <p>
+                Every bug was a learning opportunity, every performance issue was a chance to grow, and every successful feature was a step forward in my development journey. The code may not be perfect, but it's mine, and it works - and sometimes, that's the most important thing of all.
+            </p>
+            <hr>
+            <blockquote>
+                <em>The journey of a thousand APIs begins with a single endpoint. Here's to many more adventures in code ahead.</em>
+            </blockquote>
+        </article>
+    </main>
 
     <footer class="footer">
-        <p>&copy; 2025 Pranav Santhosh. All Rights Reserved.</p>
         <div class="social-links">
-            <a href="https://github.com/SanPranav">GitHub</a>
-            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/">LinkedIn</a>
-            <a href="https://discord.com/users/738779934176051230">Discord</a>
+            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/" class="social-link" target="_blank">💼</a>
+            <a href="https://github.com/SanPranav" class="social-link" target="_blank">🐙</a>
+            <a href="https://discord.com/users/738779934176051230" class="social-link" target="_blank">💬</a>
         </div>
+        <p class="footer-text">© 2025 Pranav Santhosh. Crafted with passion and precision.</p>
     </footer>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 50;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particles.appendChild(particle);
+            }
+        }
+        window.addEventListener('load', createParticles);
+    </script>
 </body>
 </html>

@@ -3,173 +3,602 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Contributions - Pranav Santhosh" />
-    <meta property="og:description" content="Explore my contributions to various projects and open-source collaborations." />
+    <meta property="og:title" content="Work & Contributions - Pranav Santhosh" />
+    <meta property="og:description" content="Explore Pranav Santhosh's projects and contributions to technology and community." />
     <meta property="og:image" content="assets/images/logo.png" />
     <meta property="og:url" content="https://your-website-link/contributions.html" />
     <meta property="og:type" content="website" />
-    <title>Contributions - Pranav Santhosh</title>
+    <title>Work & Contributions - Pranav Santhosh</title>
     <link rel="icon" href="assets/images/logo.png" type="image/png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <style>
-        body {
-            background: linear-gradient(135deg, #000000, #000f29);
-            font-family: 'Urbanist', sans-serif;
-            color: white;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        a {
-            text-decoration: none;
-            color: #ffffff;
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --accent-color: #00ff88;
+            --accent-secondary: #ff0080;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        a:hover {
-            color: #cccccc;
+        body {
+            background: var(--primary-bg);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(0, 100, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* Glass Morphism Navbar */
         .navbar {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1rem 2rem;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 12px 30px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 30px;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
         }
 
         .nav-links a {
-            margin-left: 1rem;
-            color: #ffffff;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            position: relative;
+            transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #cccccc;
+            color: var(--text-primary);
+            transform: translateY(-1px);
         }
 
-        .contributions-section {
-            padding: 2rem;
-            background-color: #ffffff;
-            color: #333333;
-            animation: fadeIn 1s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+            transition: width 0.3s ease;
         }
 
-        .contributions-section h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .nav-links a:hover::before {
+            width: 100%;
         }
 
-        .contributions-section p {
-            font-size: 1.2rem;
-            color: #666666;
+        .nav-links a.active {
+            color: var(--accent-color);
         }
 
-        .contribution-card {
-            background-color: #f5f5f5;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            color: #333;
-            animation: slideIn 1s ease-in-out;
+        .nav-links a.active::before {
+            width: 100%;
         }
 
-        .contribution-card h3 {
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .work-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .work-hero {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .work-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .work-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .project-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 25px 50px rgba(0, 255, 136, 0.2);
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-title {
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
         }
 
-        .contribution-card p {
-            font-size: 1rem;
-            color: #666666;
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
 
-        .contribution-card a {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: #000000;
-            font-weight: bold;
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
-        .contribution-card a:hover {
-            color: #333333;
+        .tech-tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .project-links {
+            display: flex;
+            gap: 15px;
         }
 
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-bg);
+            padding: 60px 20px 30px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 20px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                left: 20px;
+                right: 20px;
+                transform: none;
+                border-radius: 20px;
+                padding: 10px 20px;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .work-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="navbar">
-        <a href="index.html" class="logo">PRANAV SANTHOSH</a>
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Me</a>
-            <a href="blog.html">Blogs</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
+    <div class="background-animation"></div>
+    <div class="particles" id="particles"></div>
 
-    <main class="contributions-section">
-        <h1>My Contributions</h1>
-        <p>Here are some of my notable contributions to open-source projects and hackathons:</p>
-        <div class="contribution-card">
-            <h3>Platformer3x</h3>
-            <p>Contributed to a platformer game project.</p>
-            <a href="https://github.com/nighthawkcoders/platformer3x" target="_blank">GitHub</a> | <a href="https://nighthawkcoders.github.io/platformer3x/" target="_blank">Website</a>
+    <nav class="navbar">
+        <div class="logo">PRANAV.SANTHOSH</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contributions.html" class="active">Work</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
         </div>
-        <div class="contribution-card">
-            <h3>Optix Scouting App</h3>
-            <p>Worked on a Scouting application for FRC that allows people to record information based on match info etc. (App on app store/Google play Store)</p>
-        </div>
-        <div class="contribution-card">
-            <h3>Optix Scouting Website</h3>
-            <p>The main database where the scouting application transfers its data using QR codes.</p>
-            <a href="https://github.com/Team-Optix-3749/Optix-Scouting-WebApp" target="_blank">GitHub</a> | <a href="https://team-optix-3749.github.io/Optix-Scouting-WebApp/" target="_blank">Website</a>
-        </div>
-        <div class="contribution-card">
-            <h3>CSP Portfolio (Pranav_2025)</h3>
-            <p>Simple Portfolio for the year 2024-2025 that was used to track achievements made throughout this year.</p>
-            <a href="https://github.com/SanPranav/Pranav_2025" target="_blank">GitHub</a> | <a href="https://sanpranav.github.io/Pranav_2025/" target="_blank">Website</a>
-        </div>
-        <div class="contribution-card">
-            <h3>Outreach Hours Website</h3>
-            <p>New Small Project that is currently being built that tracks outreach hours, or a way that people in the club would impact our community.</p>
-            <a href="https://github.com/SanPranav/Optix-Outreach-Hours-Website" target="_blank">GitHub</a> | <a href="https://sanpranav.github.io/Optix-Outreach-Hours-Website/" target="_blank">Website</a>
-        </div>
-        <div class="contribution-card">
-            <h3>Prism Frontend</h3>
-            <p>Contributed to a CPT project for AP CSP.</p>
-            <a href="https://github.com/illuminati1618/prism_frontend" target="_blank">GitHub</a> | <a href="https://illuminati1618.github.io/prism_frontend/" target="_blank">Website</a>
-        </div>
-        <div class="contribution-card">
-            <h3>Prism Backend</h3>
-            <p>Contributed to a CPT project for AP CSP.</p>
-            <a href="https://github.com/illuminati1618/prism_backend" target="_blank">GitHub</a> | <a href="https://illuminati1618.github.io/prism_backend/" target="_blank">Website</a>
-        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="work-section">
+            <div class="work-hero">
+                <h1 class="work-title">My Work & Contributions</h1>
+                <p class="work-subtitle">
+                    Exploring the intersection of technology, education, and community impact through innovative projects and meaningful contributions.
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">🎮</div>
+                    <h3 class="project-title">Platformer3x</h3>
+                    <p class="project-description">
+                        Contributed to a platformer game project with enhanced gameplay mechanics and improved user experience. Features interactive gameplay elements and responsive controls for an engaging gaming experience.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Game Engine</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/nighthawkcoders/platformer3x" class="project-link" target="_blank">
+                            <span>⚡</span>
+                            <span>View Code</span>
+                        </a>
+                        <a href="https://nighthawkcoders.github.io/platformer3x/" class="project-link" target="_blank">
+                            <span>🚀</span>
+                            <span>Live Demo</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">📱</div>
+                    <h3 class="project-title">Optix Scouting App</h3>
+                    <p class="project-description">
+                        Developed a comprehensive scouting application for FRC that allows teams to record and analyze match information. Available on both App Store and Google Play Store for widespread accessibility.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Mobile Dev</span>
+                        <span class="tech-tag">Database</span>
+                        <span class="tech-tag">FRC</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <span>📱</span>
+                            <span>App Store</span>
+                        </a>
+                        <a href="#" class="project-link">
+                            <span>🤖</span>
+                            <span>Play Store</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🌐</div>
+                    <h3 class="project-title">Optix Scouting Website</h3>
+                    <p class="project-description">
+                        The main database platform where the scouting application transfers its data using QR codes. Features data visualization, team analytics, and comprehensive match reporting for FRC teams.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">QR Codes</span>
+                        <span class="tech-tag">Data Viz</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Team-Optix-3749/Optix-Scouting-WebApp" class="project-link" target="_blank">
+                            <span>⚡</span>
+                            <span>View Code</span>
+                        </a>
+                        <a href="https://team-optix-3749.github.io/Optix-Scouting-WebApp/" class="project-link" target="_blank">
+                            <span>🚀</span>
+                            <span>Live Demo</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">📚</div>
+                    <h3 class="project-title">CSP Portfolio (Pranav_2025)</h3>
+                    <p class="project-description">
+                        A comprehensive portfolio website built for tracking achievements and progress throughout the 2024-2025 academic year. Features project showcases, learning reflections, and skill development documentation.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Portfolio</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/SanPranav/Pranav_2025" class="project-link" target="_blank">
+                            <span>⚡</span>
+                            <span>View Code</span>
+                        </a>
+                        <a href="https://sanpranav.github.io/Pranav_2025/" class="project-link" target="_blank">
+                            <span>🚀</span>
+                            <span>Live Site</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">⏰</div>
+                    <h3 class="project-title">Outreach Hours Website</h3>
+                    <p class="project-description">
+                        Currently developing a platform for tracking outreach hours and community impact initiatives. Helps club members log and visualize their contributions to community service and outreach programs.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Web Dev</span>
+                        <span class="tech-tag">Tracking</span>
+                        <span class="tech-tag">Community</span>
+                        <span class="tech-tag">In Progress</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/SanPranav/Optix-Outreach-Hours-Website" class="project-link" target="_blank">
+                            <span>⚡</span>
+                            <span>View Code</span>
+                        </a>
+                        <a href="https://sanpranav.github.io/Optix-Outreach-Hours-Website/" class="project-link" target="_blank">
+                            <span>🚀</span>
+                            <span>Live Demo</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🌈</div>
+                    <h3 class="project-title">Prism Frontend & Backend</h3>
+                    <p class="project-description">
+                        Contributed to a comprehensive CPT project for AP Computer Science Principles. Features both frontend user interface and backend API development with full-stack integration.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Frontend</span>
+                        <span class="tech-tag">Backend</span>
+                        <span class="tech-tag">Full-Stack</span>
+                        <span class="tech-tag">AP CSP</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/illuminati1618/prism_frontend" class="project-link" target="_blank">
+                            <span>⚡</span>
+                            <span>Frontend</span>
+                        </a>
+                        <a href="https://github.com/illuminati1618/prism_backend" class="project-link" target="_blank">
+                            <span>🔧</span>
+                            <span>Backend</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer style="text-align: center; padding: 1rem 0; background-color: #000000; color: #ffffff; font-size: 0.9rem;">
-        <p>&copy; 2025 Pranav Santhosh. All Rights Reserved.</p>
+    <footer class="footer">
         <div class="social-links">
-            <a href="https://github.com/SanPranav" style="margin: 0 0.5rem; color: #ffffff;">GitHub</a>
-            <a href="https://www.linkedin.com/in/pranav-santhosh-830316340/" style="margin: 0 0.5rem; color: #ffffff;">LinkedIn</a>
-            <a href="https://discord.com/users/738779934176051230" style="margin: 0 0.5rem; color: #ffffff;">Discord</a>
+            <a href="#" class="social-link">📧</a>
+            <a href="#" class="social-link">💼</a>
+            <a href="#" class="social-link">🐙</a>
+            <a href="#" class="social-link">🐦</a>
         </div>
+        <p class="footer-text">© 2025 Pranav Santhosh. Crafted with passion and precision.</p>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
