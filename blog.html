@@ -21,10 +21,10 @@
         :root {
             --primary-bg: #0a0a0a;
             --secondary-bg: #111111;
-            --accent-color: #00ff88;
-            --accent-secondary: #ff0080;
+            --accent-color: #ffffff;
+            --accent-secondary: #151515;
             --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
+            --text-secondary: #545151;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
@@ -46,9 +46,9 @@
             height: 100%;
             z-index: -2;
             background: 
-                radial-gradient(ellipse at 20% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 40% 40%, rgba(0, 100, 255, 0.1) 0%, transparent 50%);
+                radial-gradient(ellipse at 20% 80%, rgba(60, 60, 60, 0.381) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(60, 60, 60, 0.381) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(60, 60, 60, 0.381) 0%, transparent 50%);
             animation: backgroundShift 20s ease-in-out infinite;
         }
 
@@ -237,7 +237,7 @@
         .blog-post:hover {
             transform: translateY(-10px);
             border-color: var(--accent-color);
-            box-shadow: 0 25px 50px rgba(0, 255, 136, 0.2);
+            box-shadow: 0 25px 50px rgba(77, 88, 90, 0.558);
         }
 
         .blog-post-header {
@@ -284,7 +284,7 @@
             align-items: center;
             gap: 8px;
             padding: 12px 24px;
-            background: rgba(0, 255, 136, 0.1);
+            background: rgba(98, 100, 100, 0.799);
             border: 1px solid var(--accent-color);
             border-radius: 25px;
             color: var(--accent-color);
@@ -298,7 +298,7 @@
             background: var(--accent-color);
             color: var(--primary-bg);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 25px rgba(41, 44, 45, 0.345);
         }
 
         .blog-post-tags {
@@ -309,7 +309,7 @@
         }
 
         .blog-tag {
-            background: rgba(255, 0, 128, 0.1);
+            background: rgb(151, 159, 160);
             color: var(--accent-secondary);
             padding: 4px 12px;
             border-radius: 20px;
@@ -357,7 +357,7 @@
             transform: translateY(-3px);
             color: var(--accent-color);
             border-color: var(--accent-color);
-            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 25px rgb(252, 252, 252);
         }
 
         .footer-text {
