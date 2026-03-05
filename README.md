@@ -21,9 +21,6 @@ REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
 REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-### 3. Add Your Profile Photo (Optional)
-Place your headshot as `/public/images/profile.jpg` (800x800px recommended)
-
 ### 4. Start Development Server
 ```bash
 npm start
