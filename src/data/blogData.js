@@ -7,7 +7,7 @@ export const blogPosts = {
     date: 'March 15, 2024',
     author: 'Pranav Santhosh',
     tags: ['Flask', 'Python', 'API', 'Backend'],
-    icon: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/></svg>,
+    icon: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11z"/><polyline points="13 2 13 11 22 11"/></svg>,
     excerpt: 'As a developer, there\'s something deeply satisfying about building your first set of APIs from scratch. Explore my journey building Flask APIs, tackling real-world bugs like whitespace handling in data processing, performance optimization with O(n²) algorithms, and learning about proper error handling and authentication.',
     content: `
 <h2>The Vision</h2>
