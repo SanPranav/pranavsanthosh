@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/pranavsanthosh">
       <div className="app">
         <Navbar />
         <Routes>
