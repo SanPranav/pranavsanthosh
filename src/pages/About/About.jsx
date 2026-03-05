@@ -194,16 +194,17 @@ const About = () => {
               </div>
               <div className="about__journey-content">
                 <p className="about__text">
-                  Welcome to my digital realm where creativity meets technology. I'm a 
-                  passionate aspiring mechanical engineer specializing in aerospace, dedicated to 
-                  building cutting-edge solutions that push the boundaries of what's possible.
+                  I'm an aspiring mechanical engineer, with a deep passion for aerospace. What drives me is the challenge 
+                  of solving real problems—whether that's designing rockets that actually fly, building robotics systems 
+                  that compete at scale, or creating software that makes things work better. I love the tangible nature of 
+                  building something and seeing it come to life.
                 </p>
                 <p className="about__text">
-                  With expertise in aerospace engineering, robotics systems, and digital 
-                  innovation, I specialize in creating transformative solutions that make 
-                  a real impact. My journey has been driven by a relentless curiosity and 
-                  a passion for solving complex problems through elegant design and innovative 
-                  thinking.
+                  My background spans aerospace engineering, robotics, and full-stack software development, but what ties 
+                  it all together is curiosity. I'm genuinely interested in how things work and how to make them work better. 
+                  I learn best by doing—whether that's launching rockets, leading robotics teams, or experimenting with new 
+                  technologies. I'm especially drawn to work that has a meaningful impact, which is why I spend my time on 
+                  projects that matter to my community and the people I work with.
                 </p>
               </div>
             </div>
