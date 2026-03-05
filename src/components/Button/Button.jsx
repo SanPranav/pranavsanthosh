@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Button.css';
 
 const Button = ({ 
@@ -17,9 +18,9 @@ const Button = ({
 
   if (href) {
     return (
-      <a href={href} className={combinedClass} {...props}>
+      <Link to={href} className={combinedClass} {...props}>
         {children}
-      </a>
+      </Link>
     );
   }
 
