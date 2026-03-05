@@ -1,30 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '../../components';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import './About.css';
 
 const About = () => {
-  const [profileImageExists, setProfileImageExists] = useState(false);
-
-  useEffect(() => {
-    // Check if profile image exists
-    const checkImage = async () => {
-      try {
-        const response = await fetch(`${process.env.PUBLIC_URL}/images/profile.jpg`);
-        setProfileImageExists(response.ok);
-      } catch {
-        // Try PNG if JPG doesn't exist
-        try {
-          const response = await fetch(`${process.env.PUBLIC_URL}/images/profile.png`);
-          setProfileImageExists(response.ok);
-        } catch {
-          setProfileImageExists(false);
-        }
-      }
-    };
-    checkImage();
-  }, []);
+  const [imageError, setImageError] = useState(false);
 
   const skillProficiency = [
     { skill: 'Programming', proficiency: 90 },
@@ -186,15 +167,19 @@ const About = () => {
             <h2 className="about__section-title">My Journey</h2>
             <div className="about__profile">
               <div className="about__profile-image">
-                {profileImageExists ? (
+                {!imageError ? (
                   <img 
                     src={`${process.env.PUBLIC_URL}/images/profile.jpg`}
                     alt="Pranav Santhosh" 
                     className="about__profile-img"
                     onError={(e) => {
                       // Try PNG if JPG fails
-                      e.target.src = `${process.env.PUBLIC_URL}/images/profile.png`;
-                      e.target.onerror = () => setProfileImageExists(false);
+                      const img = e.target;
+                      if (!img.src.endsWith('.png')) {
+                        img.src = `${process.env.PUBLIC_URL}/images/profile.png`;
+                      } else {
+                        setImageError(true);
+                      }
                     }}
                   />
                 ) : (
