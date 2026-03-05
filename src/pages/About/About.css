@@ -1,0 +1,312 @@
+.about__hero {
+  text-align: center;
+  padding-top: var(--spacing-12);
+  padding-bottom: var(--spacing-12);
+}
+
+.about__title {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+  letter-spacing: -0.02em;
+}
+
+.about__subtitle {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.about__journey-card {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about__profile {
+  display: flex;
+  gap: var(--spacing-10);
+  align-items: flex-start;
+}
+
+.about__profile-image {
+  flex-shrink: 0;
+}
+
+.about__profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  border: 2px solid var(--color-accent-primary);
+  box-shadow: 0 8px 24px rgba(175, 203, 255, 0.2);
+  transition: all var(--transition-base);
+}
+
+.about__profile-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(175, 203, 255, 0.3);
+}
+
+.about__image-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-xl);
+  background: var(--color-glass-bg);
+  border: 2px dashed var(--color-glass-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-base);
+}
+
+.about__image-placeholder:hover {
+  border-color: var(--color-accent-primary);
+  background: var(--color-glass-hover);
+}
+
+.about__image-placeholder svg {
+  opacity: 0.4;
+}
+
+.about__image-text {
+  font-size: var(--font-size-sm);
+  text-align: center;
+  padding: 0 var(--spacing-4);
+}
+
+.about__section-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-8);
+  text-align: center;
+}
+
+.about__journey-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.about__text {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Skill Radar Chart */
+.about__radar-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-10);
+}
+
+.about__radar-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: var(--spacing-10);
+  font-style: italic;
+}
+
+.about__radar-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about__courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-8);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about__course-category {
+  padding: var(--spacing-8);
+}
+
+.about__category-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-primary);
+  margin-bottom: var(--spacing-6);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 2px solid var(--color-glass-border);
+}
+
+.about__course-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.about__course-item {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  padding-left: var(--spacing-6);
+  position: relative;
+  line-height: var(--line-height-relaxed);
+}
+
+.about__course-item::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.about__skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-6);
+}
+
+.about__skill-category {
+  padding: var(--spacing-8);
+}
+
+.about__skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.about__skill-item {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  padding-left: var(--spacing-6);
+  position: relative;
+  line-height: var(--line-height-relaxed);
+}
+
+.about__skill-item::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.about__experience {
+  padding: var(--spacing-16) var(--spacing-4);
+}
+
+.about__timeline {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about__timeline-item {
+  display: flex;
+  gap: var(--spacing-8);
+  margin-bottom: var(--spacing-8);
+  position: relative;
+}
+
+.about__timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 60px;
+  bottom: -50px;
+  width: 2px;
+  background: var(--color-glass-border);
+}
+
+.about__timeline-item:last-child::before {
+  display: none;
+}
+
+.about__timeline-dot {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-top: var(--spacing-1);
+  border: 3px solid var(--color-accent-primary);
+  border-radius: 50%;
+  background-color: var(--color-bg-primary);
+}
+
+.about__timeline-content {
+  padding-top: var(--spacing-1);
+  padding-bottom: var(--spacing-8);
+}
+
+.about__timeline-date {
+  font-size: var(--font-size-sm);
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-1);
+}
+
+.about__timeline-position {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.about__timeline-company {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+@media (max-width: 768px) {
+  .about__title {
+    font-size: var(--font-size-4xl);
+  }
+
+  .about__subtitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .about__courses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about__skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about__timeline-item {
+    gap: var(--spacing-4);
+  }
+
+  .about__timeline-item::before {
+    left: 15px;
+  }
+
+  .about__timeline-dot {
+    width: 32px;
+    height: 32px;
+  }
+
+  .about__timeline-content {
+    padding-bottom: var(--spacing-6);
+  }
+
+  .about__section-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .about__profile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about__image-placeholder {
+    width: 180px;
+    height: 180px;
+  }
+}

@@ -1,0 +1,187 @@
+.blogpost {
+  min-height: 100vh;
+}
+
+.blogpost__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-12) var(--spacing-6);
+}
+
+.blogpost__back-link {
+  display: inline-block;
+  margin-bottom: var(--spacing-8);
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-base);
+}
+
+.blogpost__back-link:hover {
+  color: var(--color-accent-secondary);
+}
+
+.blogpost__hero {
+  margin-bottom: var(--spacing-12);
+  text-align: center;
+}
+
+.blogpost__icon {
+  color: var(--color-accent-primary);
+  margin: 0 auto var(--spacing-4);
+  display: flex;
+  justify-content: center;
+}
+
+.blogpost__icon svg {
+  width: 56px;
+  height: 56px;
+}
+
+.blogpost__title {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+.blogpost__subtitle {
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-8);
+  line-height: var(--line-height-normal);
+}
+
+.blogpost__meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.blogpost__date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blogpost__author {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-medium);
+}
+
+.blogpost__tags {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-3);
+  flex-wrap: wrap;
+}
+
+.blogpost__tag {
+  font-size: var(--font-size-xs);
+  color: var(--color-accent-primary);
+  background-color: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blogpost__content {
+  margin-bottom: var(--spacing-16);
+}
+
+.blogpost__heading-2 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-top: var(--spacing-12);
+  margin-bottom: var(--spacing-6);
+  line-height: var(--line-height-tight);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 1px solid var(--color-glass-border);
+}
+
+.blogpost__heading-3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-top: var(--spacing-8);
+  margin-bottom: var(--spacing-4);
+  line-height: var(--line-height-tight);
+}
+
+.blogpost__text {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-6);
+}
+
+.blogpost__list-item {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-left: var(--spacing-8);
+  margin-bottom: var(--spacing-3);
+  list-style-type: disc;
+}
+
+.blogpost__footer {
+  margin-top: var(--spacing-16);
+}
+
+.blogpost__footer-separator {
+  height: 1px;
+  background: var(--color-glass-border);
+  margin-bottom: var(--spacing-8);
+}
+
+.blogpost__navigation {
+  display: flex;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+.blogpost__nav-button {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 768px) {
+  .blogpost__container {
+    padding: var(--spacing-8) var(--spacing-4);
+  }
+
+  .blogpost__title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .blogpost__subtitle {
+    font-size: var(--font-size-xl);
+  }
+
+  .blogpost__heading-2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .blogpost__heading-3 {
+    font-size: var(--font-size-xl);
+  }
+
+  .blogpost__text {
+    font-size: var(--font-size-base);
+  }
+
+  .blogpost__meta {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+}
