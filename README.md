@@ -2,7 +2,7 @@
 
 A premium, modern portfolio website built with React showcasing a minimal and elegant design.
 
-## ⚡ Quick Setup
+## Quick Setup
 
 ### 1. Install Dependencies
 ```bash
@@ -29,11 +29,11 @@ Place your headshot as `/public/images/profile.jpg` (800x800px recommended)
 npm start
 ```
 
-Visit `http://localhost:3000` 🚀
+Visit `http://localhost:3000` 
 
 ---
 
-## 🎨 Design Philosophy
+## Design Philosophy
 
 - **Minimal & Clean**: Focus on content with generous whitespace
 - **Modern Aesthetics**: Black background (#000000) with soft pastel blue accent (#AFCBFF)
@@ -41,7 +41,7 @@ Visit `http://localhost:3000` 🚀
 - **Smooth Interactions**: Subtle transitions (150-250ms) and hover states
 - **Accessibility First**: WCAG compliant with high contrast ratios
 
-## 🏗️ Architecture
+## Architecture
 
 ### Folder Structure
 
@@ -71,7 +71,7 @@ src/
 └── index.js            # Entry point
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -93,7 +93,7 @@ npm run build
 
 The application will run on `http://localhost:3000`
 
-## 🎯 Features
+## Features
 
 ### Components
 
@@ -110,28 +110,28 @@ The application will run on `http://localhost:3000`
 - **Blog**: Blog posts with metadata and tags
 - **Contact**: Contact form and information cards
 
-## 🎨 Color Palette
+## Color Palette
 
 - **Background**: `#000000` (Black)
 - **Accent**: `#AFCBFF` (Soft Pastel Blue)
 - **Text Primary**: `#FFFFFF` (White)
 - **Text Secondary**: `#A0A0A0` (Light Gray)
 
-## ⚡ Performance
+## Performance
 
 - No inline styles - all CSS in dedicated files
 - Component-based architecture for reusability
 - Optimized transitions and animations
 - Lazy loading ready
 
-## 📱 Responsive Design
+## Responsive Design
 
 - Mobile-first approach
 - Breakpoints at 768px and 968px
 - Touch-friendly interactive elements
 - Collapsible mobile navigation
 
-## 🔧 Technologies
+## Technologies
 
 - **React 18**: Modern React with hooks
 - **React Router 6**: Client-side routing
@@ -141,18 +141,18 @@ The application will run on `http://localhost:3000`
 - **CSS Modules**: Scoped styling
 - **Clean Architecture**: Separation of concerns
 
-## 🎓 Code Standards
+## Code Standards
 
 - **No inline styling**: All styles in CSS files
 - **BEM-like naming**: Consistent class naming convention
 - **Component modularity**: Reusable, single-responsibility components
 - **Accessibility**: Semantic HTML and ARIA labels
 
-## 📄 License
+## License
 
 Private portfolio project for Pranav Santhosh
 
-## 👤 Contact
+## Contact
 
 - Email: Pranavs22638@gmail.com
 - LinkedIn: [pranav-santhosh](https://www.linkedin.com/in/pranav-santhosh-830316340/)
@@ -160,4 +160,4 @@ Private portfolio project for Pranav Santhosh
 
 ---
 
-Built with ❤️ using React and modern web technologies
+Built with <3 using React and modern web technologies
