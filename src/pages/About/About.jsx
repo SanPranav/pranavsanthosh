@@ -11,12 +11,12 @@ const About = () => {
     // Check if profile image exists
     const checkImage = async () => {
       try {
-        const response = await fetch('/images/profile.jpg');
+        const response = await fetch(`${process.env.PUBLIC_URL}/images/profile.jpg`);
         setProfileImageExists(response.ok);
       } catch {
         // Try PNG if JPG doesn't exist
         try {
-          const response = await fetch('/images/profile.png');
+          const response = await fetch(`${process.env.PUBLIC_URL}/images/profile.png`);
           setProfileImageExists(response.ok);
         } catch {
           setProfileImageExists(false);
@@ -188,12 +188,12 @@ const About = () => {
               <div className="about__profile-image">
                 {profileImageExists ? (
                   <img 
-                    src="/images/profile.jpg" 
+                    src={`${process.env.PUBLIC_URL}/images/profile.jpg`}
                     alt="Pranav Santhosh" 
                     className="about__profile-img"
                     onError={(e) => {
                       // Try PNG if JPG fails
-                      e.target.src = '/images/profile.png';
+                      e.target.src = `${process.env.PUBLIC_URL}/images/profile.png`;
                       e.target.onerror = () => setProfileImageExists(false);
                     }}
                   />
