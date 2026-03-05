@@ -202,7 +202,7 @@ const About = () => {
                 <p className="about__text">
                   My background spans aerospace engineering, robotics, and full-stack software development, but what ties 
                   it all together is curiosity. I'm genuinely interested in how things work and how to make them work better. 
-                  I learn best by doing—whether that's launching rockets, leading robotics teams, or experimenting with new 
+                  I learn best by doing: whether that's launching rockets, leading robotics teams, or experimenting with new 
                   technologies. I'm especially drawn to work that has a meaningful impact, which is why I spend my time on 
                   projects that matter to my community and the people I work with.
                 </p>
