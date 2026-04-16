@@ -2,7 +2,7 @@
 
 Your contact form is now configured to send actual emails! Follow these steps to complete the setup:
 
-## 📧 EmailJS Setup (Required for Contact Form)
+## EmailJS Setup (Required for Contact Form)
 
 ### Step 1: Create EmailJS Account
 1. Go to [https://www.emailjs.com/](https://www.emailjs.com/)
@@ -62,7 +62,7 @@ REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key_here
 npm start
 ```
 
-## 📸 Profile Photo Setup
+## Profile Photo Setup
 
 ### Add Your Headshot:
 1. Prepare a square photo (800x800px recommended)
@@ -77,7 +77,7 @@ The photo will automatically appear on your About page!
 - **File size**: Under 500KB
 - **Type**: Professional headshot or head-and-shoulders
 
-## 🧪 Testing the Contact Form
+## Testing the Contact Form
 
 1. Make sure your `.env` file has the correct EmailJS credentials
 2. Start the dev server: `npm start`
@@ -85,7 +85,7 @@ The photo will automatically appear on your About page!
 4. Fill out and submit the form
 5. Check Pranavs22638@gmail.com for the message
 
-## 📱 SMS Notifications (Optional)
+## SMS Notifications (Optional)
 
 EmailJS doesn't directly send SMS, but your template includes the phone number (8583064080). To get SMS notifications:
 
@@ -103,7 +103,7 @@ Configure your email template to also send to: `8583064080@txt.att.net` (for AT&
 2. Set up: Gmail trigger → SMS action
 3. Filter for emails from EmailJS
 
-## 🔒 Security Notes
+## Security Notes
 
 - Never commit your `.env` file
 - Keep your EmailJS keys private
@@ -131,7 +131,7 @@ Configure your email template to also send to: `8583064080@txt.att.net` (for AT&
 - Hard refresh browser (Ctrl+Shift+R)
 - Check browser console for 404 errors
 
-## 📚 Additional Resources
+## Additional Resources
 
 - [EmailJS Documentation](https://www.emailjs.com/docs/)
 - [React Environment Variables](https://create-react-app.dev/docs/adding-custom-environment-variables/)

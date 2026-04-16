@@ -17,12 +17,12 @@ const Work = () => {
     },
     {
       title: 'Optix Scouting App',
-      description: 'Developed a comprehensive scouting application for FRC that allows teams to record and analyze match information. Available on both App Store and Google Play Store for widespread accessibility.',
-      tech: ['React Native', 'Mobile Dev', 'Database', 'FRC'],
+      description: 'Developed a comprehensive scouting application for FRC that allows teams to record and analyze match information. It was deployed through TestFlight and later taken down.',
+      tech: ['React Native', 'Mobile Dev', 'TestFlight', 'FRC'],
       icon: <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>,
       links: [
-        { label: 'App Store', url: '#' },
-        { label: 'Play Store', url: '#' }
+        { label: 'TestFlight', url: '#' },
+        { label: 'Taken Down', url: '#' }
       ]
     },
     {
@@ -73,6 +73,16 @@ const Work = () => {
       links: [
         { label: 'Frontend', url: 'https://github.com/illuminati1618/prism_frontend' },
         { label: 'Backend', url: 'https://github.com/illuminati1618/prism_backend' }
+      ]
+    },
+    {
+      title: 'Optix Scouting Platform',
+      description: 'Built the full Optix scouting system, including the pit-scouting tablet, the database layer, and the aggregator pipeline. The live demo showcases the tablet workflow, while match scouting data is processed locally for the team.',
+      tech: ['JavaScript', 'Database Design', 'Data Aggregation', 'Tablet UI', 'Local Processing', 'FRC'],
+      icon: <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,
+      links: [
+        { label: 'View Code', url: 'https://github.com/SanPranav/oscouting' },
+        { label: 'Live Demo', url: 'https://sanpranav.github.io/oscouting/' }
       ]
     }
   ];
