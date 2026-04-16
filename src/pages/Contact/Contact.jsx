@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { Card, Input, Textarea, Button } from '../../components';
 import './Contact.css';
 
@@ -25,23 +24,31 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // EmailJS configuration
-    // IMPORTANT: Replace these with your actual EmailJS credentials from https://www.emailjs.com/
-    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
-    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
-    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+    const formEndpoint =
+      process.env.REACT_APP_CONTACT_FORM_ENDPOINT ||
+      'https://formsubmit.co/ajax/Pranavs22638@gmail.com';
 
     try {
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'Pranavs22638@gmail.com',
-        to_phone: '8583064080'
-      };
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Portfolio contact: ${formData.subject}`,
+          _captcha: false,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to: 'Pranavs22638@gmail.com'
+        })
+      });
 
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status ${response.status}`);
+      }
       
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -49,7 +56,7 @@ const Contact = () => {
       // Clear success message after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000);
     } catch (error) {
-      console.error('Email send failed:', error);
+      console.error('Contact form submission failed:', error);
       setSubmitStatus('error');
       
       // Clear error message after 5 seconds
