@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar } from './components';
+import { BackgroundFX, Navbar } from './components';
 import { Home, About, Contact, Blog, Work } from './pages';
 import BlogPost from './pages/Blog/BlogPost';
 import './App.css';
@@ -9,6 +9,7 @@ function App() {
   return (
     <Router basename="/pranavsanthosh">
       <div className="app">
+        <BackgroundFX />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

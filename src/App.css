@@ -6,6 +6,12 @@
 .app {
   position: relative;
   min-height: 100vh;
+  isolation: isolate;
+}
+
+.app > *:not(.background-fx) {
+  position: relative;
+  z-index: 1;
 }
 
 .fade-in {
@@ -37,3 +43,4 @@
     transform: translateY(0);
   }
 }
+

@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, useScroll } from 'framer-motion';
 import { Card } from '../../components';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import './About.css';
 
 const About = () => {
   const [imageError, setImageError] = useState(false);
+  const timelineRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ['start 80%', 'end 35%']
+  });
 
   const skillProficiency = [
     { skill: 'Programming', proficiency: 90 },
@@ -336,17 +341,31 @@ const About = () => {
       >
         <div className="container">
           <h2 className="about__section-title">Experience</h2>
-          <div className="about__timeline">
+          <div className="about__timeline-shell" ref={timelineRef}>
+            <div className="about__timeline-line" aria-hidden="true">
+              <motion.div
+                className="about__timeline-progress"
+                style={{ scaleX: scrollYProgress }}
+              />
+            </div>
+            <div className="about__timeline">
             {experience.map((item, index) => (
-              <div key={index} className="about__timeline-item">
-                <div className="about__timeline-dot"></div>
+              <motion.article
+                key={index}
+                className="about__timeline-item"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+              >
                 <div className="about__timeline-content">
                   <div className="about__timeline-date">{item.dateRange}</div>
                   <div className="about__timeline-position">{item.position}</div>
                   <div className="about__timeline-company">{item.company}</div>
                 </div>
-              </div>
+              </motion.article>
             ))}
+            </div>
           </div>
         </div>
       </motion.section>

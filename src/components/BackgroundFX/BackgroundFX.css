@@ -1,0 +1,24 @@
+.background-fx {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+  filter: saturate(1.15) drop-shadow(0 0 12px rgba(143, 180, 255, 0.2));
+  transform: translateZ(0);
+}
+
+@media (max-width: 768px) {
+  .background-fx {
+    opacity: 0.86;
+    filter: saturate(1.05) drop-shadow(0 0 8px rgba(143, 180, 255, 0.16));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-fx {
+    opacity: 0.55;
+  }
+}
