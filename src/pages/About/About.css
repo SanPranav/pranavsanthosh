@@ -38,12 +38,17 @@
   height: 200px;
   border-radius: var(--radius-xl);
   object-fit: cover;
+  /* Strong, always-on high-contrast treatment for the profile photo. */
+  -webkit-filter: grayscale(100%) contrast(190%) brightness(118%) !important;
+  filter: grayscale(100%) contrast(190%) brightness(118%) !important;
   border: 2px solid var(--color-accent-primary);
   box-shadow: 0 8px 24px rgba(175, 203, 255, 0.2);
   transition: all var(--transition-base);
 }
 
 .about__profile-img:hover {
+  -webkit-filter: grayscale(95%) contrast(210%) brightness(122%) !important;
+  filter: grayscale(95%) contrast(210%) brightness(122%) !important;
   transform: scale(1.05);
   box-shadow: 0 12px 32px rgba(175, 203, 255, 0.3);
 }
