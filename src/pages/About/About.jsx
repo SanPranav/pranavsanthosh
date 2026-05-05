@@ -104,6 +104,13 @@ const About = () => {
       'Public Speaking',
       'Mentoring'
     ],
+    'Business & Strategy': [
+      'Business Strategy',
+      'Brand Strategy',
+      'Content Strategy',
+      'Photo Editing',
+      'Video Editing'
+    ],
     'STEM & Science': [
       'Problem-Solving & Critical Thinking',
       'Calculus',
