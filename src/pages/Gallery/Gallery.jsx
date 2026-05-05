@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import './Gallery.css';
 
 const DEFAULT_IMAGES = [
-  { src: 'https://images.unsplash.com/photo-1541359927273-d76820fc43f9?q=80&w=1600&auto=format&fit=crop', width: 1600, height: 1000 },
-  { src: 'https://images.unsplash.com/photo-1601639015090-ffb7937aa15f?q=80&w=900&auto=format&fit=crop', width: 900, height: 1400 },
-  { src: 'https://images.unsplash.com/photo-1520114092791-72f87adad218?q=80&w=1400&auto=format&fit=crop', width: 1400, height: 1400 },
-  { src: 'https://images.unsplash.com/photo-1517457210156-3bcca8bc02a5?q=80&w=1800&auto=format&fit=crop', width: 1800, height: 1200 },
-  { src: 'https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=1200&auto=format&fit=crop', width: 1200, height: 1600 },
-  { src: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=1500&auto=format&fit=crop', width: 1500, height: 900 },
+  { src: 'https://images.unsplash.com/photo-1541359927273-d76820fc43f9?q=80&w=1600&auto=format&fit=crop', width: 1600, height: 1000, name: 'Rocket Engine Design', location: 'Competition Lab' },
+  { src: 'https://images.unsplash.com/photo-1601639015090-ffb7937aa15f?q=80&w=900&auto=format&fit=crop', width: 900, height: 1400, name: 'Launch Day Moment', location: 'Test Range' },
+  { src: 'https://images.unsplash.com/photo-1520114092791-72f87adad218?q=80&w=1400&auto=format&fit=crop', width: 1400, height: 1400, name: 'Team Assembly', location: 'Workshop' },
+  { src: 'https://images.unsplash.com/photo-1517457210156-3bcca8bc02a5?q=80&w=1800&auto=format&fit=crop', width: 1800, height: 1200, name: 'CAD Development', location: 'Design Studio' },
+  { src: 'https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=1200&auto=format&fit=crop', width: 1200, height: 1600, name: 'Testing Phase', location: 'Tech Lab' },
+  { src: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=1500&auto=format&fit=crop', width: 1500, height: 900, name: 'Project Overview', location: 'Headquarters' },
 ];
 
 const containerVariants = {
@@ -60,6 +60,8 @@ const Gallery = () => {
     src: image.src || `${process.env.PUBLIC_URL}/images/gallery/${image.name}`,
     width: image.width,
     height: image.height,
+    name: image.name || 'Untitled',
+    location: image.location || 'Unknown',
   })), [images]);
 
   return (
@@ -107,8 +109,13 @@ const Gallery = () => {
                   whileHover={{ scale: 0.99, opacity: 0.95 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className="gallery__image-overlay"></div>
                   <img src={img.src} alt={`Artwork ${img.id}`} loading="lazy" />
+                  <div className="gallery__image-overlay">
+                    <div className="gallery__image-info">
+                      <h3 className="gallery__image-name">{img.name}</h3>
+                      <p className="gallery__image-location">{img.location}</p>
+                    </div>
+                  </div>
                 </motion.div>
               );
             })}
