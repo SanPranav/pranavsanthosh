@@ -6,6 +6,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const lastScrollY = useRef(0);
+  const rafId = useRef(null);
   const location = useLocation();
 
   const navLinks = [
@@ -22,21 +23,43 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    const scrollThreshold = 8;
+
+    const updateNavbarVisibility = () => {
       const currentScrollY = window.scrollY;
       const scrollDelta = currentScrollY - lastScrollY.current;
 
-      if (scrollDelta > 1) {
-        setIsNavbarVisible(false);
-      } else if (scrollDelta < -1) {
+      if (currentScrollY <= 0) {
         setIsNavbarVisible(true);
+      } else if (Math.abs(scrollDelta) >= scrollThreshold) {
+        if (scrollDelta > 0) {
+          setIsNavbarVisible(false);
+        } else {
+          setIsNavbarVisible(true);
+        }
       }
 
       lastScrollY.current = currentScrollY;
+      rafId.current = null;
     };
 
+    const handleScroll = () => {
+      if (rafId.current !== null) {
+        return;
+      }
+
+      rafId.current = window.requestAnimationFrame(updateNavbarVisibility);
+    };
+
+    lastScrollY.current = window.scrollY;
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId.current !== null) {
+        window.cancelAnimationFrame(rafId.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
