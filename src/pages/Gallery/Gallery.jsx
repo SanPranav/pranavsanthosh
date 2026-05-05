@@ -169,7 +169,7 @@ const Gallery = () => {
             transition={{ duration: 0.5 }}
             className="gallery__title"
           >
-            Visual Sandbox
+            Gallery
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
