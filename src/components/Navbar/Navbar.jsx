@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const location = useLocation();
 
   const navLinks = [
@@ -19,8 +21,32 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY.current;
+
+      if (scrollDelta > 1) {
+        setIsNavbarVisible(false);
+      } else if (scrollDelta < -1) {
+        setIsNavbarVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      setIsNavbarVisible(true);
+    }
+  }, [isMenuOpen]);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isNavbarVisible ? 'navbar--visible' : 'navbar--hidden'} ${isMenuOpen ? 'navbar--menu-open' : ''}`}>
       <div className="navbar__container container">
         <Link to="/" className="navbar__logo">
           PRANAV.SANTHOSH
@@ -30,6 +56,7 @@ const Navbar = () => {
           className={`navbar__toggle ${isMenuOpen ? 'navbar__toggle--active' : ''}`}
           onClick={toggleMenu}
           aria-label="Toggle navigation"
+          aria-expanded={isMenuOpen}
         >
           <span></span>
           <span></span>

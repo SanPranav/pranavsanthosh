@@ -1,22 +1,42 @@
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  top: 12px;
+  left: 50%;
+  width: min(1200px, calc(100% - 24px));
+  transform: translateX(-50%) translateY(0);
+  background: var(--color-glass-bg);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--color-glass-border);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 18px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
   z-index: 99999 !important;
-  transition: all var(--transition-base);
+  transition: transform var(--transition-base), opacity var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
+  will-change: transform, opacity;
+}
+
+.navbar--hidden {
+  transform: translateX(-50%) translateY(-140%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar--visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navbar--menu-open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .navbar__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: var(--spacing-4);
-  padding-bottom: var(--spacing-4);
+  padding-top: var(--spacing-3);
+  padding-bottom: var(--spacing-3);
 }
 
 .navbar__logo {
@@ -29,7 +49,7 @@
 
 .navbar__logo {
   position: relative;
-  z-index: 100000 !important; /* keep logo above the sliding menu */
+  z-index: 100000 !important;
   pointer-events: auto;
 }
 
@@ -113,16 +133,25 @@
   .navbar__toggle {
     display: flex;
   }
-  /* Float the navbar in the top-right corner */
+  /* Center the navbar on mobile */
   .navbar {
     top: 12px;
-    right: 12px;
-    left: auto;
-    width: auto;
+    left: 50%;
+    right: auto;
+    width: min(92vw, 520px);
     max-width: calc(100% - 24px);
-    border-radius: 12px;
-    padding: 6px 8px;
-    backdrop-filter: blur(12px);
+    transform: translateX(-50%) translateY(0);
+    border-radius: 18px;
+    padding: 0;
+    backdrop-filter: blur(20px);
+  }
+
+  .navbar--hidden {
+    transform: translateX(-50%) translateY(-140%);
+  }
+
+  .navbar--visible {
+    transform: translateX(-50%) translateY(0);
   }
   /* Mobile: floating centered modal menu */
   .navbar__backdrop {
@@ -135,11 +164,11 @@
   /* Anchor menu below the floating navbar (top-right) */
   .navbar__menu {
     position: fixed;
-    top: calc(12px + 48px + 8px); /* navbar top + approx height + gap */
-    right: 12px;
-    left: auto;
-    transform: none;
-    width: min(92vw, 360px);
+    top: 64px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(92vw, 420px);
     max-height: 70vh;
     overflow: auto;
     flex-direction: column;
@@ -171,4 +200,14 @@
 .navbar__menu, .navbar__menu * {
   -webkit-tap-highlight-color: transparent;
 }
+}
+
+@media (max-width: 480px) {
+  .navbar__menu {
+    width: calc(100vw - 24px);
+    top: 64px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
 }
