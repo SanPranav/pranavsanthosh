@@ -49,7 +49,7 @@ const Home = () => {
             </p>
             <p className="home__description">
               Welcome to my digital realm where creativity meets technology. I specialize 
-              in aerospace engineering, robotics systems, and pushing the boundaries of 
+              in aerospace engineering, robotics systems, business strategy and pushing the boundaries of 
               what's possible through innovation and elegant design.
             </p>
             <div className="home__buttons">

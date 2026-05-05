@@ -224,7 +224,7 @@ const About = () => {
               <p className="about__subtitle">Aspiring Aerospace engineer.</p>
               <p className="about__hero-summary">
                 I work where aerospace, robotics, and software meet. I favor practical systems that solve real problems and
-                interfaces that people can use without problems.
+                interfaces that people can use without problems. I also enjoy project management, and business strategy.
               </p>
 
               <div className="about__journey-tags" aria-label="Core focus areas">
