@@ -26,7 +26,7 @@ const About = () => {
     }
   ];
 
-  const journeyTags = ['Mechanical Engineering', 'Aerospace', 'Robotics', 'Software', 'Photography'];
+  const journeyTags = ['Aerospace', 'Robotics', 'Software', 'Photography', 'Outreach', 'Leadership', 'Data Analysis', 'Project Management', 'Community Building'];
 
   const skillProficiency = [
     { skill: 'Programming', proficiency: 90 },
@@ -221,10 +221,10 @@ const About = () => {
             <div className="about__hero-copy">
               <p className="about__eyebrow">Profile</p>
               <h1 className="about__title">About Me</h1>
-              <p className="about__subtitle">Aspiring mechanical engineer focused on aerospace.</p>
+              <p className="about__subtitle">Aspiring Aerospace engineer.</p>
               <p className="about__hero-summary">
                 I work where aerospace, robotics, and software meet. I favor practical systems that solve real problems and
-                interfaces that people can use without friction.
+                interfaces that people can use without problems.
               </p>
 
               <div className="about__journey-tags" aria-label="Core focus areas">
@@ -296,7 +296,7 @@ const About = () => {
             <h2 className="about__section-title">My Journey</h2>
             <div className="about__journey-content">
               <p className="about__text">
-                I'm studying mechanical engineering with a focus on aerospace. I get energized by hands-on problems: building
+                I'm studying aerospace engineering with a focus on rocket design. I am most enganged by hands-on problems: building
                 rockets that fly, leading robotics teams, and shipping software that people can rely on. Seeing an idea turn
                 into something that works keeps me motivated.
               </p>

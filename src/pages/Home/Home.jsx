@@ -45,7 +45,7 @@ const Home = () => {
             <p className="home__greeting">Meet</p>
             <h1 className="home__title">Pranav Santhosh</h1>
             <p className="home__subtitle">
-              Aspiring Mechanical Engineer aiming to specialize in Aerospace
+              Aspiring Aerospace Engineer
             </p>
             <p className="home__description">
               Welcome to my digital realm where creativity meets technology. I specialize 
