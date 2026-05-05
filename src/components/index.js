@@ -5,6 +5,3 @@ export { default as Navbar } from './Navbar/Navbar';
 export { default as Input } from './Input/Input';
 export { default as Textarea } from './Textarea/Textarea';
 export { default as ReturnToTop } from './ReturnToTop/ReturnToTop';
-export { default as Dialog } from './Dialog/Dialog';
-export { default as Tabs } from './Tabs/Tabs';
-export { default as Gallery } from './Gallery/Gallery';
