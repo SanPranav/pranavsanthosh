@@ -10,6 +10,12 @@ const IMAGE_METADATA = {
     width: 1026,
     height: 1368
   },
+  'osunset.png': {
+    name: 'Overcast Sunset',
+    location: 'Beachfront @ Sunset, San Diego 2024',
+    width: 1026,
+    height: 1368
+  },
   // Add more images here:
   // 'filename.jpg': {
   //   name: 'Image Title',
@@ -60,10 +66,17 @@ const Gallery = () => {
         if (!cancelled) {
           if (manifest.length > 0) {
             // Merge manifest files with metadata
-            const enrichedImages = manifest.map((item) => ({
-              ...item,
-              ...IMAGE_METADATA[item.name]
-            }));
+            const enrichedImages = manifest.map((item) => {
+              const metadata = IMAGE_METADATA[item.name] || {};
+              return {
+                fileName: item.name,
+                width: metadata.width,
+                height: metadata.height,
+                name: metadata.name,
+                location: metadata.location,
+                src: `${process.env.PUBLIC_URL}/images/gallery/${item.name}`,
+              };
+            });
             setImages(enrichedImages);
           } else {
             setImages(DEFAULT_IMAGES);
@@ -84,15 +97,15 @@ const Gallery = () => {
   }, []);
 
   const galleryItems = useMemo(() => images.map((image, index) => {
-    // For local images, construct the src path
-    const src = image.src || `${process.env.PUBLIC_URL}/images/gallery/${image.name}`;
+    const src = image.src || `${process.env.PUBLIC_URL}/images/gallery/${image.fileName || image.name}`;
+    const displayName = image.name || image.fileName || 'Untitled';
     
     return {
-      id: image.name ? `${image.name}-${index}` : `default-${index}`,
+      id: image.fileName ? `${image.fileName}-${index}` : `default-${index}`,
       src,
       width: image.width || 1600,
       height: image.height || 1200,
-      name: image.name || 'Untitled',
+      name: displayName,
       location: image.location || 'Unknown',
       index: index,
     };
@@ -228,19 +241,20 @@ const Gallery = () => {
             </button>
 
             <div className="gallery__modal-image-wrapper">
-              <motion.img
-                src={selectedImage.src}
-                alt={selectedImage.name}
-                className="gallery__modal-image"
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-            </div>
-
-            <div className="gallery__modal-info">
-              <h2 className="gallery__modal-title">{selectedImage.name}</h2>
-              <p className="gallery__modal-location">{selectedImage.location}</p>
+              <div className="gallery__modal-main">
+                <motion.img
+                  src={selectedImage.src}
+                  alt={selectedImage.name}
+                  className="gallery__modal-image"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                />
+                <div className="gallery__modal-info">
+                  <h2 className="gallery__modal-title">{selectedImage.name}</h2>
+                  <p className="gallery__modal-location">{selectedImage.location}</p>
+                </div>
+              </div>
             </div>
 
             {/* Navigation Arrows */}

@@ -60,13 +60,15 @@
   z-index: 10;
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
   padding: var(--spacing-4);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .gallery__image-info {
-  width: 100%;
+  width: min(70%, 380px);
+  text-align: right;
 }
 
 .gallery__image-name {
@@ -128,19 +130,36 @@
 
 .gallery__modal-image-wrapper {
   position: relative;
+  width: fit-content;
   max-width: 100%;
   max-height: 65vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--radius-xl);
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.gallery__modal-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: center;
+  width: min(90vw, 1320px);
+  max-height: 65vh;
+}
+
 .gallery__modal-image {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
+  max-width: min(90vw - 320px, 1000px);
+  max-height: 65vh;
   object-fit: contain;
   display: block;
+  justify-self: center;
+  align-self: center;
+  margin: 0 auto;
 }
 
 .gallery__modal-close {
@@ -168,8 +187,15 @@
 }
 
 .gallery__modal-info {
-  text-align: center;
-  padding: 0 var(--spacing-4);
+  text-align: right;
+  padding: var(--spacing-6);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-2);
 }
 
 .gallery__modal-title {
@@ -242,8 +268,26 @@
     gap: var(--spacing-4);
   }
 
+  .gallery__modal-main {
+    grid-template-columns: 1fr;
+    width: min(94vw, 720px);
+    max-height: none;
+  }
+
   .gallery__modal-image-wrapper {
     max-height: 50vh;
+  }
+
+  .gallery__modal-image {
+    max-width: 100%;
+    max-height: 50vh;
+  }
+
+  .gallery__modal-info {
+    text-align: left;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding: var(--spacing-4);
   }
 
   .gallery__modal-nav {
