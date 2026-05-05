@@ -36,7 +36,10 @@ const Navbar = () => {
           <span></span>
         </button>
 
-        <div className={`navbar__menu ${isMenuOpen ? 'navbar__menu--open' : ''}`}>
+        {/* Backdrop for floating modal menu on mobile */}
+        {isMenuOpen && <div className="navbar__backdrop" onClick={toggleMenu} />}
+
+        <div className={`navbar__menu ${isMenuOpen ? 'navbar__menu--open' : ''}`} role="dialog" aria-modal={isMenuOpen}>
           {navLinks.map((link) => (
             <Link
               key={link.path}

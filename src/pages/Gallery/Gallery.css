@@ -39,6 +39,7 @@
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
+  touch-action: manipulation;
   background-color: var(--color-bg-secondary);
   border: 1px solid rgba(255, 255, 255, 0.04);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -58,6 +59,7 @@
   inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, transparent 100%);
   z-index: 10;
+  pointer-events: none;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -103,18 +105,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  padding: var(--spacing-4);
+  z-index: 1300;
+  /* account for device safe area insets on phones */
+  padding: max(env(safe-area-inset-top), 16px) var(--spacing-4) max(env(safe-area-inset-bottom), 16px);
 }
 
 .gallery__modal-content {
   position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
+  width: min(92vw, 1320px);
+  max-width: 1320px;
+  max-height: calc(100vh - 32px);
+  padding-bottom: var(--spacing-12);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-6);
   animation: modalSlideUp 0.3s ease-out;
+  overflow: auto;
 }
 
 @keyframes modalSlideUp {
@@ -130,9 +136,9 @@
 
 .gallery__modal-image-wrapper {
   position: relative;
-  width: fit-content;
+  width: 100%;
   max-width: 100%;
-  max-height: 65vh;
+  max-height: 75vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -146,14 +152,24 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
   align-items: center;
-  width: min(90vw, 1320px);
-  max-height: 65vh;
+  width: 100%;
+  max-height: 75vh;
+}
+
+.gallery__modal-image-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  min-width: 0;
 }
 
 .gallery__modal-image {
   width: auto;
   height: auto;
-  max-width: min(90vw - 320px, 1000px);
+  /* Avoid negative calculations on small viewports by capping to viewport width */
+  max-width: min(92vw, 960px);
   max-height: 65vh;
   object-fit: contain;
   display: block;
@@ -247,8 +263,8 @@
 
 .gallery__modal-counter {
   position: absolute;
-  bottom: var(--spacing-4);
   left: 50%;
+  bottom: var(--spacing-2);
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -266,11 +282,13 @@
 
   .gallery__modal-content {
     gap: var(--spacing-4);
+    width: min(95vw, 720px);
+    padding-bottom: var(--spacing-10);
   }
 
   .gallery__modal-main {
     grid-template-columns: 1fr;
-    width: min(94vw, 720px);
+    width: 100%;
     max-height: none;
   }
 
@@ -281,6 +299,10 @@
   .gallery__modal-image {
     max-width: 100%;
     max-height: 50vh;
+  }
+
+  .gallery__modal-counter {
+    bottom: var(--spacing-1);
   }
 
   .gallery__modal-info {

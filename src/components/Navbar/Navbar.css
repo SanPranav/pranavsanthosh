@@ -7,7 +7,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-glass-border);
-  z-index: var(--z-sticky);
+  z-index: 99999 !important;
   transition: all var(--transition-base);
 }
 
@@ -25,6 +25,12 @@
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
   transition: color var(--transition-fast);
+}
+
+.navbar__logo {
+  position: relative;
+  z-index: 100000 !important; /* keep logo above the sliding menu */
+  pointer-events: auto;
 }
 
 .navbar__logo:hover {
@@ -79,7 +85,8 @@
   gap: 6px;
   padding: var(--spacing-2);
   cursor: pointer;
-  z-index: calc(var(--z-sticky) + 1);
+  z-index: 1302;
+  position: relative;
 }
 
 .navbar__toggle span {
@@ -106,28 +113,62 @@
   .navbar__toggle {
     display: flex;
   }
-
+  /* Float the navbar in the top-right corner */
+  .navbar {
+    top: 12px;
+    right: 12px;
+    left: auto;
+    width: auto;
+    max-width: calc(100% - 24px);
+    border-radius: 12px;
+    padding: 6px 8px;
+    backdrop-filter: blur(12px);
+  }
+  /* Mobile: floating centered modal menu */
+  .navbar__backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 100005;
+    opacity: 1;
+  }
+  /* Anchor menu below the floating navbar (top-right) */
   .navbar__menu {
     position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100vh;
+    top: calc(12px + 48px + 8px); /* navbar top + approx height + gap */
+    right: 12px;
+    left: auto;
+    transform: none;
+    width: min(92vw, 360px);
+    max-height: 70vh;
+    overflow: auto;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: var(--spacing-4);
-    padding: var(--spacing-24) var(--spacing-6);
+    padding: var(--spacing-6);
     background-color: var(--color-bg-secondary);
-    border-left: 1px solid var(--color-glass-border);
-    transition: right var(--transition-base);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    z-index: 100010 !important;
+    pointer-events: none;
+    opacity: 0;
+    transition: transform var(--transition-base), opacity var(--transition-base);
   }
 
   .navbar__menu--open {
-    right: 0;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .navbar__link {
     font-size: var(--font-size-lg);
     width: 100%;
+    pointer-events: auto;
+    padding: var(--spacing-3) 0;
   }
+
+.navbar__menu, .navbar__menu * {
+  -webkit-tap-highlight-color: transparent;
+}
 }

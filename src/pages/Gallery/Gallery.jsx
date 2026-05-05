@@ -134,6 +134,28 @@ const Gallery = () => {
     setIsModalOpen(true);
   };
 
+  // Lock body scroll on modal open to ensure backdrop centers correctly on mobile
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+      // small scroll reset to help some mobile browsers center fixed elements
+      try { window.scrollTo(0, 0); } catch (e) {}
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isModalOpen]);
+
+  const handleImageKeyDown = (event, image) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleImageClick(image);
+    }
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedImage(null);
@@ -203,7 +225,11 @@ const Gallery = () => {
                   style={{ gridColumnEnd: `span ${columnSpan}`, gridRowEnd: `span ${rowSpan}` }}
                   whileHover={{ scale: 0.99, opacity: 0.95 }}
                   transition={{ duration: 0.2 }}
-                  onClick={() => handleImageClick(img)}
+                    onClick={() => handleImageClick(img)}
+                    onPointerUp={(e) => { e.preventDefault(); handleImageClick(img); }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(event) => handleImageKeyDown(event, img)}
                 >
                   <img src={img.src} alt={`Artwork ${img.id}`} loading="lazy" />
                   <div className="gallery__image-overlay">
@@ -242,19 +268,25 @@ const Gallery = () => {
 
             <div className="gallery__modal-image-wrapper">
               <div className="gallery__modal-main">
-                <motion.img
-                  src={selectedImage.src}
-                  alt={selectedImage.name}
-                  className="gallery__modal-image"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.2 }}
-                />
+                <div className="gallery__modal-image-panel">
+                  <motion.img
+                    src={selectedImage.src}
+                    alt={selectedImage.name}
+                    className="gallery__modal-image"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </div>
                 <div className="gallery__modal-info">
                   <h2 className="gallery__modal-title">{selectedImage.name}</h2>
                   <p className="gallery__modal-location">{selectedImage.location}</p>
                 </div>
               </div>
+            </div>
+
+            <div className="gallery__modal-counter" aria-live="polite">
+              {selectedImage.index + 1} / {galleryItems.length}
             </div>
 
             {/* Navigation Arrows */}
@@ -282,9 +314,6 @@ const Gallery = () => {
               </button>
             )}
 
-            <div className="gallery__modal-counter">
-              {selectedImage.index + 1} / {galleryItems.length}
-            </div>
           </div>
         </motion.div>
       )}
