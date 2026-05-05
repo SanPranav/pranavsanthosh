@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import './Gallery.css';
 
@@ -26,6 +26,8 @@ const itemVariants = {
 
 const Gallery = () => {
   const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -62,7 +64,56 @@ const Gallery = () => {
     height: image.height,
     name: image.name || 'Untitled',
     location: image.location || 'Unknown',
+    index: index,
   })), [images]);
+
+  const navigateNextImage = useCallback(() => {
+    setSelectedImage((prev) => {
+      if (prev && prev.index < galleryItems.length - 1) {
+        return galleryItems[prev.index + 1];
+      }
+      return prev;
+    });
+  }, [galleryItems]);
+
+  const navigatePrevImage = useCallback(() => {
+    setSelectedImage((prev) => {
+      if (prev && prev.index > 0) {
+        return galleryItems[prev.index - 1];
+      }
+      return prev;
+    });
+  }, [galleryItems]);
+
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage(null);
+  };
+
+  // Update keyboard handler to use the memoized navigation functions
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isModalOpen) {
+        closeModal();
+      }
+      if (e.key === 'ArrowLeft' && isModalOpen && selectedImage) {
+        navigatePrevImage();
+      }
+      if (e.key === 'ArrowRight' && isModalOpen && selectedImage) {
+        navigateNextImage();
+      }
+    };
+
+    if (isModalOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [isModalOpen, selectedImage, navigateNextImage, navigatePrevImage]);
 
   return (
     <div className="gallery page-wrapper">
@@ -108,6 +159,7 @@ const Gallery = () => {
                   style={{ gridColumnEnd: `span ${columnSpan}`, gridRowEnd: `span ${rowSpan}` }}
                   whileHover={{ scale: 0.99, opacity: 0.95 }}
                   transition={{ duration: 0.2 }}
+                  onClick={() => handleImageClick(img)}
                 >
                   <img src={img.src} alt={`Artwork ${img.id}`} loading="lazy" />
                   <div className="gallery__image-overlay">
@@ -122,6 +174,75 @@ const Gallery = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      {isModalOpen && selectedImage && (
+        <motion.div
+          className="gallery__modal-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={closeModal}
+        >
+          <div className="gallery__modal-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="gallery__modal-close"
+              onClick={closeModal}
+              aria-label="Close modal"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            <div className="gallery__modal-image-wrapper">
+              <motion.img
+                src={selectedImage.src}
+                alt={selectedImage.name}
+                className="gallery__modal-image"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
+
+            <div className="gallery__modal-info">
+              <h2 className="gallery__modal-title">{selectedImage.name}</h2>
+              <p className="gallery__modal-location">{selectedImage.location}</p>
+            </div>
+
+            {/* Navigation Arrows */}
+            {selectedImage.index > 0 && (
+              <button
+                className="gallery__modal-nav gallery__modal-nav--prev"
+                onClick={navigatePrevImage}
+                aria-label="Previous image"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+            )}
+
+            {selectedImage.index < galleryItems.length - 1 && (
+              <button
+                className="gallery__modal-nav gallery__modal-nav--next"
+                onClick={navigateNextImage}
+                aria-label="Next image"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            )}
+
+            <div className="gallery__modal-counter">
+              {selectedImage.index + 1} / {galleryItems.length}
+            </div>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 };
