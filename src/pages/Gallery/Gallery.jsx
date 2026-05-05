@@ -2,6 +2,23 @@ import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import './Gallery.css';
 
+// Image metadata mapping - add your images here with name and location
+const IMAGE_METADATA = {
+  'aconv.png': {
+    name: 'Anaheim Convention Center',
+    location: 'Anaheim Convention Center Hall D @ Socal District Championships 2026 FIRST',
+    width: 1026,
+    height: 1368
+  },
+  // Add more images here:
+  // 'filename.jpg': {
+  //   name: 'Image Title',
+  //   location: 'Location Name',
+  //   width: 1600,
+  //   height: 1200
+  // }
+};
+
 const DEFAULT_IMAGES = [
   { src: 'https://images.unsplash.com/photo-1541359927273-d76820fc43f9?q=80&w=1600&auto=format&fit=crop', width: 1600, height: 1000, name: 'Rocket Engine Design', location: 'Competition Lab' },
   { src: 'https://images.unsplash.com/photo-1601639015090-ffb7937aa15f?q=80&w=900&auto=format&fit=crop', width: 900, height: 1400, name: 'Launch Day Moment', location: 'Test Range' },
@@ -41,7 +58,16 @@ const Gallery = () => {
 
         const manifest = await response.json();
         if (!cancelled) {
-          setImages(manifest.length > 0 ? manifest : DEFAULT_IMAGES);
+          if (manifest.length > 0) {
+            // Merge manifest files with metadata
+            const enrichedImages = manifest.map((item) => ({
+              ...item,
+              ...IMAGE_METADATA[item.name]
+            }));
+            setImages(enrichedImages);
+          } else {
+            setImages(DEFAULT_IMAGES);
+          }
         }
       } catch (error) {
         if (!cancelled) {
@@ -57,15 +83,20 @@ const Gallery = () => {
     };
   }, []);
 
-  const galleryItems = useMemo(() => images.map((image, index) => ({
-    id: image.name ? `${image.name}-${index}` : `default-${index}`,
-    src: image.src || `${process.env.PUBLIC_URL}/images/gallery/${image.name}`,
-    width: image.width,
-    height: image.height,
-    name: image.name || 'Untitled',
-    location: image.location || 'Unknown',
-    index: index,
-  })), [images]);
+  const galleryItems = useMemo(() => images.map((image, index) => {
+    // For local images, construct the src path
+    const src = image.src || `${process.env.PUBLIC_URL}/images/gallery/${image.name}`;
+    
+    return {
+      id: image.name ? `${image.name}-${index}` : `default-${index}`,
+      src,
+      width: image.width || 1600,
+      height: image.height || 1200,
+      name: image.name || 'Untitled',
+      location: image.location || 'Unknown',
+      index: index,
+    };
+  }), [images]);
 
   const navigateNextImage = useCallback(() => {
     setSelectedImage((prev) => {

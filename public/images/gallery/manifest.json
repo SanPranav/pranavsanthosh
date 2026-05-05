@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "name": "aconv.png"
+    src: "'/pranavsanthosh/images/gallery/aconv.png'",
+  width: 1026,
+  height: 1368,
+  name: 'Anaheim Convention Center',        // Shows on hover & modal
+  location: 'Anaheim Convention Center Hall D @ Socal District Championships 2026 FIRST'    // Shows on hover & modal
+  }
+]

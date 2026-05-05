@@ -15,48 +15,61 @@ Place your image files in the `/public/images/gallery/` directory.
 ### Step 2: The Manifest is Auto-Generated
 The `public/images/gallery/manifest.json` file is **automatically generated** when you build the project. Simply add your images to the folder, and the build process will create the manifest.
 
-### Step 3: Add Metadata (Image Name & Location)
-To make images display with custom names and locations in the gallery, you need to edit the `DEFAULT_IMAGES` array in `src/pages/Gallery/Gallery.jsx`:
+### Step 3: Add Image Metadata
+To display images with custom names and locations in the gallery, edit the `IMAGE_METADATA` object at the top of `src/pages/Gallery/Gallery.jsx`:
 
 ```javascript
-const DEFAULT_IMAGES = [
-  { 
-    src: '/pranavsanthosh/images/gallery/your-image.jpg',  // Path to your image
-    width: 1600,          // Approximate width (used for masonry sizing)
-    height: 1000,         // Approximate height
-    name: 'Image Title',   // Shows on hover and in modal
-    location: 'Location'   // Shows on hover and in modal
+const IMAGE_METADATA = {
+  'aconv.png': {
+    name: 'Anaheim Convention Center',
+    location: 'Anaheim Convention Center Hall D @ Socal District Championships 2026 FIRST',
+    width: 1026,
+    height: 1368
+  },
+  'filename.jpg': {
+    name: 'Image Title',
+    location: 'Location Name',
+    width: 1600,
+    height: 1200
   },
   // Add more images here
-];
+};
 ```
+
+**Fields:**
+- `name`: Image title (shown on hover and in modal)
+- `location`: Location/description (shown on hover and in modal)
+- `width`: Approximate image width (for masonry grid layout)
+- `height`: Approximate image height (for masonry grid layout)
 
 ### Example Workflow
 
-1. **Take/Export your image** → `my-project-photo.jpg`
+1. **Export/save your image** → `my-photo.jpg`
 2. **Add to folder** → Copy to `/public/images/gallery/`
-3. **Update DEFAULT_IMAGES** in `src/pages/Gallery/Gallery.jsx`:
+3. **Add metadata** → Edit `IMAGE_METADATA` in `src/pages/Gallery/Gallery.jsx`:
    ```javascript
-   {
-     src: '/pranavsanthosh/images/gallery/my-project-photo.jpg',
-     width: 1600,
-     height: 1000,
-     name: 'Project Launch',
-     location: 'Competition Venue'
-   }
+   const IMAGE_METADATA = {
+     'my-photo.jpg': {
+       name: 'Project Launch Event',
+       location: 'Competition Venue - Hall A',
+       width: 1920,
+       height: 1440
+     }
+   };
    ```
 4. **Build** → Run `npm run build`
-5. **Done!** Your image appears in the gallery with hover info and full modal view
+5. **Done!** Your image appears in the gallery with metadata on hover and in modal
 
 ### Tips for Best Results
 
 - **Image sizes**: Keep images under 2MB each for fast loading
 - **Aspect ratios**: Mix different ratios (square, portrait, landscape) for dynamic masonry layout
 - **WebP format**: Convert JPGs to WebP to reduce file size by 25-35%
-- **Dimensions**: Provide accurate width/height in the code for proper grid sizing
+- **Accurate dimensions**: Provide correct width/height for proper grid layout
 
 ### Gallery Features
 - **Hover**: See image name and location
 - **Click**: Opens full-screen modal with enlarged image
 - **Navigation**: Use arrow buttons or keyboard (← → to navigate, ESC to close)
 - **Counter**: Shows current image position
+- **Responsive**: Works on all devices
