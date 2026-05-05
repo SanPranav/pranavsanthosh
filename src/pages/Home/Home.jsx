@@ -28,6 +28,12 @@ const Home = () => {
       title: 'Get in Touch',
       description: 'Ready to collaborate? Let\'s discuss your next project, share ideas, or explore opportunities together.',
       icon: <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    },
+    {
+      path: '/gallery',
+      title: 'Gallery',
+      description: 'A living mosaic of photos, arranged automatically by image proportions into a puzzle-like composition.',
+      icon: <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="7" height="7" rx="1"/><rect x="14" y="4" width="7" height="4" rx="1"/><rect x="14" y="12" width="7" height="8" rx="1"/><rect x="3" y="15" width="7" height="5" rx="1"/></svg>
     }
   ];
 

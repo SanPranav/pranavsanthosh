@@ -4,3 +4,4 @@ export { default as Contact } from './Contact/Contact';
 export { default as Blog } from './Blog/Blog';
 export { default as BlogPost } from './Blog/BlogPost';
 export { default as Work } from './Work/Work';
+export { default as Gallery } from './Gallery/Gallery';

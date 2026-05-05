@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { cn } from '../../utils';
 import './Button.css';
 
 const Button = ({ 
@@ -8,13 +9,15 @@ const Button = ({
   size = 'medium',
   href,
   onClick,
+  disabled = false,
   className = '',
   ...props 
 }) => {
   const baseClass = 'btn';
   const variantClass = `btn--${variant}`;
   const sizeClass = `btn--${size}`;
-  const combinedClass = `${baseClass} ${variantClass} ${sizeClass} ${className}`.trim();
+  const disabledClass = disabled ? 'btn--disabled' : '';
+  const combinedClass = cn(baseClass, variantClass, sizeClass, disabledClass, className);
 
   if (href) {
     return (
@@ -25,7 +28,12 @@ const Button = ({
   }
 
   return (
-    <button onClick={onClick} className={combinedClass} {...props}>
+    <button 
+      onClick={onClick} 
+      className={combinedClass} 
+      disabled={disabled}
+      {...props}
+    >
       {children}
     </button>
   );
