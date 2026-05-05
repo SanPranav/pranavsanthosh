@@ -11,7 +11,7 @@ const IMAGE_METADATA = {
     height: 1368
   },
   'osunset.png': {
-    name: 'Overcast Sunset',
+    name: 'Oceanside Sunset',
     location: 'Beachfront @ Sunset, San Diego 2024',
     width: 1026,
     height: 1368
