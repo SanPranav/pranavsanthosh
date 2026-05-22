@@ -56,6 +56,25 @@ const Work = () => {
       ]
     },
     {
+      title: 'DNHS Rocketry Club Website',
+      description: 'A website I designed fully from scratch for the DNHS Rocketry Club, built to showcase the team, its mission, and updates for the club.',
+      tech: ['Web Design', 'Frontend', 'HTML', 'CSS', 'JavaScript'],
+      icon: <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 19l14-14"/><path d="M8 5h11v11"/><path d="M5 19h6"/></svg>,
+      links: [
+        { label: 'View Code', url: 'https://github.com/SanPranav/dnhsrocketry' },
+        { label: 'Live Site', url: 'https://sanpranav.github.io/dnhsrocketry/' }
+      ]
+    },
+    {
+      title: 'iGEM + DCM Project',
+      description: 'A private project I am currently working on for iGEM and DCM. The link will most likely be inaccessible until competition rules allow us to publish it.',
+      tech: ['iGEM', 'DCM', 'Private', 'In Progress'],
+      icon: <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20"/><path d="M2 12h20"/><circle cx="12" cy="12" r="8"/></svg>,
+      links: [
+        { label: 'Private Repo', url: 'https://github.com/SanPranav/igemmodel1' }
+      ]
+    },
+    {
       title: 'Outreach Hours Website',
       description: 'Currently developing a platform for tracking outreach hours and community impact initiatives. Helps club members log and visualize their contributions to community service and outreach programs.',
       tech: ['Web Dev', 'Tracking', 'Community', 'In Progress'],

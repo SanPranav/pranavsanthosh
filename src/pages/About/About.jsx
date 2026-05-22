@@ -163,6 +163,11 @@ const About = () => {
       company: 'San Diego Supercomputer Center (SDSC)'
     },
     {
+      dateRange: 'Aug 2025 - Present',
+      position: 'Software + SciComm Member',
+      company: 'iGEM'
+    },
+    {
       dateRange: 'Mar 2025 - Sep 2025',
       position: 'Outreach Director',
       company: 'Books4All'
